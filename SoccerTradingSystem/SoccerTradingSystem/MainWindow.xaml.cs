@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace SoccerTradingSystem
 {
-    /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
-    /// </summary>
+    using MariaDBConnector = SoccerTradingSystem.Controller.DAC.MariaDBConnector;
+    using JSON = List<Dictionary<string, object>>;
+
     public partial class MainWindow : Window
     {
+
+        private MariaDBConnector con = new MariaDBConnector();
         public MainWindow()
         {
             InitializeComponent();

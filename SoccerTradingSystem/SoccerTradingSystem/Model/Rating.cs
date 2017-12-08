@@ -20,7 +20,6 @@ namespace SoccerTradingSystem.Model
             this.player = player;
             this.ratingGrade = ratingGrade;
         }
-    {
-
     }
 }
+

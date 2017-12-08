@@ -1,0 +1,237 @@
+CREATE DATABASE `pms_real` /*!40100 COLLATE 'latin1_swedish_ci' */;
+USE `pms_real`;
+CREATE TABLE `Manager` (
+	`managerId` INT NOT NULL AUTO_INCREMENT,
+	`userId` INT NOT NULL,
+	`name` VARCHAR(50) NOT NULL,
+	`telNumber` VARCHAR(50) NULL,
+	INDEX `userId` (`userId`),
+	PRIMARY KEY (`managerId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+CREATE TABLE `user` (
+	`uid` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`email` VARCHAR(50) NOT NULL,
+	`password` VARCHAR(50) NOT NULL,
+	`type` ENUM('Client','Manager') NOT NULL DEFAULT 'Client',
+	`authenticated` ENUM('True','False') NOT NULL DEFAULT 'False',
+	`logined` ENUM('True','False') NOT NULL DEFAULT 'False',
+	PRIMARY KEY (`uid`),
+	UNIQUE INDEX `email` (`email`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `client` (
+	`clientId` INT NOT NULL AUTO_INCREMENT,
+	`userId` INT NOT NULL,
+	`type` ENUM('Player','Club') NOT NULL DEFAULT 'Player',
+	PRIMARY KEY (`clientId`),
+	INDEX `userId` (`userId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `BankAccount` (
+	`accountId` INT NOT NULL AUTO_INCREMENT,
+	`bankAccountAuthId` INT NOT NULL,
+	`clientId` INT NOT NULL,
+	`bankName` VARCHAR(50) NOT NULL, 
+	`country` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`accountId`),
+	INDEX `bankAccountAuthId` (`bankAccountAuthId`),
+	INDEX `clientId` (`clientId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `BankAccountAuth` (
+	`bankAccountAuthId` INT NOT NULL AUTO_INCREMENT,
+	`secretKey` INT NOT NULL,
+	PRIMARY KEY (`bankAccountAuthId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+CREATE TABLE `player` (
+	`playerId` INT NOT NULL AUTO_INCREMENT,
+	`clientId` INT NOT NULL,
+	`firstName` VARCHAR(50) NOT NULL,
+	`middleName` VARCHAR(50) NOT NULL,
+	`lastName` VARCHAR(50) NOT NULL,
+	`birth` INT NOT NULL,
+	`position` ENUM('RWB','RB','RCB','CB','LCB','LB','LWB','RDM','CDM','LDM','CM','RM','RAM','CAM','LAM','LM','RW','CF','LW','RS','ST','LS','GK') NOT NULL DEFAULT 'GK',
+	`weight` INT NOT NULL COMMENT 'kg',
+	`height` INT NOT NULL COMMENT 'm',
+	`status` ENUM('Free','Contracted','Leased','NearExpiration','Retired') NOT NULL DEFAULT 'Free',
+	PRIMARY KEY (`playerId`),
+	UNIQUE INDEX `clientId` (`clientId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `contract` (
+	`contractId` INT NOT NULL AUTO_INCREMENT,
+	`clubId` INT NOT NULL,
+	`playerId` INT NOT NULL,
+	`startDate` VARCHAR(50) NOT NULL,
+	`endDate` VARCHAR(50) NOT NULL,
+	`transferFee` INT NOT NULL,
+	`paymentId` INT NOT NULL,
+	`penaltyFee` INT NOT NULL,
+	`leasePossibility` ENUM('True','False') NOT NULL DEFAULT 'True',
+	`contractType` ENUM('OFFER','EXPIRE','DESTRUCT','DECLINE','UNDER') NOT NULL DEFAULT 'OFFER',
+	`tradeType` ENUM('LEASE','BELONG','OFFER') NOT NULL DEFAULT 'OFFER',
+	`isPublic` ENUM('True','False') NOT NULL DEFAULT 'False',
+	PRIMARY KEY (`contractId`),
+	INDEX `clubId` (`clubId`),
+	INDEX `playerId` (`playerId`),
+	INDEX `paymentId` (`paymentId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Game` (
+	`gameId` INT NOT NULL AUTO_INCREMENT,
+	`date` VARCHAR(50) NOT NULL,
+	`startTime` VARCHAR(50) NOT NULL,
+	`playTime` VARCHAR(50) NOT NULL,
+	`homeClubId` INT NOT NULL,
+	`awayClubId` INT NOT NULL,
+	PRIMARY KEY (`gameId`),
+	INDEX `homeClubId` (`homeClubId`),
+	INDEX `awayClubId` (`awayClubId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Goal` (
+	`goalId` INT NOT NULL AUTO_INCREMENT,
+	`gameId`  INT NOT NULL,
+	`playerId`  INT NOT NULL,
+	`assistId` INT NOT NULL,
+	`time`  VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`goalId`),
+	INDEX `gameId` (`gameId`),
+	INDEX `playerId` (`playerId`),
+	INDEX `assistId` (`assistId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Assist` (
+	`assistId` INT NOT NULL AUTO_INCREMENT,
+	`goalId`  INT NOT NULL,
+	`playerId`  INT NOT NULL,
+	PRIMARY KEY (`assistId`),
+	INDEX `goalId` (`goalId`),
+	INDEX `playerId` (`playerId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Rating` (
+	`ratingId` INT NOT NULL AUTO_INCREMENT,
+	`gameId`  INT NOT NULL,
+	`playerId`  INT NOT NULL,
+	`ratingGrade` INT NOT NULL,
+	PRIMARY KEY (`ratingId`),
+	INDEX `gameId` (`gameId`),
+	INDEX `playerId` (`playerId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Payment` (
+	`paymentId` INT NOT NULL AUTO_INCREMENT,
+	`type` ENUM('DailyPayment','MonthlyPayment','WeeklyPayment') NOT NULL DEFAULT 'DailyPayment',
+	PRIMARY KEY (`paymentId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `DailyPayment` (
+	`dailyPaymentId` INT NOT NULL AUTO_INCREMENT,
+	`paymentId` INT NOT NULL,
+	`time` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`dailyPaymentId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `MonthlyPayment` (
+	`monthlyPaymentId` INT NOT NULL AUTO_INCREMENT,
+	`paymentId` INT NOT NULL,
+	`day` INT NOT NULL,
+	PRIMARY KEY (`monthlyPaymentId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `WeeklyPayment` (
+	`weeklyPaymentId` INT NOT NULL AUTO_INCREMENT,
+	`paymentId` INT NOT NULL,
+	`dayOfWeek` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`weeklyPaymentId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Club` (
+	`clubId` INT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL,
+	`contactNumber` VARCHAR(50) NOT NULL,
+	`birth` INT NOT NULL,
+	PRIMARY KEY (`clubId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Stadium` (
+	`stadiumId` INT NOT NULL AUTO_INCREMENT,
+	`clubId` INT NOT NULL,
+	`addressId` INT NOT NULL,
+	PRIMARY KEY (`stadiumId`),
+	INDEX `clubId` (`clubId`),
+	INDEX `addressId` (`addressId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+CREATE TABLE `Address` (
+	`addressId` INT NOT NULL AUTO_INCREMENT,
+	`country` VARCHAR(50) NOT NULL,
+	`state` VARCHAR(50) NOT NULL,
+	`city` VARCHAR(50) NOT NULL,
+	`street` VARCHAR(50) NOT NULL,
+	`number` VARCHAR(50) NOT NULL,
+	`zipcode` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`addressId`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
+
+
+

@@ -12,7 +12,7 @@ namespace SoccerTradingSystem.Model
         public String startDate { get; }
         public String endDate { get; }
         public int transferFee { get; }
-        public Payment payment { get; ; }
+        public Payment payment { get; }
         public int penaltyFee { get; }
         public bool leasePossibility { get; }
         public Club club { get; }

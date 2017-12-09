@@ -45,11 +45,11 @@ namespace SoccerTradingSystem.Controller
 
                     if (clientType == UserType.Club)
                     {
-                         user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, 0, "", "", 0, null, null);
+                         user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth,-1,null, 0, "", "", 0, null, null);
                     }
                     else if (clientType == UserType.Player)
                     {
-                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, 0, "", "", "", 0, "", 0, 0, 0, "", null);
+                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1,null,0, "", "", "", 0, "", 0, 0, 0, "", null);
                     }
                     else
                     {
@@ -116,12 +116,12 @@ namespace SoccerTradingSystem.Controller
 
                 JSON bankFilter = new JSON();
                 bankFilter.Add(new Dictionary<string, object>());
-                //bankFilter[0].Add("accountId", accountId);
+                bankFilter[0].Add("clientId", clientId);
 
-                //retrieveBankAccount()
+                List< BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
 
-                Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth,playerId, firstName, middleName, lastName, birth, position, 0,
-                    weight, height, status, null);
+                Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, playerId,firstName, middleName, lastName, birth, position, 0,
+                    weight, height, status,null);
 
                 var flag = true;
                 if(filter != null)
@@ -145,7 +145,48 @@ namespace SoccerTradingSystem.Controller
         public List<Club> retrieveClub(JSON filter)
         {
 
-            return null;
+            List<Club> clubs = new List<Club>();
+            JSON result = rd.getClubsData();
+            for (int i = 0; i < result.Count; i++)
+            {
+                String globalString = "";
+                Dictionary<string, object> data = result[i];
+                bool auth = data["authenticated"].ToString() == "True" ? true : false;
+                int uid = Convert.ToInt32(data["uid"]);
+                int clientId = Convert.ToInt32(data["clientId"]);
+                int clubId = Convert.ToInt32(data["clubId"]);
+                int birth = Convert.ToInt32(data["birth"]);
+                String name = data["name"].ToString();
+                String contactNumber = data["contactNumber"].ToString();
+
+                
+
+                JSON bankFilter = new JSON();
+                bankFilter.Add(new Dictionary<string, object>());
+                bankFilter[0].Add("clientId", clientId);
+
+                List<BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
+
+                Club club = new Club(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, clubId, name, contactNumber, birth, null, null);
+
+                var flag = true;
+                if (filter != null)
+                {
+                    if (filter[0].ContainsKey("uid"))
+                    {
+                        if (club.uid != Convert.ToInt32(filter[0]["uid"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    clubs.Add(club);
+                }
+            }
+            return clubs;
         }
         public List<Manager> retrieveManager(JSON filter)
         {

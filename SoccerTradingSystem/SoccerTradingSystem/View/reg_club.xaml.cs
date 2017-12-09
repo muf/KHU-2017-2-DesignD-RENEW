@@ -59,7 +59,7 @@ namespace SoccerTradingSystem.Views
             string name = nameBox.Text;
             int birth = Convert.ToInt32(birthPicker.SelectedDate.Value.Date.ToShortDateString().Replace("-", ""));
             string contactNumber = contactBox.Text;
-            Club _Club = new Club(-1, email, password, false, -1, name, contactNumber, birth, null, null);
+            Club _Club = new Club(-1, email, password, false, -1,null,-1, name, contactNumber, birth, null, null);
 
             SystemAccountHandler sah = new SystemAccountHandler();
             bool flag = sah.registerClubAccount(_Club);

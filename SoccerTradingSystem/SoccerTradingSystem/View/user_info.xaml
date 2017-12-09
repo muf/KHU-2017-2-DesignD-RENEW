@@ -189,7 +189,6 @@
                                         <DataGridTextColumn Header="유저 ID" Binding="{Binding Path=uid}"/>
                                         <DataGridTextColumn Header="이메일" Binding="{Binding Path=email}"/>
                                         <!--<DataGridTextColumn Header="비밀번호" Binding="{Binding Path=password}"/>-->
-                                        <DataGridTextColumn Header="로그인 상태" Binding="{Binding Path=logined}"/>
                                         <DataGridTextColumn Header="인증여부" Binding="{Binding Path=authenticated}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>

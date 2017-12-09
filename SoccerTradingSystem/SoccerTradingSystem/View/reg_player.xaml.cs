@@ -70,7 +70,7 @@ namespace SoccerTradingSystem.Views
             string position = positionComboBox.SelectionBoxItem.ToString();
             int height = Convert.ToInt32(heightBox.Text);
             int weight = Convert.ToInt32(weightBox.Text);
-            Player _Player = new Player(-1, email, password, false, -1, firstName, middleName, lastName, birth, position, -1, weight, height, "Free", null);
+            Player _Player = new Player(-1, email, password, false, -1, null, -1, firstName, middleName, lastName, birth, position, -1, weight, height, "Free", null);
 
 
             SystemAccountHandler sah = new SystemAccountHandler();

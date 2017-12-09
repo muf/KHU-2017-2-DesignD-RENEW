@@ -35,7 +35,7 @@ namespace SoccerTradingSystem
         {
             InitializeComponent();
             RetrieveHandler rh = new RetrieveHandler();
-            var result = rh.retrievePlayer(null);
+            var result = rh.retrieveClub(null);
 
             //rd.getClubsData(9);
             //rd.getPlayersData();
@@ -86,7 +86,7 @@ namespace SoccerTradingSystem
         }
         bool 선수계정등록()
         {
-            Player player = new Player(0, "test4@naver.com", "tmxhs8282", false, 0,"jung","hyun","park",19930103,"GK",0,77,178,"free",null);
+            Player player = new Player(0, "test4@naver.com", "tmxhs8282", false,-1,null, 0,"jung","hyun","park",19930103,"GK",0,77,178,"free",null);
             // 외부에서 club 입력
             try
             {
@@ -103,7 +103,7 @@ namespace SoccerTradingSystem
         }
         bool 클럽계정등록()
         {
-            Club club = new Club(0, "test2@naver.com", "tmxhs8282", false, 0, "Seoul", "000-000", 19930831, null, null);
+            Club club = new Club(0, "test2@naver.com", "tmxhs8282", false,-1,null, 0, "Seoul", "000-000", 19930831, null, null);
             // 외부에서 club 입력
             try
             {

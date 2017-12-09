@@ -43,9 +43,9 @@ namespace SoccerTradingSystem.Views
         private void OnPageLoad(object sender, RoutedEventArgs e)
         {
             PlayersDataGridSetting("");
-            ClubsDataGridSetting("");
-            ManagersDataGridSetting("");
-            UserDataGridSetting("");
+            //ClubsDataGridSetting("");
+            //ManagersDataGridSetting("");
+            //UserDataGridSetting("");
         }
 
         // 플레이어 그리드에서 더블 클릭시 메서드 호출 인증을 업데이트함
@@ -233,100 +233,114 @@ namespace SoccerTradingSystem.Views
         // 클럽 그리드 구성
         private void ClubsDataGridSetting(string context)
         {
-            //SystemAccountHandler sah = new SystemAccountHandler();
-            //List<Club> cist = sah.retrieveClubData(context);
+            SystemAccountHandler sah = new SystemAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
 
-            //// DataTable 생성
-            //DataTable dataTable = new DataTable();
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            List<User> users = rh.retrieveUser(filter);
+            List<Club> cist = rh.retrieveClub(null);
 
-            //// 컬럼 생성
-            //dataTable.Columns.Add("uid", typeof(string));
-            //dataTable.Columns.Add("cid", typeof(string));
-            //dataTable.Columns.Add("email", typeof(string));
-            //dataTable.Columns.Add("name", typeof(string));
-            //dataTable.Columns.Add("birth", typeof(string));
-            //dataTable.Columns.Add("contactnumber", typeof(string));
-            //dataTable.Columns.Add("authenticated", typeof(string));
+            // DataTable 생성
+            DataTable dataTable = new DataTable();
 
-            //// 데이터 생성
-            //for (int i = 0; i < cist.Count; i++)
-            //{
-            //    string uid = Convert.ToString(cist[i].uid);
-            //    string pid = Convert.ToString(cist[i].clubId);
-            //    string email = cist[i].email;
-            //    string name = cist[i].name;
-            //    string birth = Convert.ToString(cist[i].birth);
-            //    string contactnumber = cist[i].contactNumber;
-            //    string authenticated = (cist[i].authenticated) ? "TRUE" : "FALSE";
-            //    dataTable.Rows.Add(new string[] { uid, pid, email, name, birth, contactnumber, authenticated });
-            //}
+            // 컬럼 생성
+            dataTable.Columns.Add("uid", typeof(string));
+            dataTable.Columns.Add("cid", typeof(string));
+            dataTable.Columns.Add("email", typeof(string));
+            dataTable.Columns.Add("name", typeof(string));
+            dataTable.Columns.Add("birth", typeof(string));
+            dataTable.Columns.Add("contactnumber", typeof(string));
+            dataTable.Columns.Add("authenticated", typeof(string));
 
-            //// DataTable의 Default View를 바인딩하기
-            //clubDataGrid.ItemsSource = dataTable.DefaultView;
+            // 데이터 생성
+            for (int i = 0; i < cist.Count; i++)
+            {
+                string uid = Convert.ToString(cist[i].uid);
+                string pid = Convert.ToString(cist[i].clubId);
+                string email = cist[i].email;
+                string name = cist[i].name;
+                string birth = Convert.ToString(cist[i].birth);
+                string contactnumber = cist[i].contactNumber;
+                string authenticated = (cist[i].authenticated) ? "TRUE" : "FALSE";
+                dataTable.Rows.Add(new string[] { uid, pid, email, name, birth, contactnumber, authenticated });
+            }
+
+            // DataTable의 Default View를 바인딩하기
+            clubDataGrid.ItemsSource = dataTable.DefaultView;
         }
 
         // 매니저 그리드 구성
         private void ManagersDataGridSetting(string context)
         {
-            //SystemAccountHandler sah = new SystemAccountHandler();
-            //List<Manager> mlist = sah.retrieveManagerData(context);
+            SystemAccountHandler sah = new SystemAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
 
-            //// DataTable 생성
-            //DataTable dataTable = new DataTable();
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            List<User> users = rh.retrieveUser(filter);
+            List<Manager> mlist = rh.retrieveManager(null);
 
-            //// 컬럼 생성
-            //dataTable.Columns.Add("uid", typeof(string));
-            //dataTable.Columns.Add("mid", typeof(string));
-            //dataTable.Columns.Add("email", typeof(string));
-            //dataTable.Columns.Add("name", typeof(string));
-            //dataTable.Columns.Add("telnumber", typeof(string));
-            //dataTable.Columns.Add("authenticated", typeof(string));
+            // DataTable 생성
+            DataTable dataTable = new DataTable();
 
-            //// 데이터 생성
-            //for (int i = 0; i < mlist.Count; i++)
-            //{
-            //    string uid = Convert.ToString(mlist[i].uid);
-            //    string pid = Convert.ToString(mlist[i].managerId);
-            //    string email = mlist[i].email;
-            //    string name = mlist[i].name;
-            //    string telNumber = mlist[i].telNumber;
-            //    string authenticated = (mlist[i].authenticated) ? "TRUE" : "FALSE";
-            //    dataTable.Rows.Add(new string[] { uid, pid, email, name, telNumber, authenticated });
-            //}
+            // 컬럼 생성
+            dataTable.Columns.Add("uid", typeof(string));
+            dataTable.Columns.Add("mid", typeof(string));
+            dataTable.Columns.Add("email", typeof(string));
+            dataTable.Columns.Add("name", typeof(string));
+            dataTable.Columns.Add("telnumber", typeof(string));
+            dataTable.Columns.Add("authenticated", typeof(string));
 
-            //// DataTable의 Default View를 바인딩하기
-            //managerDataGrid.ItemsSource = dataTable.DefaultView;
+            // 데이터 생성
+            for (int i = 0; i < mlist.Count; i++)
+            {
+                string uid = Convert.ToString(mlist[i].uid);
+                string pid = Convert.ToString(mlist[i].managerId);
+                string email = mlist[i].email;
+                string name = mlist[i].name;
+                string telNumber = mlist[i].telNumber;
+                string authenticated = (mlist[i].authenticated) ? "TRUE" : "FALSE";
+                dataTable.Rows.Add(new string[] { uid, pid, email, name, telNumber, authenticated });
+            }
+
+            // DataTable의 Default View를 바인딩하기
+            managerDataGrid.ItemsSource = dataTable.DefaultView;
 
         }
 
         private void UserDataGridSetting(string context)
         {
-            // SystemAccountHandler sah = new SystemAccountHandler();
-            // List<User> ulist = sah.retrieveUserData(context);
 
-            // // DataTable 생성
-            // DataTable dataTable = new DataTable();
+            SystemAccountHandler sah = new SystemAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
 
-            // // 컬럼 생성
-            // dataTable.Columns.Add("uid", typeof(string));
-            // dataTable.Columns.Add("email", typeof(string));
-            // dataTable.Columns.Add("password", typeof(string));
-            // dataTable.Columns.Add("logined", typeof(string));
-            // dataTable.Columns.Add("authenticated", typeof(string));
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            List<User> ulist = rh.retrieveUser(null);
 
-            // // 데이터 생성
-            // for (int i = 0; i < ulist.Count; i++)
-            // {
-            //     string uid = Convert.ToString(ulist[i].uid);
-            //     string email = Convert.ToString(ulist[i].email);
-            //     string password = Convert.ToString(ulist[i].password);
-            //     string logined = Convert.ToString(ulist[i].logined);
-            //     string authenticated = (ulist[i].authenticated) ? "TRUE" : "FALSE";
-            //     dataTable.Rows.Add(new string[] { uid, email, password, logined, authenticated });
-            // }
+            // DataTable 생성
+            DataTable dataTable = new DataTable();
 
-            // // DataTable의 Default View를 바인딩하기
-            //userDataGrid.ItemsSource = dataTable.DefaultView;
+            // 컬럼 생성
+            dataTable.Columns.Add("uid", typeof(string));
+            dataTable.Columns.Add("email", typeof(string));
+            dataTable.Columns.Add("password", typeof(string));
+            dataTable.Columns.Add("logined", typeof(string));
+            dataTable.Columns.Add("authenticated", typeof(string));
+
+            // 데이터 생성
+            for (int i = 0; i < ulist.Count; i++)
+            {
+                string uid = Convert.ToString(ulist[i].uid);
+                string email = Convert.ToString(ulist[i].email);
+                string password = Convert.ToString(ulist[i].password);
+                string authenticated = (ulist[i].authenticated) ? "TRUE" : "FALSE";
+                dataTable.Rows.Add(new string[] { uid, email, password, authenticated });
+            }
+
+            // DataTable의 Default View를 바인딩하기
+            userDataGrid.ItemsSource = dataTable.DefaultView;
 
         }
 

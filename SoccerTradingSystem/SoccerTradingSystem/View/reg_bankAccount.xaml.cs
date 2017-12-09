@@ -19,6 +19,7 @@ using Player = SoccerTradingSystem.Model.Player;
 using Club = SoccerTradingSystem.Model.Club;
 using UserType = SoccerTradingSystem.Model.Types.UserType;
 using BankAccount = SoccerTradingSystem.Model.BankAccount;
+using BankListPage = SoccerTradingSystem.View.bankaccount_list;
 
 namespace SoccerTradingSystem.View
 {
@@ -29,8 +30,15 @@ namespace SoccerTradingSystem.View
     using JSON = List<Dictionary<string, object>>;
     public partial class reg_bankAccount : Window
     {
+        BankListPage _Page;
         public reg_bankAccount()
         {
+            InitializeComponent();
+        }
+
+        public reg_bankAccount(BankListPage __Page)
+        {
+            _Page = __Page;
             InitializeComponent();
         }
 
@@ -62,7 +70,9 @@ namespace SoccerTradingSystem.View
             if (success)
             {
                 MessageBox.Show("계좌가 성공적으로 개설 되었습니다.");
-            }else
+                _Page.AccountsDataGridSetting("");
+            }
+            else
             {
                 MessageBox.Show("계좌의 개설에 실패했습니다.");
             }

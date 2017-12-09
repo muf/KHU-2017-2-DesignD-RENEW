@@ -14,35 +14,44 @@ namespace SoccerTradingSystem.Controller
     using Contract = SoccerTradingSystem.Model.Contract;
     using Manager = SoccerTradingSystem.Model.Manager;
     using JSON = List<Dictionary<string, object>>;
+    using ContractType = SoccerTradingSystem.Model.Types.ContractType;
     using ContractDAC = SoccerTradingSystem.Controller.DAC.ContractDAC;
 
     class ContractHandler
     {
         private ContractDAC cd  = new ContractDAC();
 
-        bool registerContract(Contract contract)
+        public bool registerContract(Contract contract)
         {
-            return true;
+            return cd.addContractData(contract);
         }
-        bool declineContract(Contract contract)
+        public bool declineContract(Contract contract)
         {
-            return true;
+            contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.DECLINE, contract.tradeType, contract.isPublic);
+            return cd.updateContractData(contract);
         }
-        bool unregisterContract(Contract contract)
+        public bool unregisterContract(Contract contract)
         {
-            return true;
+            return cd.deleteContractData(contract);
         }
-        bool destructContract(Contract contract)
+        public bool destructContract(Contract contract)
         {
-            return true;
+            // 계산..
+            // 가능 ..
+            // 지불 ..
+            // 파기..
+            contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.DESTRUCT, contract.tradeType, contract.isPublic);
+            return cd.updateContractData(contract);
         }
-        bool acceptContract(Contract contract)
+        public bool acceptContract(Contract contract)
         {
-            return true;
+            //  수락..
+            contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.UNDER, contract.tradeType, contract.isPublic);
+            return cd.updateContractData(contract);
         }
-        bool reviseContract(Contract contract)
+        public bool reviseContract(Contract contract)
         {
-            return true;
+            return cd.updateContractData(contract);
         }
     }
 }

@@ -61,5 +61,41 @@ namespace SoccerTradingSystem.Controller.DAC
             queryResult = execute(query);
             return true;
         }
+        public bool updatePlayerData(Player player)
+        {
+            query = $"UPDATE {playerTable} SET `firstName`  = {player.firstName}, `middleName`  = {player.middleName},`lastName`  = {player.lastName},`birth`  = {player.birth}, `position`  = {player.position},`weight`  = {player.weight},`height`  = {player.height},`status`  = {player.status}  WHERE playerId = {player.playerId}; ";
+            queryResult = execute(query);
+            return true;
+        }
+        public bool updateClubData(Club club)
+        {
+            query = $"UPDATE {clubTable} SET `name`  = {club.name}, `contactNumber`  = {club.contactNumber},`birth`  = {club.birth}  WHERE clubId = {club.clubId}; ";
+            queryResult = execute(query);
+            return true;
+        }
+        public bool updateManagerData(Manager manager)
+        {
+            query = $"UPDATE {ManagerTable} SET `name`  = {manager.name}, `telNumber`  = {manager.telNumber}   WHERE managerId = {manager.managerId}; ";
+            queryResult = execute(query);
+            return true;
+        }
+        public bool deleterClubData(Club club)
+        {
+            query = $"DELETE FROM {clubTable} WHERE clubId = {club.clubId}; ";
+            queryResult = execute(query);
+            return true;
+        }
+        public bool deletePlayerData(Player player)
+        {
+            query = $"DELETE FROM {playerTable} WHERE playerid = {player.playerId}; ";
+            queryResult = execute(query);
+            return true;
+        }
+        public bool deleteManagerData(Manager manager)
+        {
+            query = $"DELETE FROM {ManagerTable} WHERE managerId = {manager.managerId}; ";
+            queryResult = execute(query);
+            return true;
+        }
     }
 }

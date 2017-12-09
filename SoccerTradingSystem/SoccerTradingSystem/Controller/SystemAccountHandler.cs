@@ -40,7 +40,6 @@ namespace SoccerTradingSystem.Controller
             else
                 return null;
         }
-
         public bool registerClubAccount(Club club)
         {
             sad.addClubData(club);
@@ -65,6 +64,36 @@ namespace SoccerTradingSystem.Controller
         {
             login(cookie.user.email, cookie.user.password);
             return cookie;
+        }
+        public bool updatePlayerAccount(Player player)
+        {
+            sad.updatePlayerData(player);
+            return true;
+        }
+        public bool updateClubAccount(Club club)
+        {
+            sad.updateClubData(club);
+            return true;
+        }
+        public bool updateManagerAccount(Manager manager)
+        {
+            sad.updateManagerData(manager);
+            return true;
+        }
+        public bool unregisterClubAccount(Club club)
+        {
+            sad.deleterClubData(club);
+            return true;
+        }
+        public bool unregisterPlayerAccount(Player player)
+        {
+            sad.deletePlayerData(player);
+            return true;
+        }
+        public bool unregisterManagerAccount(Manager manager)
+        {
+            sad.deleteManagerData(manager);
+            return true;
         }
     }
 }

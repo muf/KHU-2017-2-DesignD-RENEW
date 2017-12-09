@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace SoccerTradingSystem
 {
     /// <summary>
@@ -13,5 +14,6 @@ namespace SoccerTradingSystem
     /// </summary>
     public partial class App : Application
     {
+        public static SoccerTradingSystem.Model.LocalData cookie = null;
     }
 }

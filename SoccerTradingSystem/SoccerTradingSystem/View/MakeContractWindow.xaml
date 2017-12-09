@@ -1,0 +1,48 @@
+﻿<Window x:Class="SoccerTradingSystem.Views.MakeContractWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoccerTradingSystem.Views"
+        mc:Ignorable="d"
+        Title="MakeContractWindow" Height="420" Width="500"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="clubNameBlock" HorizontalAlignment="Left" Text="구단 명" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="playerNameBlock" HorizontalAlignment="Left" Text="선수 명" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="startDateBlock" HorizontalAlignment="Left" Text="계약 시작일" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" x:Name="endDateBlock" HorizontalAlignment="Left" Text="계약 종료일" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" x:Name="tranferFeeBlock" HorizontalAlignment="Left" Text="이적료" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" x:Name="yearlyPayBlock" HorizontalAlignment="Left" Text="연봉" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" x:Name="penaltyBlock" HorizontalAlignment="Left" Text="벌칙금" FontSize="20" VerticalAlignment="Center"/>
+
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="clubNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="playerNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
+        <TextBox Grid.Row="3" Grid.Column="2" x:Name="startDateBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="2" x:Name="endDateBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="2" x:Name="tranferFeeBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="6" Grid.Column="2" x:Name="yearlyPayBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="7" Grid.Column="2" x:Name="penaltyBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+
+        <Button Style="{StaticResource SuccessButton}" Margin="30,20,30,2" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContractBtn" Content="계약서 전달" Click="ContractBtn_Click"/>
+    </Grid>
+</Window>

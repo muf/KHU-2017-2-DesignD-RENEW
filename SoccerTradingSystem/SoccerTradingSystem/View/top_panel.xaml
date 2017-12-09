@@ -1,0 +1,28 @@
+﻿<Page x:Class="SoccerTradingSystem.Views.top_panel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SoccerTradingSystem.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="40" d:DesignWidth="1280"
+      Title="top_panel">
+
+    <Grid Background="#455A64">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="680*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Foreground="White" FontSize="20" Grid.Column="0" VerticalAlignment="Center" FontFamily="./font/#GosmickSans"  Margin="10,10,0,9" Text="축구 선수 트레이딩 시스템" Height="24"/>
+        <Border TextBlock.Foreground="White" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Name="topLoginedEmail" Text="손님" FontFamily="./font/#GosmickSans"/>
+        </Border>
+        <Button Background="#455A64" Foreground="White" Grid.Column="2" Name="user_registBtn" Content="회원가입" Click="user_registBtn_Click" BorderThickness="0"/>
+        <Button Background="#455A64" Foreground="White" Grid.Column="2" Name="myInfoBtn" Content="내 정보" BorderThickness="0"/>
+        <Button Background="#455A64" Foreground="White" Grid.Column="3" Name="loginBtn" Content="로그인" Click="login_Click" Visibility="Visible" BorderThickness="0"/>
+        <Button Background="#455A64" Foreground="White" Grid.Column="3" Name="logoutBtn" Content="로그아웃" Click="logout_Click" Visibility="Collapsed" BorderThickness="0"/>
+    </Grid>
+</Page>

@@ -14,11 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 
+using BankAccountDepositWindow = SoccerTradingSystem.View.depositInputWindow;
+using BankAccountWithdrawWindow = SoccerTradingSystem.View.withdrawinputWindow;
 using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
 using BankAccount = SoccerTradingSystem.Model.BankAccount;
 using Player = SoccerTradingSystem.Model.Player;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
+
 
 namespace SoccerTradingSystem.View
 {
@@ -83,6 +86,18 @@ namespace SoccerTradingSystem.View
 
         private void depositBtn_Click(object sender, RoutedEventArgs e)
         {
+            BankAccountDepositWindow _DepositWindow = new BankAccountDepositWindow(this);
+            _DepositWindow.Show();
+        }
+
+        private void withdrawBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BankAccountWithdrawWindow _withdrawWindow = new BankAccountWithdrawWindow(this);
+            _withdrawWindow.Show();
+        }
+
+        private void delAccountBtn_Click(object sender, RoutedEventArgs e)
+        {
             BankAccountHandler bh = new BankAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
 
@@ -90,19 +105,22 @@ namespace SoccerTradingSystem.View
             string accountid = row.Row.ItemArray[0].ToString();
 
             JSON filter = new JSON();
-            int uid = App.cookie.user.uid;
-            if(App.cookie.type == "Player")
-            {
-                filter.Add(new Dictionary<string, object>());
-                filter[0].Add("uid", uid);
-                Player> playsers = rh.retrievePlayer(filter);
-            }
-
+            int _accountid = Convert.ToInt32(accountid);
             filter.Add(new Dictionary<string, object>());
-            filter[0].Add("accountid", accountid);
+            filter[0].Add("accountId", _accountid);
             List<BankAccount> banks = rh.retrieveBankAccount(filter);
             BankAccount selectedBank = banks[0];
-            bh.deposit(selectedBank, 300);
+            bool success = bh.unregisterBankAccount(selectedBank);
+
+            if (success)
+            {
+                MessageBox.Show("계좌 해지에 성공했습니다.");
+                AccountsDataGridSetting("");
+            }
+            else
+            {
+                MessageBox.Show("계좌 해지에 실패했습니다.");
+            }
         }
     }
 }

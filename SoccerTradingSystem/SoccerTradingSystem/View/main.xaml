@@ -28,7 +28,6 @@
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="PlayerBtn" Content="선수 조회" Click="PlayerBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ClubBtn" Content="구단 조회" Click="ClubBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ContractionBtn" Content="계약 조회" Click="ContractionBtn_Click"/>
-                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="BankAddBtn" Content="계좌 추가" Click="BankAddBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="BankBtn" Content="내 계좌 조회" Click="BankBtn_Click"/>
             </StackPanel>
         </Border>

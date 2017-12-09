@@ -77,11 +77,7 @@ namespace SoccerTradingSystem
         }
         bool 계좌추가()
         {
-<<<<<<< HEAD
-            BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea",0);
-=======
             BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea", 0);
->>>>>>> 5f3402b4bd12cd2c21b550b5d3589bbe591d9124
             Client client = new Client(0, "", "", false, 4, null);
             try
             {

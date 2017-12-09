@@ -40,7 +40,7 @@ namespace SoccerTradingSystem.Views
                     gameInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                     MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
-                    BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    BankBtn.Visibility = System.Windows.Visibility.Collapsed;
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace SoccerTradingSystem.Views
                 {
                     ContractionBtn.Visibility = System.Windows.Visibility.Visible;
                     MyinfoBtn.Visibility = System.Windows.Visibility.Visible;
-                    BankAddBtn.Visibility = System.Windows.Visibility.Visible;
+                    BankBtn.Visibility = System.Windows.Visibility.Visible;
                 }
             }
             else
@@ -62,7 +62,7 @@ namespace SoccerTradingSystem.Views
                 gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                 MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
-                BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
+                BankBtn.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 

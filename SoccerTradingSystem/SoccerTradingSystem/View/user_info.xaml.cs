@@ -45,7 +45,7 @@ namespace SoccerTradingSystem.Views
             PlayersDataGridSetting("");
             //ClubsDataGridSetting("");
             //ManagersDataGridSetting("");
-            //UserDataGridSetting("");
+            UserDataGridSetting("");
         }
 
         // 플레이어 그리드에서 더블 클릭시 메서드 호출 인증을 업데이트함
@@ -311,36 +311,42 @@ namespace SoccerTradingSystem.Views
 
         private void UserDataGridSetting(string context)
         {
-
-            SystemAccountHandler sah = new SystemAccountHandler();
-            RetrieveHandler rh = new RetrieveHandler();
-
-            JSON filter = new JSON();
-            filter.Add(new Dictionary<string, object>());
-            List<User> ulist = rh.retrieveUser(null);
-
-            // DataTable 생성
-            DataTable dataTable = new DataTable();
-
-            // 컬럼 생성
-            dataTable.Columns.Add("uid", typeof(string));
-            dataTable.Columns.Add("email", typeof(string));
-            dataTable.Columns.Add("password", typeof(string));
-            dataTable.Columns.Add("logined", typeof(string));
-            dataTable.Columns.Add("authenticated", typeof(string));
-
-            // 데이터 생성
-            for (int i = 0; i < ulist.Count; i++)
+            try
             {
-                string uid = Convert.ToString(ulist[i].uid);
-                string email = Convert.ToString(ulist[i].email);
-                string password = Convert.ToString(ulist[i].password);
-                string authenticated = (ulist[i].authenticated) ? "TRUE" : "FALSE";
-                dataTable.Rows.Add(new string[] { uid, email, password, authenticated });
-            }
+                SystemAccountHandler sah = new SystemAccountHandler();
+                RetrieveHandler rh = new RetrieveHandler();
 
-            // DataTable의 Default View를 바인딩하기
-            userDataGrid.ItemsSource = dataTable.DefaultView;
+                JSON filter = new JSON();
+                filter.Add(new Dictionary<string, object>());
+                List<User> users = rh.retrieveUser(filter);
+                List<User> ulist = rh.retrieveUser(null);
+
+                // DataTable 생성
+                DataTable dataTable = new DataTable();
+
+                // 컬럼 생성
+                dataTable.Columns.Add("uid", typeof(string));
+                dataTable.Columns.Add("email", typeof(string));
+                dataTable.Columns.Add("password", typeof(string));
+                dataTable.Columns.Add("authenticated", typeof(string));
+
+                // 데이터 생성
+                for (int i = 0; i < ulist.Count; i++)
+                {
+                    string uid = Convert.ToString(ulist[i].uid);
+                    string email = Convert.ToString(ulist[i].email);
+                    string password = Convert.ToString(ulist[i].password);
+                    string authenticated = (ulist[i].authenticated) ? "TRUE" : "FALSE";
+                    dataTable.Rows.Add(new string[] { uid, email, password, authenticated });
+                }
+
+                // DataTable의 Default View를 바인딩하기
+                userDataGrid.ItemsSource = dataTable.DefaultView;
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message.ToString());
+            }
 
         }
 

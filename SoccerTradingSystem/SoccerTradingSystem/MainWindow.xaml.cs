@@ -34,15 +34,21 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
-            //RetrieveHandler rh = new RetrieveHandler();
-            //var result = rh.retrievePlayer(null);
+            RetrieveHandler rh = new RetrieveHandler();
+            var result = rh.retrievePlayer(null);
 
             //rd.getClubsData(9);
             //rd.getPlayersData();
             //클럽계정등록();
             //선수계정등록();
             //관리자계정등록();
-            계좌추가();
+            로그인();
+        }
+        bool 로그인()
+        {
+            SystemAccountHandler sah = new SystemAccountHandler();
+            sah.login("huryip@naver.com", "tmxhs8282");
+            return true;
         }
         bool 계좌추가()
         {

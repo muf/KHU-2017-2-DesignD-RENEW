@@ -8,8 +8,8 @@ namespace SoccerTradingSystem.Model
 {
     public class LocalData
     {
-        User user;            // Logined User Info
-        String userType;    // Manager or Client
-        String type;          // Club or Player or Guest or Manager
+        public User user;            // Logined User Info
+        public String userType;    // Manager or Client
+        public String type;          // Club or Player or Guest or Manager
     }
 }

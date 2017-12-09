@@ -11,29 +11,35 @@ namespace SoccerTradingSystem.Controller
     using Club = SoccerTradingSystem.Model.Club;
     using Manager = SoccerTradingSystem.Model.Manager;
     using LocalData = SoccerTradingSystem.Model.LocalData;
+    using UserType = SoccerTradingSystem.Model.Types.UserType;
     using SystemAccountDAC = SoccerTradingSystem.Controller.DAC.SystemAccountDAC;
+    using JSON = List<Dictionary<string, object>>;
 
     class SystemAccountHandler : RetrieveHandler
     {
         private SystemAccountDAC sad = new SystemAccountDAC();
-        //public LocalData login(String email, String password)
-        //{
-        //    queryResult = saDAC.authenticate(email, password);  // 인증 정보로 인증 쿼리 전송 후 결과 저장
-        //    if (queryResult.Count == 1)
-        //    {
-        //        String authenticated = queryResult[0]["authenticated"].ToString();
-        //        String userType = queryResult[0]["type"].ToString();
-        //        LocalData cookie = new LocalData();
-        //        cookie.uid = Convert.ToInt32(queryResult[0]["uid"]);
-        //        cookie.email = email;
-        //        cookie.authenticated = authenticated == "True" ? true : false;
-        //        cookie.userType = userType;
-        //        cookie.type = cookie.userType == "Client" ? retrieveHandler.getClientType(cookie.uid) : cookie.userType;
-        //        return cookie; // 정상적인 경우 cookie 셋팅 후 전달
-        //    }
-        //    else
-        //        return null;
-        //}
+        public LocalData login(String email, String password)
+        {
+            queryResult = sad.authenticate(email, password);  // 인증 정보로 인증 쿼리 전송 후 결과 저장
+            if (queryResult.Count == 1)
+            {
+                int uid = Convert.ToInt32(queryResult[0]["uid"]);
+                JSON filter = new JSON();
+                filter.Add(new Dictionary<string, object>());
+                filter[0].Add("uid", uid);
+                List<User> users = retrieveUser(filter);
+                LocalData cookie = new LocalData();
+                if (users.Count == 1)
+                {
+                    cookie.user = users[0];
+                    cookie.type = users[0].GetType().Name;
+                    cookie.userType = cookie.type == UserType.Manager ? UserType.Manager : "Client";
+                }
+                return cookie; // 정상적인 경우 cookie 셋팅 후 전달
+            }
+            else
+                return null;
+        }
 
         public bool registerClubAccount(Club club)
         {

@@ -18,6 +18,13 @@ namespace SoccerTradingSystem.Controller.DAC
         public SystemAccountDAC() : base()
         {
         }
+        public JSON authenticate(String email, String password)
+        {
+            // email, password 기반으로 해당하는 user 정보 검색
+            query = $"SELECT * from {userTable} where `email` = '{email}' AND `password` = '{password}'";
+            queryResult = execute(query);
+            return queryResult;
+        }
         public void addPlayerData(Player player)
         {
             query = $"INSERT INTO {userTable} (`email`, `password`, `type`) VALUES ('{player.email}', '{player.password}','Client');";

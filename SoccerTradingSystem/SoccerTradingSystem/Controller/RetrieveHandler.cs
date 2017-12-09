@@ -14,14 +14,14 @@ namespace SoccerTradingSystem.Controller
     using Contract = SoccerTradingSystem.Model.Contract;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
     using Manager = SoccerTradingSystem.Model.Manager;
-
+    using UserType = SoccerTradingSystem.Model.Types.UserType ;
     using RetrieveDAC = SoccerTradingSystem.Controller.DAC.RetrieveDAC;
 
     using JSON = List<Dictionary<string, object>>;
 
     class RetrieveHandler
     {
-        protected JSON queryString;
+        protected JSON queryResult;
         protected RetrieveDAC rd = new RetrieveDAC();
 
         public List<User> retrieveUser(JSON filter)
@@ -36,13 +36,52 @@ namespace SoccerTradingSystem.Controller
                 Dictionary<string, object> data = result[i];
                 bool auth = data["authenticated"].ToString() == "True" ? true : false;
                 int _uid = Convert.ToInt32(data["uid"]);
-                User user = new User(_uid, data["email"].ToString(), data["password"].ToString(), auth);
-                globalString += user.email + user.uid;
-                globalString.Replace(" ", "");
-                if (globalString.IndexOf(keyword) != -1)
+
+                User user;
+                if (data["managerId"].ToString() == "")
+                {
+                    String clientType = data["clientType"].ToString();
+                    user = new User(_uid, data["email"].ToString(), data["password"].ToString(), auth);
+
+                    if (clientType == UserType.Club)
+                    {
+                         user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, 0, "", "", 0, null, null);
+                    }
+                    else if (clientType == UserType.Player)
+                    {
+                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, 0, "", "", "", 0, "", 0, 0, 0, "", null);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if(data["clientId"].ToString() == "")
+                {
+                     user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
+                }
+                else
+                {
+                     user = new User(_uid, data["email"].ToString(), data["password"].ToString(), auth);
+                }
+
+                var flag = true;
+                if (filter[0].ContainsKey("uid"))
+                {
+                    if (user.uid  != Convert.ToInt32(filter[0]["uid"]))
+                    {
+                        flag = false;
+                    }
+                }
+
+                if (flag)
                 {
                     users.Add(user);
                 }
+                //if (globalString.IndexOf(keyword) != -1)
+                //{
+                //    users.Add(user);
+                //}
             }
             return users;
         }
@@ -74,7 +113,7 @@ namespace SoccerTradingSystem.Controller
                 // recent Rate and club list... 
                 Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth,playerId, firstName, middleName, lastName, birth, position, 0,
                     weight, height, status, null);
-
+                //queryResult = 
                 globalString += player.email + player.uid + +player.birth + player.firstName + player.middleName + player.lastName + player.position + player.status + player.playerId;
                 globalString.Replace(" ", "");
                 if (globalString.IndexOf(keyword) != -1)

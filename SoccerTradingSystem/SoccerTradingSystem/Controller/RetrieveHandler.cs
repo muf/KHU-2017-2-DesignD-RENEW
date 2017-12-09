@@ -144,7 +144,6 @@ namespace SoccerTradingSystem.Controller
         }
         public List<Club> retrieveClub(JSON filter)
         {
-
             List<Club> clubs = new List<Club>();
             JSON result = rd.getClubsData();
             for (int i = 0; i < result.Count; i++)
@@ -191,7 +190,35 @@ namespace SoccerTradingSystem.Controller
         public List<Manager> retrieveManager(JSON filter)
         {
 
-            return null;
+            List<Manager> managers = new List<Manager>();
+            JSON result = rd.getManagersData();
+            for (int i = 0; i < result.Count; i++)
+            {
+                String globalString = "";
+                Dictionary<string, object> data = result[i];
+                bool auth = data["authenticated"].ToString() == "True" ? true : false;
+                int uid = Convert.ToInt32(data["uid"]);
+                int managerId = Convert.ToInt32(data["managerId"]);
+                Manager manager = new Manager(uid, data["email"].ToString(), data["password"].ToString(),auth, managerId, data["name"].ToString(), data["telNumber"].ToString());
+
+                var flag = true;
+                if (filter != null)
+                {
+                    if (filter[0].ContainsKey("uid"))
+                    {
+                        if (manager.uid != Convert.ToInt32(filter[0]["uid"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+
+                if (flag)
+                {
+                    managers.Add(manager);
+                }
+            }
+            return managers;
         }
         public List<Contract> retrieveContract(JSON filter)
         {

@@ -24,23 +24,31 @@ namespace SoccerTradingSystem.Controller
         }
         public bool unregisterBankAccount(BankAccount bankAccount)
         {
+            bad.deleteBankAccountData(bankAccount);
             return true;
         }
         public bool updateBankAccount(BankAccount bankAccount)
         {
+            bad.updateBankAccountData(bankAccount);
             return true;
         }
-        public bool deposit(BankAccount bankAccount)
+        public bool deposit(BankAccount bankAccount, int input)
         {
+            bad.updateBalanceData(bankAccount.accountId, bankAccount.balance+input);
             return true;
         }
-        public bool withdraw(BankAccount bankAccount)
+        public bool withdraw(BankAccount bankAccount, int output)
         {
+            if (bankAccount.balance < output) return false;
+            bad.updateBalanceData(bankAccount.accountId, bankAccount.balance - output);
             return true;
         }
-        public bool getBalance(BankAccount bankAccount)
+        public int getBalance(BankAccount bankAccount)
         {
-            return true;
+            int balance = 0;
+            var result = bad.getBalanceData(bankAccount.accountId);
+            balance = Convert.ToInt32(result[0]["balance"]);
+            return balance;
         }
     }
 }

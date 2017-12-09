@@ -23,7 +23,7 @@ namespace SoccerTradingSystem.Model
             this.balance = balance;
             this.auth = auth;
         }
-        public BankAccount(int accountId, int clientId, String bankName, String country)
+        public BankAccount(int accountId, int clientId, String bankName, String country, int balance)
         {
             this.accountId = accountId;
             this.clientId = clientId;

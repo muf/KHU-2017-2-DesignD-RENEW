@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Types = SoccerTradingSystem.Model.Types;
 using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
 using bank_list = SoccerTradingSystem.View.bankaccount_list;
+using MakeGameWindow = SoccerTradingSystem.View.MakeGameWindow;
 
 namespace SoccerTradingSystem.Views
 {
@@ -38,6 +39,7 @@ namespace SoccerTradingSystem.Views
                     managerMenu.Visibility = System.Windows.Visibility.Visible;
                     userInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     gameInfoBtn.Visibility = System.Windows.Visibility.Visible;
+                    gameaddBtn.Visibility = System.Windows.Visibility.Visible;
                     ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                     MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                     BankBtn.Visibility = System.Windows.Visibility.Collapsed;
@@ -47,6 +49,7 @@ namespace SoccerTradingSystem.Views
                     managerMenu.Visibility = System.Windows.Visibility.Collapsed;
                     userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                     gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    gameaddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 }
                 if (App.cookie.userType == Types.UserType.Club || App.cookie.userType == Types.UserType.Player)
                 {
@@ -60,6 +63,7 @@ namespace SoccerTradingSystem.Views
                 managerMenu.Visibility = System.Windows.Visibility.Collapsed;
                 userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                gameaddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                 MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 BankBtn.Visibility = System.Windows.Visibility.Collapsed;
@@ -116,6 +120,12 @@ namespace SoccerTradingSystem.Views
         {
             bank_list _bank_list = new bank_list();
             content_frame.Navigate(_bank_list);
+        }
+
+        private void gameaddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MakeGameWindow _MakeGameWindow = new MakeGameWindow();
+            _MakeGameWindow.Show();
         }
     }
 }

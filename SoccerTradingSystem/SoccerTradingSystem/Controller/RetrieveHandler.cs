@@ -178,6 +178,13 @@ namespace SoccerTradingSystem.Controller
                             flag = false;
                         }
                     }
+                    if (filter[0].ContainsKey("name"))
+                    {
+                        if (club.name != Convert.ToString(filter[0]["name"]))
+                        {
+                            flag = false;
+                        }
+                    }
                 }
 
                 if (flag)

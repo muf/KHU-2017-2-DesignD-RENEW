@@ -10,15 +10,15 @@ namespace SoccerTradingSystem.Controller.DAC
     using JSON = List<Dictionary<string, object>>;
     class ContractDAC
     {
-        bool addContractData(Contract Contract)
+        bool addContractData(Contract contract)
         {
             return true;
         }
-        bool updateContractData(Contract Contract)
+        bool updateContractData(Contract contract)
         {
             return true;
         }
-        bool deleteContractData(Contract Contract)
+        bool deleteContractData(Contract contract)
         {
             return true;
         }

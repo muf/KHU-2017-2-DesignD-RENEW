@@ -35,7 +35,7 @@ namespace SoccerTradingSystem
         {
             InitializeComponent();
             RetrieveHandler rh = new RetrieveHandler();
-            var result = rh.retrieveBankAccount(null);
+            var result = rh.retrievePlayer(null);
 
             //rd.getClubsData(9);
             //rd.getPlayersData();

@@ -66,11 +66,14 @@ namespace SoccerTradingSystem.Controller
                 }
 
                 var flag = true;
-                if (filter[0].ContainsKey("uid"))
+                if (filter != null)
                 {
-                    if (user.uid  != Convert.ToInt32(filter[0]["uid"]))
+                    if (filter[0].ContainsKey("uid"))
                     {
-                        flag = false;
+                        if (user.uid != Convert.ToInt32(filter[0]["uid"]))
+                        {
+                            flag = false;
+                        }
                     }
                 }
 
@@ -109,7 +112,14 @@ namespace SoccerTradingSystem.Controller
                 String lastName = data["lastName"].ToString();
                 String position = data["position"].ToString();
                 String status = data["status"].ToString();
-                // recent Rate and club list... 
+
+
+                JSON bankFilter = new JSON();
+                bankFilter.Add(new Dictionary<string, object>());
+                //bankFilter[0].Add("accountId", accountId);
+
+                //retrieveBankAccount()
+
                 Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth,playerId, firstName, middleName, lastName, birth, position, 0,
                     weight, height, status, null);
 
@@ -170,11 +180,7 @@ namespace SoccerTradingSystem.Controller
                 String bankName = data["bankName"].ToString();
                 String country = data["country"].ToString();
                 int key = Convert.ToInt32(data["secretKey"]);
-                // recent Rate and club list... 
                 BankAccount bankAccount = new BankAccount(accountId,clientId, bankName, country,balance, new Model.BankAccountAuth(key));
-                //Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth, playerId, firstName, middleName, lastName, birth, position, 0,
-                //    weight, height, status, null);
-
                 var flag = true;
 
                 if (filter != null)

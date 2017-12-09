@@ -36,7 +36,7 @@ namespace SoccerTradingSystem
             InitializeComponent();
             RetrieveHandler rh = new RetrieveHandler();
             BankAccountHandler bah = new BankAccountHandler();
-            int balance = bah.getBalance(new BankAccount(3, 0, "", ""));
+            int balance = bah.getBalance(new BankAccount(3, 0, "", "", 0));
             var result = rh.retrieveManager(null);
 
             //rd.getClubsData(9);
@@ -54,7 +54,7 @@ namespace SoccerTradingSystem
         }
         bool 계좌추가()
         {
-            BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea");
+            BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea", 0);
             Client client = new Client(0, "", "", false, 4, null);
             try
             {

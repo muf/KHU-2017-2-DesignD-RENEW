@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 
 using Club = SoccerTradingSystem.Model.Club;
+using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
 
 namespace SoccerTradingSystem.Views
@@ -22,6 +23,8 @@ namespace SoccerTradingSystem.Views
     /// <summary>
     /// club_list.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+    using JSON = List<Dictionary<string, object>>;
     public partial class club_list : Page
     {
         public club_list()
@@ -50,7 +53,11 @@ namespace SoccerTradingSystem.Views
         private void ClubsDataGridSetting(string context)
         {
             //SystemAccountHandler sah = new SystemAccountHandler();
-            //List<Club> cist = sah.retrieveClubData(context);
+            //RetrieveHandler rh = new RetrieveHandler();
+
+            //JSON filter = new JSON();
+            //filter.Add(new Dictionary<string, object>());
+            //List<Club> cist = rh.retrieveClub(null);
 
             //// DataTable 생성
             //DataTable dataTable = new DataTable();

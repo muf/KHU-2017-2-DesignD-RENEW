@@ -99,6 +99,9 @@
     <Compile Include="View\player_list.xaml.cs">
       <DependentUpon>player_list.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\reg_bankAccount.xaml.cs">
+      <DependentUpon>reg_bankAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\reg_club.xaml.cs">
       <DependentUpon>reg_club.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
     <Page Include="View\player_list.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\reg_bankAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\reg_club.xaml">
       <Generator>MSBuild:Compile</Generator>

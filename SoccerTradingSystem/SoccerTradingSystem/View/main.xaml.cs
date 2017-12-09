@@ -37,6 +37,8 @@ namespace SoccerTradingSystem.Views
                     userInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     gameInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 }
                 else
                 {
@@ -47,6 +49,8 @@ namespace SoccerTradingSystem.Views
                 if (App.cookie.userType == Types.UserType.Club || App.cookie.userType == Types.UserType.Player)
                 {
                     ContractionBtn.Visibility = System.Windows.Visibility.Visible;
+                    MyinfoBtn.Visibility = System.Windows.Visibility.Visible;
+                    BankAddBtn.Visibility = System.Windows.Visibility.Visible;
                 }
             }
             else
@@ -55,6 +59,8 @@ namespace SoccerTradingSystem.Views
                 userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
+                MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -91,6 +97,16 @@ namespace SoccerTradingSystem.Views
         {
             //contraction_list _contraction_list = new contraction_list();
             //content_frame.Navigate(_contraction_list);
+        }
+
+        private void MyinfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BankAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

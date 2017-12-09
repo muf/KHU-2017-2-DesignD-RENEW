@@ -66,11 +66,14 @@ namespace SoccerTradingSystem.Controller
                 }
 
                 var flag = true;
-                if (filter[0].ContainsKey("uid"))
+                if (filter != null)
                 {
-                    if (user.uid  != Convert.ToInt32(filter[0]["uid"]))
+                    if (filter[0].ContainsKey("uid"))
                     {
-                        flag = false;
+                        if (user.uid != Convert.ToInt32(filter[0]["uid"]))
+                        {
+                            flag = false;
+                        }
                     }
                 }
 
@@ -109,7 +112,14 @@ namespace SoccerTradingSystem.Controller
                 String lastName = data["lastName"].ToString();
                 String position = data["position"].ToString();
                 String status = data["status"].ToString();
-                // recent Rate and club list... 
+
+
+                JSON bankFilter = new JSON();
+                bankFilter.Add(new Dictionary<string, object>());
+                //bankFilter[0].Add("accountId", accountId);
+
+                //retrieveBankAccount()
+
                 Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth,playerId, firstName, middleName, lastName, birth, position, 0,
                     weight, height, status, null);
                 //queryResult = 
@@ -144,8 +154,41 @@ namespace SoccerTradingSystem.Controller
         }
         public List<BankAccount> retrieveBankAccount(JSON filter)
         {
+            List<BankAccount> bankAccounts = new List<BankAccount>();
 
-            return null;
+            JSON result = rd.getBankAccountData();
+            String keyword = "";
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                String globalString = "";
+                Dictionary<string, object> data = result[i];
+                int accountId = Convert.ToInt32(data["accountId"]);
+                int bankAccountAuthId = Convert.ToInt32(data["bankAccountAuthId"]);
+                int balance = Convert.ToInt32(data["balance"]);
+                int clientId = Convert.ToInt32(data["clientId"]);
+                String bankName = data["bankName"].ToString();
+                String country = data["country"].ToString();
+                int key = Convert.ToInt32(data["secretKey"]);
+                BankAccount bankAccount = new BankAccount(accountId,clientId, bankName, country,balance, new Model.BankAccountAuth(key));
+                var flag = true;
+
+                if (filter != null)
+                {
+                    if (filter[0].ContainsKey("clientId"))
+                    {
+                        if (bankAccount.clientId != Convert.ToInt32(filter[0]["clientId"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    bankAccounts.Add(bankAccount);
+                }
+            }
+            return bankAccounts;
         }
     }
 }

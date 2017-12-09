@@ -136,23 +136,33 @@ namespace SoccerTradingSystem.Views
         private void User_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             SystemAccountHandler sah = new SystemAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
             DataRowView row = (DataRowView)userDataGrid.SelectedItems[0];
             int uid = Convert.ToInt32((row[0]));
-            //bool auth = sah.retrieveUserData(uid).authenticated;
-            //if (auth)
-            //{
-            //    if (MessageBox.Show("현재 유저는 관리자 인증이 활성화 된 상태입니다.\n인증을 비활성화 하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            //    {
-            //        sah.updateUserAuth(uid, false);
-            //    }
-            //}
-            //else
-            //{
-            //    if (MessageBox.Show("현재 유저는 관리자 인증이 비활성화 된 상태입니다.\n인증을 활성화 하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            //    {
-            //        sah.updateUserAuth(uid, true);
-            //    }
-            //}
+
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", uid);
+            List<User> users = rh.retrieveUser(filter);
+            rh.retrievePlayer(null);
+
+            bool auth = users[0].authenticated;
+            if (auth)
+            {
+                if (MessageBox.Show("현재 유저는 관리자 인증이 활성화 된 상태입니다.\n인증을 비활성화 하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    User _user = new User(users[0].uid, users[0].email, users[0].password, false);
+                    sah.updateUser(_user);
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("현재 유저는 관리자 인증이 비활성화 된 상태입니다.\n인증을 활성화 하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    User _user = new User(users[0].uid, users[0].email, users[0].password, true);
+                    sah.updateUser(_user);
+                }
+            }
             UserDataGridSetting("");
         }
 

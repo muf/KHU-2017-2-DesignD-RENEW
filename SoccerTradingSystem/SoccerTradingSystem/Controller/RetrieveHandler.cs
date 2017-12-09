@@ -101,7 +101,7 @@ namespace SoccerTradingSystem.Controller
                 String globalString = "";
                 Dictionary<string, object> data = result[i];
                 bool auth = data["authenticated"].ToString() == "True" ? true : false;
-                int uid = Convert.ToInt32(data["uid"]);
+                int uid = uid = Convert.ToInt32(data["uid"]);
                 int weight = Convert.ToInt32(data["weight"]);
                 int height = Convert.ToInt32(data["height"]);
                 int birth = Convert.ToInt32(data["birth"]);

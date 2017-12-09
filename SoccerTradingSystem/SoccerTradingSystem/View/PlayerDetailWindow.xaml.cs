@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Types = SoccerTradingSystem.Model.Types;
 using Player = SoccerTradingSystem.Model.Player;
+using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
 
 namespace SoccerTradingSystem.Views
@@ -20,7 +22,7 @@ namespace SoccerTradingSystem.Views
     /// <summary>
     /// PlayerDetailWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-
+    using JSON = List<Dictionary<string, object>>;
     public partial class PlayerDetailWindow : Window
     {
         private int curPlayerUid;
@@ -35,7 +37,7 @@ namespace SoccerTradingSystem.Views
         {
             if (App.cookie != null)
             {
-                if (App.cookie.type == "Club")
+                if (App.cookie.userType == Types.UserType.Club)
                 {
                     PlayerOfferBtn.Visibility = System.Windows.Visibility.Visible;
                 }
@@ -46,19 +48,27 @@ namespace SoccerTradingSystem.Views
             }
 
             SystemAccountHandler sah = new SystemAccountHandler();
-            //Player curPlayer = sah.retrievePlayerData(curPlayerUid);
+            RetrieveHandler rh = new RetrieveHandler();
 
-            //string pName = curPlayer.firstName + curPlayer.middleName +" "+ curPlayer.lastName;
-            //string pBirth = curPlayer.birth.ToString();
-            //string pPosition = curPlayer.position;
-            //string pWeight = curPlayer.weight.ToString();
-            //string pHeight = curPlayer.height.ToString();
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", curPlayerUid);
+            List<Player> players = rh.retrievePlayer(filter);
+            rh.retrievePlayer(null);
 
-            //nameBlock.Text = pName;
-            //birthBlock.Text = pBirth;
-            //positionBlock.Text = pPosition;
-            //weightBlock.Text = pWeight;
-            //heightBlock.Text = pHeight;
+            Player curPlayer = players[0];
+
+            string pName = curPlayer.firstName + curPlayer.middleName + " " + curPlayer.lastName;
+            string pBirth = curPlayer.birth.ToString();
+            string pPosition = curPlayer.position;
+            string pWeight = curPlayer.weight.ToString();
+            string pHeight = curPlayer.height.ToString();
+
+            nameBlock.Text = pName;
+            birthBlock.Text = pBirth;
+            positionBlock.Text = pPosition;
+            weightBlock.Text = pWeight;
+            heightBlock.Text = pHeight;
         }
 
         private void PlayerOfferBtn_Click(object sender, RoutedEventArgs e)

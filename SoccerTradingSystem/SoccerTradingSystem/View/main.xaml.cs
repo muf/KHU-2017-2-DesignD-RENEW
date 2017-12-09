@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Types = SoccerTradingSystem.Model.Types;
+using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
+using bank_list = SoccerTradingSystem.View.bankaccount_list;
 
 namespace SoccerTradingSystem.Views
 {
@@ -37,6 +39,8 @@ namespace SoccerTradingSystem.Views
                     userInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     gameInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                    BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 }
                 else
                 {
@@ -47,6 +51,8 @@ namespace SoccerTradingSystem.Views
                 if (App.cookie.userType == Types.UserType.Club || App.cookie.userType == Types.UserType.Player)
                 {
                     ContractionBtn.Visibility = System.Windows.Visibility.Visible;
+                    MyinfoBtn.Visibility = System.Windows.Visibility.Visible;
+                    BankAddBtn.Visibility = System.Windows.Visibility.Visible;
                 }
             }
             else
@@ -55,6 +61,8 @@ namespace SoccerTradingSystem.Views
                 userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
+                MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
+                BankAddBtn.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -91,6 +99,23 @@ namespace SoccerTradingSystem.Views
         {
             //contraction_list _contraction_list = new contraction_list();
             //content_frame.Navigate(_contraction_list);
+        }
+
+        private void MyinfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BankAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BankAccountWindow _BankAccountWindow = new BankAccountWindow();
+            _BankAccountWindow.Show();
+        }
+
+        private void BankBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bank_list _bank_list = new bank_list();
+            content_frame.Navigate(_bank_list);
         }
     }
 }

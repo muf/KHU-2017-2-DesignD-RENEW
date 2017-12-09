@@ -71,6 +71,32 @@ namespace SoccerTradingSystem.Controller.DAC
             queryResult = execute(query);
             return queryResult;
         }
+        public JSON getContractData()
+        {
+            query = "select CT3.*, MonthlyPayment.MonthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.WeeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId";
+            queryResult = execute(query);
+            return queryResult;
+
+        }
+        public JSON getContractData(int uid)
+        {
+            query = "select CT3.*, MonthlyPayment.MonthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.WeeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId";
+            queryResult = execute(query);
+            return queryResult;
+        }
+        public JSON getGameData()
+        {
+            query = "select * from (select CT2.*, Rating.ratingId, Rating.playerId as RatingPlayerId, Rating.ratingGrade from (select CT.*, Assist.assistId, Assist.playerId as assistPlayerId from  (select game.*, goal.goalId, goal.playerId, goal.time from game INNER JOIN goal ON game.gameId = goal.gameId) as CT INNER JOIN assist ON assist.goalId = CT.goalId) as CT2 INNER JOIN Rating ON Rating.gameId = CT2.gameId) as CT3 ";
+            queryResult = execute(query);
+            return queryResult;
+
+        }
+        public JSON getGameData(int uid)
+        {
+            query = $"select * from (select CT2.*, Rating.ratingId, Rating.playerId as RatingPlayerId, Rating.ratingGrade from (select CT.*, Assist.assistId, Assist.playerId as assistPlayerId from  (select game.*, goal.goalId, goal.playerId, goal.time from game INNER JOIN goal ON game.gameId = goal.gameId) as CT INNER JOIN assist ON assist.goalId = CT.goalId) as CT2 INNER JOIN Rating ON Rating.gameId = CT2.gameId) as CT3 ";
+            queryResult = execute(query);
+            return queryResult;
+        }
         public JSON getBankAccountData()
         {
             query = "SELECT * from (SELECT BankAccount.*, secretKey from BankAccount INNER JOIN BankAccountAuth ON BankAccount.bankAccountAuthId = BankAccountAuth.bankAccountAuthId) as CT INNER JOIN client ON client.clientId = CT.clientId ";

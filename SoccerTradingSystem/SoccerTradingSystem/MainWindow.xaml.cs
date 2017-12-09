@@ -24,10 +24,14 @@ namespace SoccerTradingSystem
     using Manager = SoccerTradingSystem.Model.Manager;
     using Game = SoccerTradingSystem.Model.Game;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
+    using Contract = SoccerTradingSystem.Model.Contract;
     using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
     using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
     using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
     using GameHandler = SoccerTradingSystem.Controller.GameHandler;
+    using ContractType = SoccerTradingSystem.Model.Types.ContractType;
+    using TradeType = SoccerTradingSystem.Model.Types.TradeType;
+    using ContractHandler = SoccerTradingSystem.Controller.ContractHandler;
 
     using JSON = List<Dictionary<string, object>>;
 
@@ -37,6 +41,27 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
+            GameHandler gh = new GameHandler();
+            RetrieveHandler rh = new RetrieveHandler();
+            ContractHandler ch = new ContractHandler();
+
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", 10);
+
+
+            JSON filter2 = new JSON();
+            filter2.Add(new Dictionary<string, object>());
+            filter2[0].Add("uid", 16);
+            
+            Player player = rh.retrievePlayer(filter2)[0];
+            Club club = rh.retrieveClub(filter)[0];
+            Contract contract = new Contract(0, "1", "1", 500, new Model.DailyPayment(0, "DailyPayment",0,"33m"), 300, true, club, player, ContractType.OFFER, TradeType.BELONG, true);
+            ch.registerContract(contract);
+            
+        }
+        void 게임테스트()
+        {
             GameHandler gh = new GameHandler();
             RetrieveHandler rh = new RetrieveHandler();
             BankAccountHandler bah = new BankAccountHandler();
@@ -58,17 +83,9 @@ namespace SoccerTradingSystem
             List<Rating> ratings = new List<Rating>();
             ratings.Add(new Rating(0, 0, player, 5));
             ratings.Add(new Rating(0, 0, player, 4));
-            Game game = new Game(9, "2017-01-02","15:30","78",3,2, rh.retrieveClub(filter)[0], rh.retrieveClub(filter)[0], goals, ratings);
+            Game game = new Game(9, "2017-01-02", "15:30", "78", 3, 2, rh.retrieveClub(filter)[0], rh.retrieveClub(filter)[0], goals, ratings);
             gh.registerGame(game);
             gh.unregisterGame(game);
-
-
-            //rd.getClubsData(9);
-            //rd.getPlayersData();
-            //클럽계정등록();
-            //선수계정등록();
-            //관리자계정등록();
-            로그인();
         }
         bool 로그인()
         {

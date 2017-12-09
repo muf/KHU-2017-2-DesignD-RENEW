@@ -234,7 +234,6 @@ namespace SoccerTradingSystem.Controller
         }
         public List<Game> retrieveGame(JSON filter)
         {
-
             return null;
         }
         public List<BankAccount> retrieveBankAccount(JSON filter)

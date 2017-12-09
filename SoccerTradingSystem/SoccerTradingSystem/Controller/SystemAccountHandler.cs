@@ -56,5 +56,15 @@ namespace SoccerTradingSystem.Controller
             sad.addManagerData(manager);
             return true;
         }
+        public bool updateUser(User user)
+        {
+            sad.updateUserData(user);
+            return true;
+        }
+        public LocalData updateLocalUser(LocalData cookie)
+        {
+            login(cookie.user.email, cookie.user.password);
+            return cookie;
+        }
     }
 }

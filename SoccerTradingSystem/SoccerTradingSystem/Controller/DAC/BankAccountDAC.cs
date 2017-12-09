@@ -32,7 +32,7 @@ namespace SoccerTradingSystem.Controller.DAC
         }
         public bool updateBankAccountData(BankAccount bankAccount)
         {
-            query = $"UPDATE {BankAccountTable} SET `bankName`  = {bankAccount.bankName}, `country` = {bankAccount.country}'  WHERE accountId = {bankAccount.accountId}; "; ;
+            query = $"UPDATE {BankAccountTable} SET `bankName`  = {bankAccount.bankName}, `country` = {bankAccount.country}'  WHERE accountId = {bankAccount.accountId}; "; 
             queryResult = execute(query);
             return true;
         }

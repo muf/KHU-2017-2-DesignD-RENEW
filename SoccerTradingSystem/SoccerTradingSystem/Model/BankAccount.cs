@@ -12,13 +12,15 @@ namespace SoccerTradingSystem.Model
         public int clientId { get; } = -1;         // 계좌를 소유하는 client id
         public String bankName { get;  } = "";    // 은행명
         public String country { get;  } = "";        // 국가
+        public int balance { get; } = 0;
         public BankAccountAuth auth { get;  } = new BankAccountAuth();    // 인증키 값
-        public BankAccount(int accountId, int clientId, String bankName, String country, BankAccountAuth auth)
+        public BankAccount(int accountId, int clientId, String bankName, String country, int balance, BankAccountAuth auth)
         {
             this.accountId = accountId;
             this.clientId = clientId;
             this.bankName = bankName;
             this.country = country;
+            this.balance = balance;
             this.auth = auth;
         }
         public BankAccount(int accountId, int clientId, String bankName, String country)

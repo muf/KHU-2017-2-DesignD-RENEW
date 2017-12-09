@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+SoccerTradingSystem/App.xaml.cs
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

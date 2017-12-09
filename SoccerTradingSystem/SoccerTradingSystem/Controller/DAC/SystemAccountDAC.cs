@@ -57,7 +57,7 @@ namespace SoccerTradingSystem.Controller.DAC
 
         public bool updateUserData(User user)
         {
-            query = $"UPDATE {userTable} SET `password`  = {user.password}, `authenticated` = {user.authenticated}'  WHERE uid = {user.uid}; "; 
+            query = $"UPDATE {userTable} SET `password`  = {user.password}, `authenticated` = '{user.authenticated}'  WHERE uid = {user.uid}; "; 
             queryResult = execute(query);
             return true;
         }

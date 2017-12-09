@@ -29,6 +29,10 @@ namespace SoccerTradingSystem.Controller.DAC
         protected String contractTable = "Contract";
         protected String BankAccountTable = "BankAccount";
         protected String BankAccountAuthTable = "BankAccountAuth";
+        protected String GameTable = "Game";
+        protected String AssistTable = "Assist";
+        protected String RatingTable = "Rating";
+        protected String GoalTable = "Goal";
 
         public MariaDBConnector()
         {

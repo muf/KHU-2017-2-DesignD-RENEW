@@ -19,12 +19,15 @@ namespace SoccerTradingSystem
     using Client = SoccerTradingSystem.Model.Client;
     using Player = SoccerTradingSystem.Model.Player;
     using Club = SoccerTradingSystem.Model.Club;
+    using Goal = SoccerTradingSystem.Model.Goal;
+    using Rating = SoccerTradingSystem.Model.Rating;
     using Manager = SoccerTradingSystem.Model.Manager;
+    using Game = SoccerTradingSystem.Model.Game;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
     using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
     using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
     using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
-    using RetrieveDAC = SoccerTradingSystem.Controller.DAC.RetrieveDAC;
+    using GameHandler = SoccerTradingSystem.Controller.GameHandler;
 
     using JSON = List<Dictionary<string, object>>;
 
@@ -34,10 +37,30 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
+            GameHandler gh = new GameHandler();
             RetrieveHandler rh = new RetrieveHandler();
             BankAccountHandler bah = new BankAccountHandler();
-            int balance = bah.getBalance(new BankAccount(3, 0, "", "", 0));
-            var result = rh.retrieveManager(null);
+
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", 10);
+
+            JSON filter2 = new JSON();
+            filter2.Add(new Dictionary<string, object>());
+            filter2[0].Add("uid", 16);
+
+            List<Goal> goals = new List<Goal>();
+            Player player = rh.retrievePlayer(filter2)[0];
+            List<Player> assisters = new List<Player>();
+            assisters.Add(player);
+            assisters.Add(player);
+            goals.Add(new Goal(0, 0, rh.retrievePlayer(filter2)[0], assisters, "35m35s"));
+            List<Rating> ratings = new List<Rating>();
+            ratings.Add(new Rating(0, 0, player, 5));
+            ratings.Add(new Rating(0, 0, player, 4));
+            Game game = new Game(0, "2017-01-02","15:30","78",3,2, rh.retrieveClub(filter)[0], rh.retrieveClub(filter)[0], goals, ratings);
+            gh.registerGame(game);
+
 
             //rd.getClubsData(9);
             //rd.getPlayersData();
@@ -54,7 +77,11 @@ namespace SoccerTradingSystem
         }
         bool 계좌추가()
         {
+<<<<<<< HEAD
+            BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea",0);
+=======
             BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea", 0);
+>>>>>>> 5f3402b4bd12cd2c21b550b5d3589bbe591d9124
             Client client = new Client(0, "", "", false, 4, null);
             try
             {

@@ -53,5 +53,13 @@ namespace SoccerTradingSystem.Controller.DAC
                 + $" (SELECT `uid` FROM {userTable} WHERE `email` = '{manager.email}') , '{manager.name}', '{manager.telNumber}');  ";
             queryResult = execute(query);
         }
+
+
+        public bool updateUserData(User user)
+        {
+            query = $"UPDATE {userTable} SET `password`  = {user.password}, `authenticated` = {user.authenticated}'  WHERE uid = {user.uid}; "; 
+            queryResult = execute(query);
+            return true;
+        }
     }
 }

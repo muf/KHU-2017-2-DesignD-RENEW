@@ -48,15 +48,23 @@ namespace SoccerTradingSystem.Controller
         }
         public bool registerPlayerAccount(Player player)
         {
-            SystemAccountDAC sad = new SystemAccountDAC();
             sad.addPlayerData(player);
             return true;
         }
         public bool registerManagerAccount(Manager manager)
         {
-            SystemAccountDAC sad = new SystemAccountDAC();
             sad.addManagerData(manager);
             return true;
+        }
+        public bool updateUser(User user)
+        {
+            sad.updateUserData(user);
+            return true;
+        }
+        public LocalData updateLocalUser(LocalData cookie)
+        {
+            login(cookie.user.email, cookie.user.password);
+            return cookie;
         }
     }
 }

@@ -260,6 +260,14 @@ namespace SoccerTradingSystem.Controller
                             flag = false;
                         }
                     }
+                    else if (filter[0].ContainsKey("accountId"))
+                    {
+                        if (bankAccount.accountId != Convert.ToInt32(filter[0]["accountId"]))
+                        {
+                            flag = false;
+                        }
+
+                    }
                 }
                 if (flag)
                 {

@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Types = SoccerTradingSystem.Model.Types;
+using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
+using bank_list = SoccerTradingSystem.View.bankaccount_list;
 
 namespace SoccerTradingSystem.Views
 {
@@ -106,7 +108,14 @@ namespace SoccerTradingSystem.Views
 
         private void BankAddBtn_Click(object sender, RoutedEventArgs e)
         {
+            BankAccountWindow _BankAccountWindow = new BankAccountWindow();
+            _BankAccountWindow.Show();
+        }
 
+        private void BankBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bank_list _bank_list = new bank_list();
+            content_frame.Navigate(_bank_list);
         }
     }
 }

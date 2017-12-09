@@ -52,40 +52,40 @@ namespace SoccerTradingSystem.Views
         // 클럽 그리드 구성
         private void ClubsDataGridSetting(string context)
         {
-            //SystemAccountHandler sah = new SystemAccountHandler();
-            //RetrieveHandler rh = new RetrieveHandler();
+            SystemAccountHandler sah = new SystemAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
 
-            //JSON filter = new JSON();
-            //filter.Add(new Dictionary<string, object>());
-            //List<Club> cist = rh.retrieveClub(null);
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            List<Club> cist = rh.retrieveClub(null);
 
-            //// DataTable 생성
-            //DataTable dataTable = new DataTable();
+            // DataTable 생성
+            DataTable dataTable = new DataTable();
+            
+            // 컬럼 생성
+            dataTable.Columns.Add("uid", typeof(string));
+            dataTable.Columns.Add("cid", typeof(string));
+            dataTable.Columns.Add("email", typeof(string));
+            dataTable.Columns.Add("name", typeof(string));
+            dataTable.Columns.Add("birth", typeof(string));
+            dataTable.Columns.Add("contactnumber", typeof(string));
+            dataTable.Columns.Add("authenticated", typeof(string));
 
-            //// 컬럼 생성
-            //dataTable.Columns.Add("uid", typeof(string));
-            //dataTable.Columns.Add("cid", typeof(string));
-            //dataTable.Columns.Add("email", typeof(string));
-            //dataTable.Columns.Add("name", typeof(string));
-            //dataTable.Columns.Add("birth", typeof(string));
-            //dataTable.Columns.Add("contactnumber", typeof(string));
-            //dataTable.Columns.Add("authenticated", typeof(string));
+            // 데이터 생성
+            for (int i = 0; i < cist.Count; i++)
+            {
+                string uid = Convert.ToString(cist[i].uid);
+                string pid = Convert.ToString(cist[i].clubId);
+                string email = cist[i].email;
+                string name = cist[i].name;
+                string birth = Convert.ToString(cist[i].birth);
+                string contactnumber = cist[i].contactNumber;
+                string authenticated = (cist[i].authenticated) ? "TRUE" : "FALSE";
+                dataTable.Rows.Add(new string[] { uid, pid, email, name, birth, contactnumber, authenticated });
+            }
 
-            //// 데이터 생성
-            //for (int i = 0; i < cist.Count; i++)
-            //{
-            //    string uid = Convert.ToString(cist[i].uid);
-            //    string pid = Convert.ToString(cist[i].clubId);
-            //    string email = cist[i].email;
-            //    string name = cist[i].name;
-            //    string birth = Convert.ToString(cist[i].birth);
-            //    string contactnumber = cist[i].contactNumber;
-            //    string authenticated = (cist[i].authenticated) ? "TRUE" : "FALSE";
-            //    dataTable.Rows.Add(new string[] { uid, pid, email, name, birth, contactnumber, authenticated });
-            //}
-
-            //// DataTable의 Default View를 바인딩하기
-            //clubDataGrid.ItemsSource = dataTable.DefaultView;
+            // DataTable의 Default View를 바인딩하기
+            clubDataGrid.ItemsSource = dataTable.DefaultView;
         }
 
 

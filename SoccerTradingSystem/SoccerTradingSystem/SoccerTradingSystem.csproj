@@ -63,6 +63,9 @@
     <Compile Include="View\AddGameWindow.xaml.cs">
       <DependentUpon>AddGameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\bankaccount_list.xaml.cs">
+      <DependentUpon>bankaccount_list.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClubDetailWindow.xaml.cs">
       <DependentUpon>ClubDetailWindow.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
     <Page Include="View\AddGameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\bankaccount_list.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClubDetailWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

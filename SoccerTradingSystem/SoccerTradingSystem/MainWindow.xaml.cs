@@ -58,8 +58,9 @@ namespace SoccerTradingSystem
             List<Rating> ratings = new List<Rating>();
             ratings.Add(new Rating(0, 0, player, 5));
             ratings.Add(new Rating(0, 0, player, 4));
-            Game game = new Game(0, "2017-01-02","15:30","78",3,2, rh.retrieveClub(filter)[0], rh.retrieveClub(filter)[0], goals, ratings);
+            Game game = new Game(9, "2017-01-02","15:30","78",3,2, rh.retrieveClub(filter)[0], rh.retrieveClub(filter)[0], goals, ratings);
             gh.registerGame(game);
+            gh.unregisterGame(game);
 
 
             //rd.getClubsData(9);
@@ -77,11 +78,9 @@ namespace SoccerTradingSystem
         }
         bool 계좌추가()
         {
-<<<<<<< HEAD
+
             BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea",0);
-=======
-            BankAccount bankAccount = new BankAccount(0, 4, "SC", "korea", 0);
->>>>>>> 5f3402b4bd12cd2c21b550b5d3589bbe591d9124
+
             Client client = new Client(0, "", "", false, 4, null);
             try
             {

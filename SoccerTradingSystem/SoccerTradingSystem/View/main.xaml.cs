@@ -33,7 +33,7 @@ namespace SoccerTradingSystem.Views
             
             if (App.cookie != null)
             {
-                if (App.cookie.userType == Types.UserType.Manager)
+                if (App.cookie.userType == Types.UserType.Manager) 
                 {
                     managerMenu.Visibility = System.Windows.Visibility.Visible;
                     userInfoBtn.Visibility = System.Windows.Visibility.Visible;

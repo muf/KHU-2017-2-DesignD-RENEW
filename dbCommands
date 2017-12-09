@@ -119,7 +119,6 @@ CREATE TABLE `Goal` (
 	`goalId` INT NOT NULL AUTO_INCREMENT,
 	`gameId`  INT NOT NULL,
 	`playerId`  INT NOT NULL,
-	`assistId` INT NOT NULL,
 	`time`  VARCHAR(50) NOT NULL,
 	PRIMARY KEY (`goalId`),
 	INDEX `gameId` (`gameId`),

@@ -19,27 +19,39 @@ namespace SoccerTradingSystem.Controller.DAC
 
         public bool addGameData(Game game)
         {
-            query = $"INSERT INTO {GameTable} (`date`, `startTime`, `playTime`,`homeClubId`,`awayClubId`) VALUES ('{game.date}', '{game.startTime}', '{game.playTime}', '{((User)game.homeTeam).uid}', '{((User)game.awayTeam).uid}');  ";
+            query = $"INSERT INTO {GameTable} (`date`, `startTime`, `playTime`,`homeClubId`,`awayClubId`) VALUES ('{game.date}', '{game.startTime}', '{game.playTime}', '{(game.homeTeam).clubId}', '{(game.awayTeam).clubId}');  ";
             for (int idx = 0; idx < game.goals.Count; idx++)
             {
-                //query += $"INSERT INTO {GoalTable} (`gameId`, `playerId`) VALUES ( "
-                //         + $" (SELECT `uid` FROM {GameTable} WHERE `email` = '{manager.email}') , '{manager.name}', '{manager.telNumber}');  
-            }
-            //for (int idx = 0; idx < game.goals.Count; idx++)
-            //{
+                query += $"INSERT INTO {GoalTable} (`gameId`, `playerId`,`time`) VALUES ( "
+                         + $" (SELECT MAX(gameId) FROM Game ), {game.goals[idx].player.playerId},'{game.goals[idx].time}');";
+                for (int jdx = 0; jdx < game.goals[idx].assistPlayers.Count; jdx++)
+                {
+                    query += $"INSERT INTO {AssistTable} (`goalId`, `playerId`) VALUES ( "
+                             + $" (SELECT MAX(goalId) FROM Goal), {game.goals[idx].assistPlayers[jdx].playerId});";
 
-            //}
-            //query += $"INSERT INTO {ManagerTable} (`userId`, `name`, `telNumber`) VALUES ( "
-            //    + $" (SELECT `uid` FROM {userTable} WHERE `email` = '{manager.email}') , '{manager.name}', '{manager.telNumber}');  ";
+                }
+            }
+            for (int idx = 0; idx < game.ratings.Count; idx++)
+            {
+                query += $"INSERT INTO {RatingTable} (`gameId`, `playerId`,`ratingGrade`) VALUES ( "
+                         + $" (SELECT MAX(gameId) FROM Game ), {game.ratings[idx].player.playerId}, {game.ratings[idx].ratingGrade});";
+            }
             queryResult = execute(query);
             return true;
         }
         public bool deleteGameData(Game game)
         {
+            query = $"DELETE FROM {GameTable} WHERE gameId = {game.gameId}; ";
+            query += $"DELETE FROM {AssistTable} WHERE goalId = ( SELECT goalId FROM {GoalTable} WHERE gameId = {game.gameId}); ";
+            query += $"DELETE FROM {GoalTable} WHERE gameId = {game.gameId}; ";
+            query += $"DELETE FROM {RatingTable} WHERE gameId = {game.gameId}; ";
+            queryResult = execute(query);
             return true;
         }
         public bool updateGameData(Game game)
         {
+            deleteGameData(game);
+            addGameData(game);
             return true;
         }
     }

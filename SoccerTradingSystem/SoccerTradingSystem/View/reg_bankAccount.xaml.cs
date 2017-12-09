@@ -46,7 +46,7 @@ namespace SoccerTradingSystem.View
         {
             BankAccountHandler bh = new BankAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
-            BankAccount _BankAccount = new BankAccount(-1, -1, bankNameBox.Text, contryBox.Text, 0);
+            BankAccount _BankAccount = new BankAccount(-1, -1, bankNameBox.Text, contryBox.Text,0);
 
             bool success = false;
 

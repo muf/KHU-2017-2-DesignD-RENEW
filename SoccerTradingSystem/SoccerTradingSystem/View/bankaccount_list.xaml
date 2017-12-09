@@ -28,13 +28,9 @@
         </Border>
         <Border Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.ColumnSpan="2" Height="34" Margin="0,56,-12,0" Grid.RowSpan="2" Width="407">
             <StackPanel Orientation="Horizontal" Height="40">
-                <ComboBox Margin="0,0,20,10" HorizontalContentAlignment="Center" VerticalAlignment="Center">
-                    <ComboBoxItem IsSelected ="True" Content="전체"/>
-                    <ComboBoxItem Content="ID"/>
-                    <ComboBoxItem Content="이름"/>
-                </ComboBox>
-                <TextBox Margin="0,0,20,10" Name="playerSearchBox" Width="200"/>
-                <Button Margin="0,0,50,10" Style="{StaticResource SuccessButton}" Content="검색" Name="plyaerSearchBtn"/>
+                <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="입금 하기" x:Name="depositBtn" Click="depositBtn_Click"/>
+                <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="출금 하기" x:Name="withdrawBtn"/>
+                <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="계좌 생성" x:Name="newAccountBtn" Click="newAccountBtn_Click"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="500" Margin="50,0" Width="950">

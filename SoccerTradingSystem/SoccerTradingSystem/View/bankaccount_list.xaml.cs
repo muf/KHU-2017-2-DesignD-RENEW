@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 
+using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
 using BankAccount = SoccerTradingSystem.Model.BankAccount;
+using Player = SoccerTradingSystem.Model.Player;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
 
@@ -71,6 +73,36 @@ namespace SoccerTradingSystem.View
 
             // DataTable의 Default View를 바인딩하기
             bankDataGrid.ItemsSource = dataTable.DefaultView;
+        }
+
+        private void newAccountBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BankAccountWindow _BankAccountWindow = new BankAccountWindow(this);
+            _BankAccountWindow.Show();
+        }
+
+        private void depositBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BankAccountHandler bh = new BankAccountHandler();
+            RetrieveHandler rh = new RetrieveHandler();
+
+            var row = bankDataGrid.SelectedItems[0] as DataRowView;
+            string accountid = row.Row.ItemArray[0].ToString();
+
+            JSON filter = new JSON();
+            int uid = App.cookie.user.uid;
+            if(App.cookie.type == "Player")
+            {
+                filter.Add(new Dictionary<string, object>());
+                filter[0].Add("uid", uid);
+                Player> playsers = rh.retrievePlayer(filter);
+            }
+
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("accountid", accountid);
+            List<BankAccount> banks = rh.retrieveBankAccount(filter);
+            BankAccount selectedBank = banks[0];
+            bh.deposit(selectedBank, 300);
         }
     }
 }

@@ -1,0 +1,54 @@
+﻿<Window x:Class="SoccerTradingSystem.Views.ContractionDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoccerTradingSystem.Views"
+        mc:Ignorable="d"
+        Title="ContractionDetailWindow" Height="400" Width="300"
+        Loaded="OnWindowLoaded"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="150*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="0" Grid.Column="0" Text="구단 명"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="1" Grid.Column="0" Text="선수 명"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="2" Grid.Column="0" Text="트레이드 타입"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="3" Grid.Column="0" Text="계약 타입"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="4" Grid.Column="0" Text="시작 날짜"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="5" Grid.Column="0" Text="종료 날짜"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="6" Grid.Column="0" Text="리스 가능 여부"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="7" Grid.Column="0" Text="벌금"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="8" Grid.Column="0" Text="이적비"/>
+        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="9" Grid.Column="0" Text="연봉"/>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Name="clubBlock"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Name="playerBlock"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Name="tradeTypeBlock"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Name="contractTypeBlock"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Name="startDateBlock"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Name="endDataBlock"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Name="leaseBlock"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Name="penaltyFeeBlock"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Name="TransferFeeBlock"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" Name="yearlyPayBlock"/>
+
+        <Button Content="Button" Grid.Row="10" Grid.ColumnSpan="2"></Button>
+    </Grid>
+</Window>

@@ -1,0 +1,38 @@
+﻿<Window x:Class="SoccerTradingSystem.Views.ClubDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoccerTradingSystem.Views"
+        mc:Ignorable="d"
+        Title="Club Information" Height="600" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Loaded="OnWindowLoaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="150*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Image Margin="10" Grid.Row="0" Grid.Column="2" Grid.RowSpan="5" Source="../Image/testclubimage.jpg"/>
+
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Text="구단명"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="0" Text="창단일"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="0" Text="연락처"/>
+
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Name="nameBlock"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1" Name="birthBlock"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Name="contactNumberBlock"/>
+        <Button Style="{StaticResource SuccessButton}" Visibility="Hidden" Grid.Row="6" Grid.Column="1" Content="계약 요청하기" Name="ClubOfferBtn" Click="ClubOfferBtn_Click"></Button>
+    </Grid>
+</Window>

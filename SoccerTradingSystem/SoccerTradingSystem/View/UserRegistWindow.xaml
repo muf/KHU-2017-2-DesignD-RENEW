@@ -1,0 +1,31 @@
+﻿<Window x:Class="SoccerTradingSystem.Views.PlayerRegistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoccerTradingSystem.Views"
+        mc:Ignorable="d"
+        Title="User Registration Window" Height="550" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="133"/>
+                <ColumnDefinition Width="133*"/>
+                <ColumnDefinition Width="133*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource PrimaryButton}" Grid.Column="0" Content="Player" Name="regPlayerBtn" Click="regPlayerBtn_Click"></Button>
+            <Button Style="{StaticResource InfoButton}" Grid.Column="1" Content="Club" Name="regClubBtn" Click="regClubBtn_Click"/>
+            <Button Style="{StaticResource InfoButton}" Grid.Column="2" Content="Manager" Name="regManagerBtn" Height="30" VerticalAlignment="Top" Click="regManagerBtn_Click"/>
+        </Grid>
+        <Border Grid.Row="1">
+            <Frame Name="regContent" Width="384" Height="450" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+        </Border>
+    </Grid>
+</Window>

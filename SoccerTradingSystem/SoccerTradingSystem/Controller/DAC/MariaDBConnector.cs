@@ -14,12 +14,21 @@ namespace SoccerTradingSystem.Controller.DAC
         private static String serverIp = "127.0.0.1";
         private static String id = "root";
         private static String password = "admin";
-        private static String databaseName = "pms_dev";
+        private static String databaseName = "pms_real";
 
         protected MySqlConnection conn;
         protected String query;
         protected JSON queryResult; // for test @@
 
+        // @@ attributes 추가
+        protected String userTable = "User";
+        protected String clientTable = "Client";
+        protected String playerTable = "Player";
+        protected String clubTable = "Club";
+        protected String ManagerTable = "Manager";
+        protected String contractTable = "Contract";
+        protected String BankAccountTable = "BankAccount";
+        protected String BankAccountAuthTable = "BankAccountAuth";
 
         public MariaDBConnector()
         {

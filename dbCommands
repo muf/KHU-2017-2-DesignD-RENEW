@@ -40,6 +40,7 @@ CREATE TABLE `BankAccount` (
 	`accountId` INT NOT NULL AUTO_INCREMENT,
 	`bankAccountAuthId` INT NOT NULL,
 	`clientId` INT NOT NULL,
+	`balance` INT(11) NOT NULL DEFAULT '0',
 	`bankName` VARCHAR(50) NOT NULL, 
 	`country` VARCHAR(50) NOT NULL,
 	PRIMARY KEY (`accountId`),
@@ -196,10 +197,12 @@ AUTO_INCREMENT=1
 ;
 CREATE TABLE `Club` (
 	`clubId` INT NOT NULL AUTO_INCREMENT,
+	`clientId` INT NOT NULL,
 	`name` VARCHAR(50) NOT NULL,
 	`contactNumber` VARCHAR(50) NOT NULL,
 	`birth` INT NOT NULL,
-	PRIMARY KEY (`clubId`)
+	PRIMARY KEY (`clubId`),
+	INDEX `clientId` (`clientId`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB

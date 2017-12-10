@@ -331,7 +331,44 @@ namespace SoccerTradingSystem.Controller
         }
         public List<Game> retrieveGame(JSON filter)
         {
-            return null;
+            List<Game> games = new List<Game>();
+
+            JSON result = rd.getGameData();
+            String keyword = "";
+
+            for(int i = 0; i < result.Count; i++)
+            {
+                String globalString = "";
+                Dictionary<string, object> data = result[i];
+                int gameId = Convert.ToInt32(data["gameId"]);
+                string date = data["date"].ToString();
+                string startTime = data["startTime"].ToString();
+                string playTime = data["playTime"].ToString();
+                int homeClubId = Convert.ToInt32(data["homeClubId"]);
+                int awayClubId = Convert.ToInt32(data["awayClubId"]);
+                int homeScore = Convert.ToInt32(data["homeScore"]);
+                int awayScore = Convert.ToInt32(data["awayScroe"]);
+
+                Game game = null;
+                //Game game = new Game(gameId, date, startTime, playTime, homeScore, awayScore, .....)
+                var flag = true;
+
+                if (filter != null)
+                {
+                    if (filter[0].ContainsKey("gameId"))
+                    {
+                        if (game.gameId != Convert.ToInt32(filter[0]["gameId"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    games.Add(game);
+                }
+            }
+            return games;
         }
         public List<BankAccount> retrieveBankAccount(JSON filter)
         {

@@ -173,6 +173,13 @@ namespace SoccerTradingSystem.Controller
                             flag = false;
                         }
                     }
+                    if (filter[0].ContainsKey("name"))
+                    {
+                        if ((player.lastName + " " + player.middleName + player.firstName) != (filter[0]["name"].ToString()))
+                        {
+                            flag = false;
+                        }
+                    }
                 }
 
                 if (flag)

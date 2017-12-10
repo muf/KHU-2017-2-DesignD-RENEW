@@ -63,11 +63,11 @@ namespace SoccerTradingSystem.View
 
             for (int i = 0; i < homeClubs[0].players.Count(); i++)
             {
-                playercombobox.Items.Add(homeClubs[0].players[i].lastName + " " + homeClubs[0].players[i].firstName + homeClubs[0].players[i].middleName);
+                playercombobox.Items.Add(homeClubs[0].players[i].lastName + " " + homeClubs[0].players[i].middleName + homeClubs[0].players[i].firstName);
             }
             for (int i = 0; i < awayClubs[0].players.Count(); i++)
             {
-                playercombobox.Items.Add(awayClubs[0].players[i].lastName + " " + awayClubs[0].players[i].firstName + awayClubs[0].players[i].middleName);
+                playercombobox.Items.Add(awayClubs[0].players[i].lastName + " " + awayClubs[0].players[i].middleName + awayClubs[0].players[i].firstName);
             }
 
         }

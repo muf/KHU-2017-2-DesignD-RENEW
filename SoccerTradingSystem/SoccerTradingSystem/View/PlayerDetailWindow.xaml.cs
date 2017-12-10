@@ -27,10 +27,10 @@ namespace SoccerTradingSystem.Views
     {
         private int curPlayerUid;
 
-        public PlayerDetailWindow(int uid)
+        public PlayerDetailWindow(int _curPlayerUid)
         {
             InitializeComponent();
-            curPlayerUid = uid;
+            curPlayerUid = _curPlayerUid;
 
             if (App.cookie != null)
             {
@@ -82,15 +82,23 @@ namespace SoccerTradingSystem.Views
             filter.Add(new Dictionary<string, object>());
             filter[0].Add("uid", curPlayerUid);
             List<Player> players = rh.retrievePlayer(filter);
-            rh.retrievePlayer(null);
-
+            if(players == null || players.Count == 0)
+            {
+                return false;
+            }
             Player curPlayer = players[0];
+            if (players[0].status == Types.PlayerState.Retired)
+                return false;
             return true;
         }
 
         private void PlayerOfferBtn_Click(object sender, RoutedEventArgs e)
         {
-            playerCheck();
+            if (playerCheck())
+            {
+                MessageBox.Show("플레이어 정보 오류입니다.");
+                return;
+            }
             MakeContractWindow _MakeContractWindow = new MakeContractWindow(curPlayerUid);
             _MakeContractWindow.Show();
         }

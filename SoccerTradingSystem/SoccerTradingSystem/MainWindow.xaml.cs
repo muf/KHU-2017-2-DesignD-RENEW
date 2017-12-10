@@ -41,7 +41,8 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
-            DateTime localDate = DateTime.Now;
+            //DateTime localDate = DateTime.Now;
+            계약읽기();
 
 
         }

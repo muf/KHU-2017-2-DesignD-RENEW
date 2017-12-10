@@ -10,12 +10,13 @@ namespace SoccerTradingSystem.Model
     {
         public int paymentId { get; } = -1;
         public String paymentType { get; } = "";
-        public int yearlyPay { get; } = 0; // ..? 정체 불명인데 이거 좀
+        public int pay { get; } = 0;
 
-        public Payment(int paymentId, String paymentType)
+        public Payment(int paymentId, String paymentType, int pay)
         {
             this.paymentId = paymentId;
             this.paymentType = paymentType;
+            this.pay = pay;
         }
        // virtual public int getPay();
        // @@ c# 가상함수 어떻게 ..?

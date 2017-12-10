@@ -11,7 +11,7 @@ namespace SoccerTradingSystem.Model
         public int dailyPaymentId { get; }
         public String time { get; }
 
-        public DailyPayment(int paymentId, String paymentType, int dailyPaymentId, String time) : base(paymentId, paymentType)
+        public DailyPayment(int paymentId, String paymentType,int pay,  int dailyPaymentId, String time) : base(paymentId, paymentType, pay)
         {
             this.dailyPaymentId = dailyPaymentId;
             this.time = time;

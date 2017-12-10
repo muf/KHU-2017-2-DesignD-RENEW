@@ -272,13 +272,13 @@ namespace SoccerTradingSystem.Controller
                 switch (type)
                 {
                     case "DailyPayment":
-                        payment = new DailyPayment(paymentId, "DailyPayment", Convert.ToInt32(data["dailyPaymentId"]), data["time"].ToString());
+                        payment = new DailyPayment(paymentId, "DailyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["dailyPaymentId"]), data["time"].ToString());
                         break;
                     case "WeeklyPayment":
-                        payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["weeklyPaymentId"]),data["dayOfWeek"].ToString());
+                        payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["weeklyPaymentId"]),data["dayOfWeek"].ToString());
                         break;
                     case "MonthlyPayment":
-                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["monthlyPaymentId"]), data["day"].ToString());
+                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["pay"]),Convert.ToInt32(data["monthlyPaymentId"]), data["day"].ToString());
                         break;
                     default:
                         return null;

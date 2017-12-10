@@ -11,7 +11,7 @@ namespace SoccerTradingSystem.Model
         public int weeklyPaymentId { get; }
         public String dayOfWeek { get; }
 
-        public WeeklyPayment(int paymentId, String paymentType, int weeklyPaymentId, String dayOfWeek) : base(paymentId, paymentType)
+        public WeeklyPayment(int paymentId, String paymentType, int pay, int weeklyPaymentId, String dayOfWeek) : base(paymentId, paymentType, pay)
         {
             this.weeklyPaymentId = weeklyPaymentId;
             this.dayOfWeek = dayOfWeek;

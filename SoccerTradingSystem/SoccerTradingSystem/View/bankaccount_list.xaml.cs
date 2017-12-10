@@ -19,8 +19,10 @@ using BankAccountWithdrawWindow = SoccerTradingSystem.View.withdrawinputWindow;
 using BankAccountWindow = SoccerTradingSystem.View.reg_bankAccount;
 using BankAccount = SoccerTradingSystem.Model.BankAccount;
 using Player = SoccerTradingSystem.Model.Player;
+using Club = SoccerTradingSystem.Model.Club;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
+using Types = SoccerTradingSystem.Model.Types;
 
 
 namespace SoccerTradingSystem.View
@@ -48,11 +50,18 @@ namespace SoccerTradingSystem.View
             //SystemAccountHandler sah = new SystemAccountHandler();
             BankAccountHandler bh = new BankAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
-
             JSON filter = new JSON();
-            int uid = App.cookie.user.uid;
+            int clientid = 0;
+            if(App.cookie.type == Types.UserType.Player)
+            {
+                clientid = ((Player)App.cookie.user).clientId;
+            }
+            if (App.cookie.type == Types.UserType.Club)
+            {
+                clientid = ((Club)App.cookie.user).clientId;
+            }
             filter.Add(new Dictionary<string, object>());
-            filter[0].Add("uid", uid);
+            filter[0].Add("clientId", clientid);
             List<BankAccount> banks = rh.retrieveBankAccount(filter);
 
             // DataTable 생성

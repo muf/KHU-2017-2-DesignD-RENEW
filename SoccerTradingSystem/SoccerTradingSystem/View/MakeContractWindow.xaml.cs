@@ -77,6 +77,33 @@ namespace SoccerTradingSystem.Views
             }
         }
 
+        private bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
+        }
+
+        private bool validationCheck()
+        {
+            if (IsDigitsOnly(startDateBox.Text))
+                return false;
+            if (IsDigitsOnly(endDateBox.Text))
+                return false;
+            if (IsDigitsOnly(tranferFeeBox.Text))
+                return false;
+            if (IsDigitsOnly(yearlyPayBox.Text))
+                return false;
+            if (IsDigitsOnly(penaltyBox.Text))
+                return false;
+
+            return true;
+        }
+
         private void ContractBtn_Click(object sender, RoutedEventArgs e)
         {
             int clubUid = 0, playerUid = 0;
@@ -98,6 +125,11 @@ namespace SoccerTradingSystem.Views
             }
 
             // Validation
+            if (!validationCheck())
+            {
+                MessageBox.Show("입력 값에 오류가 있습니다.");
+                return;
+            }
 
 
             // Value

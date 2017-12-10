@@ -70,6 +70,11 @@ namespace SoccerTradingSystem.Views
             userRegWindow.Show();
         }
 
+        public void myInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            main.Navi_My_info();
+        }
+
         public void logined_success(string email)
         {
             main.NavigationService.Refresh(); // refresh

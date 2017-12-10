@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
 using ContractHandler = SoccerTradingSystem.Controller.ContractHandler;
+using Club = SoccerTradingSystem.Model.Club;
 using Contract = SoccerTradingSystem.Model.Contract;
 
 namespace SoccerTradingSystem.Views
@@ -52,14 +53,21 @@ namespace SoccerTradingSystem.Views
                 cancleContractBtn.Visibility = System.Windows.Visibility.Hidden;
             }else
             {
-                if(ContractType == "OFFER")
+                if (App.cookie.type == "Club")
                 {
-                    contractAcceptBtn.Visibility = System.Windows.Visibility.Visible;
-                    cancleContractBtn.Visibility = System.Windows.Visibility.Visible;
+
                 }
-                if(ContractType == "UNDER")
+                else
                 {
-                    destructContractBtn.Visibility = System.Windows.Visibility.Visible;
+                    if (ContractType == "OFFER")
+                    {
+                        contractAcceptBtn.Visibility = System.Windows.Visibility.Visible;
+                        cancleContractBtn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    if (ContractType == "UNDER")
+                    {
+                        destructContractBtn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
         }
@@ -84,6 +92,7 @@ namespace SoccerTradingSystem.Views
             leaseBlock.Text = Convert.ToString(curContract.leasePossibility);
             penaltyFeeBlock.Text = Convert.ToString(curContract.penaltyFee);
             TransferFeeBlock.Text = Convert.ToString(curContract.transferFee);
+            yearlyPayBlock.Text = Convert.ToString(curContract.payment.pay);
         }
 
         private void cancleContractBtn_Click(object sender, RoutedEventArgs e)

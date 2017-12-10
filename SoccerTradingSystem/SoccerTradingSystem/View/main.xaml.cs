@@ -53,7 +53,7 @@ namespace SoccerTradingSystem.Views
                 if (App.cookie.userType == Types.UserType.Club || App.cookie.userType == Types.UserType.Player)
                 {
                     ContractionBtn.Visibility = System.Windows.Visibility.Visible;
-                    MyinfoBtn.Visibility = System.Windows.Visibility.Visible;
+                    MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                     BankBtn.Visibility = System.Windows.Visibility.Visible;
                 }
             }
@@ -77,6 +77,20 @@ namespace SoccerTradingSystem.Views
         {
             game_list _game_list = new game_list();
             content_frame.Navigate(_game_list);
+        }
+
+        public void Navi_My_info()
+        {
+            if (App.cookie.type == "Player")
+            {
+                PlayerDetailWindow _PlayerDetailWindow = new PlayerDetailWindow(App.cookie.user.uid);
+                _PlayerDetailWindow.Show();
+            }
+            if (App.cookie.type == "Club")
+            {
+                ClubDetailWindow _ClubDetailWindow = new ClubDetailWindow(App.cookie.user.uid);
+                _ClubDetailWindow.Show();
+            }
         }
 
         private void userInfoBtn_Click(object sender, RoutedEventArgs e)
@@ -105,16 +119,7 @@ namespace SoccerTradingSystem.Views
 
         private void MyinfoBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (App.cookie.type == "Player")
-            {
-                PlayerDetailWindow _PlayerDetailWindow = new PlayerDetailWindow(App.cookie.user.uid);
-                _PlayerDetailWindow.Show();
-            }
-            if (App.cookie.type == "Club")
-            {
-                ClubDetailWindow _ClubDetailWindow = new ClubDetailWindow(App.cookie.user.uid);
-                _ClubDetailWindow.Show();
-            }
+            Navi_My_info();
         }
 
         private void BankAddBtn_Click(object sender, RoutedEventArgs e)

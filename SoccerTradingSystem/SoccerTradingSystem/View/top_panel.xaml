@@ -21,7 +21,7 @@
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Name="topLoginedEmail" Text="손님" FontFamily="./font/#GosmickSans"/>
         </Border>
         <Button Background="#455A64" Foreground="White" Grid.Column="2" Name="user_registBtn" Content="회원가입" Click="user_registBtn_Click" BorderThickness="0"/>
-        <Button Background="#455A64" Foreground="White" Grid.Column="2" Name="myInfoBtn" Content="내 정보" BorderThickness="0"/>
+        <Button Background="#455A64" Foreground="White" Grid.Column="2" Name="myInfoBtn" Content="내 정보" BorderThickness="0" Click="myInfoBtn_Click"/>
         <Button Background="#455A64" Foreground="White" Grid.Column="3" Name="loginBtn" Content="로그인" Click="login_Click" Visibility="Visible" BorderThickness="0"/>
         <Button Background="#455A64" Foreground="White" Grid.Column="3" Name="logoutBtn" Content="로그아웃" Click="logout_Click" Visibility="Collapsed" BorderThickness="0"/>
     </Grid>

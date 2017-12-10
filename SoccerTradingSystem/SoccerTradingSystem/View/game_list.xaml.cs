@@ -83,8 +83,9 @@ namespace SoccerTradingSystem.Views
                 {
                     winner = "무승부";
                 }
-                string gameDate = Convert.ToString(list[i].date) + " " + Convert.ToString(list[i].startTime);
-                string gameTime = Convert.ToString(list[i].playTime);
+                string _gameDate = list[i].date[0] + list[i].date[1] + list[i].date[2] + list[i].date[3] + "-" + list[i].date[4] + list[i].date[5] + "-" + list[i].date[6] + list[i].date[7] + " " + list[i].startTime[0] + list[i].startTime[1] + ":" + list[i].startTime[2] + list[i].startTime[3];
+                string gameDate = _gameDate;
+                string gameTime = Convert.ToString(list[i].playTime) + "분";
                 dataTable.Rows.Add(new object[] { gid, homeId, awayId, homeScore, awayScore, winner, gameDate, gameTime });
             }
 

@@ -23,6 +23,7 @@ using Club = SoccerTradingSystem.Model.Club;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
 using Types = SoccerTradingSystem.Model.Types;
+using BalancePredictWindow = SoccerTradingSystem.View.BalancePredictWindwo;
 
 
 namespace SoccerTradingSystem.View
@@ -134,7 +135,8 @@ namespace SoccerTradingSystem.View
 
         private void balancePredictBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            BalancePredictWindow BPW = new BalancePredictWindow();
+            BPW.Show();
         }
     }
 }

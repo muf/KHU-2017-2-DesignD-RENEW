@@ -83,6 +83,9 @@
     <Compile Include="View\depositInputWindow.xaml.cs">
       <DependentUpon>depositInputWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GameDetailWindow.xaml.cs">
+      <DependentUpon>GameDetailWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\game_list.xaml.cs">
       <DependentUpon>game_list.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\depositInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GameDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

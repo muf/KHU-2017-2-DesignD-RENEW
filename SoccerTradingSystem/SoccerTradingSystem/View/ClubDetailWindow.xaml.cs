@@ -37,14 +37,14 @@ namespace SoccerTradingSystem.Views
 
             if (App.cookie != null)
             {
-                if (App.cookie.type == "Player")
-                {
-                    ClubOfferBtn.Visibility = System.Windows.Visibility.Visible;
-                }
-                else
-                {
-                    ClubOfferBtn.Visibility = System.Windows.Visibility.Hidden;
-                }
+                //if (App.cookie.type == "Player")
+                //{
+                //    ClubOfferBtn.Visibility = System.Windows.Visibility.Visible;
+                //}
+                //else
+                //{
+                //    ClubOfferBtn.Visibility = System.Windows.Visibility.Hidden;
+                //}
             }
         }
 

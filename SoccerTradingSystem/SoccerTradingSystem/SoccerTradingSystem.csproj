@@ -164,11 +164,9 @@
     <Compile Include="Controller\DAC\MariaDBConnector.cs" />
     <Compile Include="Controller\DAC\GameDAC.cs" />
     <Compile Include="Controller\DAC\RetrieveDAC.cs" />
-    <Compile Include="Controller\DAC\SchedulerDAC.cs" />
     <Compile Include="Controller\DAC\SystemAccountDAC.cs" />
     <Compile Include="Controller\GameHandler.cs" />
     <Compile Include="Controller\RetrieveHandler.cs" />
-    <Compile Include="Controller\SchedulerHandler.cs" />
     <Compile Include="Controller\SystemAccountHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

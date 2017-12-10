@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoccerTradingSystem.Views"
         mc:Ignorable="d"
-        Title="Player Information" Height="450" Width="400"
+        Title="Player Information" Height="500" Width="400"
         WindowStartupLocation="CenterScreen"
         Loaded="OnWindowLoaded"
        WindowStyle="None" >
@@ -23,6 +23,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="320"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -33,13 +34,15 @@
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="3" Grid.Column="0" Text="포지션" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="4" Grid.Column="0" Text="몸무게" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="5" Grid.Column="0" Text="신장" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="6" Grid.Column="0" Text="소속 구단" Height="20" Grid.ColumnSpan="2"/>
 
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,7,53,3" Grid.Row="1" Grid.Column="1" Name="nameBlock" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="2" Grid.Column="1" Name="birthBlock" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="3" Grid.Column="1" Name="positionBlock" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="4" Grid.Column="1" Name="weightBlock" Height="20" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="5" Grid.Column="1" Name="heightBlock" Height="20" Grid.ColumnSpan="2"/>
-        <Border Grid.Row="6" Margin="15,10,10,280" Grid.Column="1">
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="6" Grid.Column="1" Name="clubBlock" Height="20" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="7" Margin="15,10,10,280" Grid.Column="1">
             <Button Style="{StaticResource SuccessButton}" Visibility="Visible" Content="계약 요청하기" Name="PlayerOfferBtn" Click="PlayerOfferBtn_Click"></Button>
         </Border>
     </Grid>

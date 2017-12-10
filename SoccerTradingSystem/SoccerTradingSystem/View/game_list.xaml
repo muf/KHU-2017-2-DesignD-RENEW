@@ -42,7 +42,7 @@
             <DataGrid GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="gameDataGrid" VerticalAlignment="Top" Height="500" Width="950" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
-                        <!--<EventSetter Event="MouseDoubleClick" Handler="Game_Row_DoubleClick"/>-->
+                        <EventSetter Event="MouseDoubleClick" Handler="Game_Row_DoubleClick"/>
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>

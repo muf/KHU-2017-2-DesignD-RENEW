@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoccerTradingSystem.View"
         mc:Ignorable="d"
-        Title="GameDetailWindow" Height="300" Width="300">
+        Title="GameDetailWindow" Height="505.995" Width="662.125"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="257*"/>
+            <RowDefinition Height="219*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="goalDataGrid" VerticalAlignment="Top" Height="152" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="24,52,24,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="골을 넣은 선수" Binding="{Binding player}"/>
+                <DataGridTextColumn Header="어시스트" Binding="{Binding asist}"/>
+                <DataGridTextColumn Header="시간" Binding="{Binding time}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="1" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="ratingDataGrid" VerticalAlignment="Top" Height="166" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="24,31,24,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="선수" Binding="{Binding player}"/>
+                <DataGridTextColumn Header="평점" Binding="{Binding rating}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="24,21,0,0" TextWrapping="Wrap" Text="득점 기록" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="24,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="평가 기록" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

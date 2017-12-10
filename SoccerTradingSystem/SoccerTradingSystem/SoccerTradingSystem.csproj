@@ -143,6 +143,9 @@
     <Compile Include="View\user_info.xaml.cs">
       <DependentUpon>user_info.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewClubPlayer.xaml.cs">
+      <DependentUpon>ViewClubPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\withdrawinputWindow.xaml.cs">
       <DependentUpon>withdrawinputWindow.xaml</DependentUpon>
     </Compile>
@@ -276,6 +279,10 @@
     <Page Include="View\user_info.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ViewClubPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\withdrawinputWindow.xaml">
       <SubType>Designer</SubType>

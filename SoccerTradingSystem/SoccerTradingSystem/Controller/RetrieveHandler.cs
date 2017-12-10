@@ -20,6 +20,7 @@ namespace SoccerTradingSystem.Controller
     using MonthlyPayment = SoccerTradingSystem.Model.MonthlyPayment;
     using UserType = SoccerTradingSystem.Model.Types.UserType;
     using RetrieveDAC = SoccerTradingSystem.Controller.DAC.RetrieveDAC;
+    using db = SoccerTradingSystem.Controller.DAC.MariaDBConnector;
 
     using JSON = List<Dictionary<string, object>>;
 
@@ -136,20 +137,24 @@ namespace SoccerTradingSystem.Controller
                 {
                     if (!filter[0].ContainsKey("meta"))
                     {
-                        JSON payerFilter = new JSON();
-                        payerFilter.Add(new Dictionary<string, object>());
-                        payerFilter[0].Add("playerId", playerId);
-                        payerFilter[0].Add("contractType", "UNDER");
-
-                        List<Contract> contracts = retrieveContract(payerFilter);
-                        for (int cidx = 0; cidx < contracts.Count; cidx++)
+                        if (filter[0].ContainsKey("full"))
                         {
-                            JSON clubFilter = new JSON();
-                            clubFilter.Add(new Dictionary<string, object>());
-                            clubFilter[0].Add("meta", true);
-                            clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
-                            Club club = retrieveClub(clubFilter)[0];
-                            clubs.Add(club);
+                            JSON payerFilter = new JSON();
+                            payerFilter.Add(new Dictionary<string, object>());
+                            payerFilter[0].Add("playerId", playerId);
+                            payerFilter[0].Add("contractType", "UNDER");
+
+                            List<Contract> contracts = retrieveContract(payerFilter);
+                            for (int cidx = 0; cidx < contracts.Count; cidx++)
+                            {
+                                JSON clubFilter = new JSON();
+                                clubFilter.Add(new Dictionary<string, object>());
+                                clubFilter[0].Add("meta", true);
+                                clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
+                                Club club = retrieveClub(clubFilter)[0];
+                                clubs.Add(club);
+                            }
+
                         }
                     }
                 }
@@ -218,20 +223,23 @@ namespace SoccerTradingSystem.Controller
                 {
                     if (!filter[0].ContainsKey("meta"))
                     {
-                        JSON payerFilter = new JSON();
-                        payerFilter.Add(new Dictionary<string, object>());
-                        payerFilter[0].Add("clubId", clubId);
-                        payerFilter[0].Add("contractType", "UNDER");
-
-                        List<Contract> contracts = retrieveContract(payerFilter);
-                        for (int cidx = 0; cidx < contracts.Count; cidx++)
+                        if (filter[0].ContainsKey("full"))
                         {
-                            JSON clubFilter = new JSON();
-                            clubFilter.Add(new Dictionary<string, object>());
-                            clubFilter[0].Add("meta", true);
-                            clubFilter[0].Add("playerId", contracts[cidx].player.playerId);
-                            Player player = retrievePlayer(clubFilter)[0];
-                            players.Add(player);
+                            JSON payerFilter = new JSON();
+                            payerFilter.Add(new Dictionary<string, object>());
+                            payerFilter[0].Add("clubId", clubId);
+                            payerFilter[0].Add("contractType", "UNDER");
+                            List<Contract> contracts = retrieveContract(payerFilter);
+                            for (int cidx = 0; cidx < contracts.Count; cidx++)
+                            {
+                                JSON clubFilter = new JSON();
+                                clubFilter.Add(new Dictionary<string, object>());
+                                clubFilter[0].Add("meta", true);
+                                clubFilter[0].Add("playerId", contracts[cidx].player.playerId);
+                                Player player = retrievePlayer(clubFilter)[0];
+                                players.Add(player);
+                            }
+
                         }
                     }
                 }

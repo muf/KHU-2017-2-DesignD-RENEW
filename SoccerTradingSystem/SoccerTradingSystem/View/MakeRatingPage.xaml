@@ -5,12 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SoccerTradingSystem.View"
       mc:Ignorable="d" 
-            d:DesignHeight="350.305" d:DesignWidth="575.304"
+      d:DesignHeight="500" d:DesignWidth="480"
       Title="MakeRatingPage">
 
-    <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="250,156,0,0" TextWrapping="Wrap" Text="Rating Page" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="250,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    <Grid Margin="0,0,-0,-0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="290*"/>
+            <ColumnDefinition Width="290*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="221"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource BgSuccess}" Margin="10" Padding="10" TextBlock.Foreground="#333" Grid.RowSpan="2">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Name="titlebox" FontSize="20" Text="평점 정보 입력"/>
+        </Border>
 
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="goalDataGrid" VerticalAlignment="Top" Height="197" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="25,10,22,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="선수" Binding="{Binding player}"/>
+                <DataGridTextColumn Header="평점" Binding="{Binding rating}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Grid.Row="3" x:Name="playertextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="선수" VerticalAlignment="Top" Width="35" RenderTransformOrigin="1.2,1.875" Margin="25,8,0,0" Height="16"/>
+        <TextBox Grid.Row="3" x:Name="playertextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="26,34,0,0" />
+        <TextBlock Grid.Row="3" x:Name="ratingtextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="평점" VerticalAlignment="Top" Margin="12,8,0,0" Height="16" Width="48" Grid.Column="1"/>
+        <TextBox Grid.Row="3" x:Name="ratingtextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="10,34,0,0" Grid.Column="1"/>
+        <Button Style="{StaticResource SuccessButton}" Grid.Row="3" x:Name="addBtn" Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Grid.Column="1" Margin="142,67,0,0" Height="30" Click="addBtn_Click"/>
     </Grid>
 </Page>

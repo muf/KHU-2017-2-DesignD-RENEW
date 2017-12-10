@@ -9,6 +9,6 @@
       Title="home">
 
     <Grid>
-        
+        <Image Margin="0,0,15,40" Source="../Image/home.jpg"/>
     </Grid>
 </Page>

@@ -14,12 +14,17 @@ using System.Windows.Shapes;
 
 using Club = SoccerTradingSystem.Model.Club;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
+using Types = SoccerTradingSystem.Model.Types;
+using Player = SoccerTradingSystem.Model.Player;
+using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 
 namespace SoccerTradingSystem.Views
 {
     /// <summary>
     /// ClubDetailWindow.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+    using JSON = List<Dictionary<string, object>>;
     public partial class ClubDetailWindow : Window
     {
         private int curClubUid;
@@ -28,10 +33,7 @@ namespace SoccerTradingSystem.Views
         {
             InitializeComponent();
             curClubUid = uid;
-    }
 
-        private void OnWindowLoaded(object sender, RoutedEventArgs e)
-        {
             if (App.cookie != null)
             {
                 if (App.cookie.type == "Player")
@@ -43,17 +45,24 @@ namespace SoccerTradingSystem.Views
                     ClubOfferBtn.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
+        }
 
-            SystemAccountHandler sah = new SystemAccountHandler();
-            //Club curClub = sah.retrieveClubData(curClubUid);
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            RetrieveHandler rh = new RetrieveHandler();
 
-            //string cName = curClub.name;
-            //string cBirth = curClub.birth.ToString();
-            //string cContactNumber = curClub.contactNumber;
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", curClubUid);
+            List<Club> clubs = rh.retrieveClub(filter);
 
-            //nameBlock.Text = cName;
-            //birthBlock.Text = cBirth;
-            //contactNumberBlock.Text = cContactNumber;
+            string cName = clubs[0].name;
+            string cBirth = clubs[0].birth.ToString();
+            string cContactNumber = clubs[0].contactNumber;
+
+            nameBlock.Text = cName;
+            birthBlock.Text = cBirth;
+            contactNumberBlock.Text = cContactNumber;
         }
 
         private void ClubOfferBtn_Click(object sender, RoutedEventArgs e)

@@ -34,6 +34,4 @@ namespace SoccerTradingSystem.Views
             //ClubsDataGridSetting("");
         }
     }
-
-
 }

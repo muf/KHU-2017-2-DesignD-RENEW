@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 using MakeGamePage = SoccerTradingSystem.View.MakeGamePage;
 using MakeRatingPage = SoccerTradingSystem.View.MakeRatingPage;
@@ -27,6 +28,24 @@ namespace SoccerTradingSystem.View
         public MakeGoalPage()
         {
             InitializeComponent();
+        }
+
+        public struct goalinput
+        {
+            public string player { set; get; }
+            public string asist { set; get; }
+            public string time { set; get; }
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string _player = playertextbox.Text;
+            string _asists = asisttextbox.Text;
+            string _time = goaltimetextbox.Text;
+            goalDataGrid.Items.Add(new goalinput() { player = _player, asist = _asists, time = _time });
+            playertextbox.Text = "";
+            asisttextbox.Text = "";
+            goaltimetextbox.Text = "";
         }
     }
 }

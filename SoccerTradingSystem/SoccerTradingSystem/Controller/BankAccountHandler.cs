@@ -13,7 +13,7 @@ namespace SoccerTradingSystem.Controller
     using Manager = SoccerTradingSystem.Model.Manager;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
     using BankAccountDAC = SoccerTradingSystem.Controller.DAC.BankAccountDAC;
-    class BankAccountHandler
+    class BankAccountHandler: RetrieveHandler
     {
         private BankAccountDAC bad = new BankAccountDAC();
 

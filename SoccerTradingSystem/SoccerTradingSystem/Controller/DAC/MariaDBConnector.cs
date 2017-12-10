@@ -18,7 +18,7 @@ namespace SoccerTradingSystem.Controller.DAC
 
         protected MySqlConnection conn;
         protected String query;
-        protected JSON queryResult; // for test @@
+        protected JSON queryResult;
 
         // @@ attributes 추가
         protected String userTable = "User";

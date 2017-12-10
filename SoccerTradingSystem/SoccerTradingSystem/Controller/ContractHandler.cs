@@ -45,10 +45,6 @@ namespace SoccerTradingSystem.Controller
         }
         public bool destructContract(Contract contract)
         {
-            // 계산 ..
-            // 가능 ..
-            // 지불 ..
-            // 파기 ..
             if (contract.contractType == ContractType.UNDER)
             {
                 contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.DESTRUCT, contract.tradeType, contract.isPublic);

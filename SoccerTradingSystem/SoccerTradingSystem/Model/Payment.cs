@@ -18,7 +18,5 @@ namespace SoccerTradingSystem.Model
             this.paymentType = paymentType;
             this.pay = pay;
         }
-       // virtual public int getPay();
-       // @@ c# 가상함수 어떻게 ..?
     }
 }

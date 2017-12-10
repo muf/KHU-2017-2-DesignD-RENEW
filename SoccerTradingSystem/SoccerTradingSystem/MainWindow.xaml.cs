@@ -42,6 +42,7 @@ namespace SoccerTradingSystem
         {
             InitializeComponent();
             //DateTime localDate = DateTime.Now;
+
             계약읽기();
 
 
@@ -57,6 +58,7 @@ namespace SoccerTradingSystem
             filter[0].Add("uid", 10);
 
             List<Contract> contracts = ch.retrieveContract(filter);
+            ch.declineContract(contracts[0]);
         }
         void 계약등록()
         {

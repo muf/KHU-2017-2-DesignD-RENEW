@@ -40,27 +40,19 @@ namespace SoccerTradingSystem.Controller.DAC
         }
         public bool updateContractData(Contract contract)
         {
-            // retrieve contract and type is offer..
-            if (contract.contractType == ContractType.OFFER)
-            {
-                deleteContractData(contract);
-                addContractData(contract);
-            }
+            deleteContractData(contract);
+            addContractData(contract);
             return true;
         }
         public bool deleteContractData(Contract contract)
         {
-            if (contract.contractType == ContractType.OFFER)
-            {
                 query = $"DELETE FROM {DailyPaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
                 query = $"DELETE FROM {WeeklypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
                 query = $"DELETE FROM {MonthlypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
                 query = $"DELETE FROM {PaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
                 query += $"DELETE FROM {contractTable}WHERE contractId = {contract.contractId}; ";
                 queryResult = execute(query);
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

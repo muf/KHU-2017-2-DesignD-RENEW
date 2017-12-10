@@ -24,7 +24,7 @@
                 <Border Margin="0,0,0,5"  Background="{StaticResource BgPrimary}" Name="userMenu"  TextBlock.Foreground="White">
                     <TextBlock Text="유저 메뉴" HorizontalAlignment="Center"/>
                 </Border>
-                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="MyinfoBtn" Content="내 정보" Click="MyinfoBtn_Click"/>
+                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Collapsed" x:Name="MyinfoBtn" Content="내 정보" Click="MyinfoBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="PlayerBtn" Content="선수 조회" Click="PlayerBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ClubBtn" Content="구단 조회" Click="ClubBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="gameInfoBtn" Content="경기 조회" Click="gameInfoBtn_Click"/>

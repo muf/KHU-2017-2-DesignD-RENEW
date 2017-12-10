@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoccerTradingSystem.Views"
         mc:Ignorable="d"
-        Title="ContractionDetailWindow" Height="400" Width="300"
+        Title="ContractionDetailWindow" Height="450" Width="300"
         Loaded="OnWindowLoaded"
+        WindowStartupLocation="CenterScreen"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,31 +26,34 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="0" Grid.Column="0" Text="구단 명"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="1" Grid.Column="0" Text="선수 명"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="2" Grid.Column="0" Text="트레이드 타입"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="3" Grid.Column="0" Text="계약 타입"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="4" Grid.Column="0" Text="시작 날짜"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="5" Grid.Column="0" Text="종료 날짜"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="6" Grid.Column="0" Text="리스 가능 여부"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="7" Grid.Column="0" Text="벌금"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="8" Grid.Column="0" Text="이적비"/>
-        <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" Grid.Row="9" Grid.Column="0" Text="연봉"/>
+        <TextBlock FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="계약서" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="1" Grid.Column="0" Text="구단 명"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="2" Grid.Column="0" Text="선수 명"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="3" Grid.Column="0" Text="트레이드 타입"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="4" Grid.Column="0" Text="계약 타입"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="5" Grid.Column="0" Text="시작 날짜"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="6" Grid.Column="0" Text="종료 날짜"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="7" Grid.Column="0" Text="리스 가능 여부"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="8" Grid.Column="0" Text="벌금"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="9" Grid.Column="0" Text="이적비"/>
+        <TextBlock VerticalAlignment="Bottom" Margin="30,0,0,0" Grid.Row="10" Grid.Column="0" Text="페이"/>
 
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Name="clubBlock"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Name="playerBlock"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Name="tradeTypeBlock"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" Name="contractTypeBlock"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Name="startDateBlock"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" Name="endDataBlock"/>
-        <TextBlock Grid.Row="6" Grid.Column="1" Name="leaseBlock"/>
-        <TextBlock Grid.Row="7" Grid.Column="1" Name="penaltyFeeBlock"/>
-        <TextBlock Grid.Row="8" Grid.Column="1" Name="TransferFeeBlock"/>
-        <TextBlock Grid.Row="9" Grid.Column="1" Name="yearlyPayBlock"/>
-        <Button Style="{StaticResource PrimaryButton}" Name="contractAcceptBtn" Content="계약 수락" Grid.Row="10" Margin="15,18,48,-18" Height="31" VerticalAlignment="Top" Click="contractAcceptBtn_Click"/>
-        <Button Style="{StaticResource WarningButton}" Name="cancleContractBtn" Content="계약 거절" Grid.Row="10" Margin="53,18,10,-18" Grid.Column="1" Height="31" VerticalAlignment="Top" Click="cancleContractBtn_Click"/>
-        <Button Style="{StaticResource DangerButton}" Name="destructContractBtn" Content="계약 파기" Grid.Row="10" Margin="53,18,10,-18" Grid.Column="1" Height="31" VerticalAlignment="Top" Click="destructContractBtn_Click"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Name="clubBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" Name="playerBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1" Name="tradeTypeBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="1" Name="contractTypeBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="1" Name="startDateBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="6" Grid.Column="1" Name="endDataBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="7" Grid.Column="1" Name="leaseBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="8" Grid.Column="1" Name="penaltyFeeBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="9" Grid.Column="1" Name="TransferFeeBlock"/>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="10" Grid.Column="1" Name="yearlyPayBlock"/>
+        <Button Style="{StaticResource PrimaryButton}" Name="contractAcceptBtn" Content="계약 수락" Grid.Row="11" Margin="15,18,48,-18" Height="31" VerticalAlignment="Top" Click="contractAcceptBtn_Click"/>
+        <Button Style="{StaticResource WarningButton}" Name="cancleContractBtn" Content="계약 거절" Grid.Row="11" Margin="46,18,17,0" Grid.Column="1" Height="31" VerticalAlignment="Top" Click="cancleContractBtn_Click"/>
+        <Button Style="{StaticResource DangerButton}" Name="destructContractBtn" Content="계약 파기" Grid.Row="11" Margin="46,18,17,0" Grid.Column="1" Height="31" VerticalAlignment="Top" Click="destructContractBtn_Click"/>
     </Grid>
 </Window>

@@ -74,8 +74,23 @@ namespace SoccerTradingSystem.Views
             heightBlock.Text = pHeight;
         }
 
+        private bool playerCheck()
+        {
+            RetrieveHandler rh = new RetrieveHandler();
+
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", curPlayerUid);
+            List<Player> players = rh.retrievePlayer(filter);
+            rh.retrievePlayer(null);
+
+            Player curPlayer = players[0];
+            return true;
+        }
+
         private void PlayerOfferBtn_Click(object sender, RoutedEventArgs e)
         {
+            playerCheck();
             MakeContractWindow _MakeContractWindow = new MakeContractWindow(curPlayerUid);
             _MakeContractWindow.Show();
         }

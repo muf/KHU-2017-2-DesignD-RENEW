@@ -33,10 +33,24 @@ namespace SoccerTradingSystem.View
         {
             BankAccountLIstWindow = _Page;
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
+        }
+
+        // Eecape
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         private void depositBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(inputbox.Text == "")
+            {
+                MessageBox.Show("제대로 된 값을 입력 해주세요.");
+                return;
+            }
+
             BankAccountHandler bh = new BankAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
 

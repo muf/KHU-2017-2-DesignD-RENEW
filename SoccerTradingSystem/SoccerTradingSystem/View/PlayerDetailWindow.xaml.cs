@@ -30,6 +30,7 @@ namespace SoccerTradingSystem.Views
         public PlayerDetailWindow(int _curPlayerUid)
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             curPlayerUid = _curPlayerUid;
 
             if (App.cookie != null)
@@ -46,6 +47,12 @@ namespace SoccerTradingSystem.Views
             {
                 PlayerOfferBtn.Visibility = System.Windows.Visibility.Hidden;
             }
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)

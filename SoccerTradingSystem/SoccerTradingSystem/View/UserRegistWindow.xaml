@@ -8,6 +8,7 @@
         Title="User Registration Window" Height="550" Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
+        WindowStyle="None"
         >
     <Grid>
         <Grid.RowDefinitions>

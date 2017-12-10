@@ -28,6 +28,7 @@
         </Border>
         <Border Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.ColumnSpan="2" Height="34" Margin="0,56,-12,0" Grid.RowSpan="2" Width="407">
             <StackPanel Orientation="Horizontal" Height="40">
+                <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="잔고 예측" x:Name="balancePredictBtn" Click="balancePredictBtn_Click"/>
                 <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="입금 하기" x:Name="depositBtn" Click="depositBtn_Click"/>
                 <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="출금 하기" x:Name="withdrawBtn" Click="withdrawBtn_Click"/>
                 <Button Margin="0,0,10,10" Style="{StaticResource SuccessButton}" Content="계좌 생성" x:Name="newAccountBtn" Click="newAccountBtn_Click"/>

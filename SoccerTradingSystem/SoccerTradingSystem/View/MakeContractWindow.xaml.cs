@@ -41,6 +41,7 @@ namespace SoccerTradingSystem.Views
         public MakeContractWindow(int uid)
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             targetID = uid;
             SystemAccountHandler sah = new SystemAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
@@ -75,6 +76,13 @@ namespace SoccerTradingSystem.Views
                 MessageBox.Show("비 정상적인 접근 입니다.");
                 Close();
             }
+        }
+
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         private bool IsDigitsOnly(string str)

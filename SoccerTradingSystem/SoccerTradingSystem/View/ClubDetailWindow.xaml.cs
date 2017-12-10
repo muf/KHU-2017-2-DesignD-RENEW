@@ -32,6 +32,7 @@ namespace SoccerTradingSystem.Views
         public ClubDetailWindow(int uid)
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             curClubUid = uid;
 
             if (App.cookie != null)
@@ -45,6 +46,12 @@ namespace SoccerTradingSystem.Views
                     ClubOfferBtn.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)

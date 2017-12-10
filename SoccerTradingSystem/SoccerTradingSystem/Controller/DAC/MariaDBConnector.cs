@@ -11,8 +11,8 @@ namespace SoccerTradingSystem.Controller.DAC
     using JSON = List<Dictionary<string, object>>;
     class MariaDBConnector
     {
-        private static String serverIp = "14.33.77.250";
-        private static String id = "designD";
+        private static String serverIp = "127.0.0.1";
+        private static String id = "root";
         private static String password = "admin";
         private static String databaseName = "pms_real";
 

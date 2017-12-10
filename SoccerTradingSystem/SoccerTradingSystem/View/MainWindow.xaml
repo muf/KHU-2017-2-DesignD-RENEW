@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Soccer Trading System" Height="760" Width="1280"
         ResizeMode="NoResize"
-        WindowStyle="ThreeDBorderWindow"
         WindowStartupLocation="CenterScreen"
-        Closing="MainWindow_Closing"  
+        Closing="MainWindow_Closing"
+        WindowStyle="None"
         >
     <Frame NavigationUIVisibility="Hidden" Name="main_frame" Source="main.xaml"/>
 </Window>

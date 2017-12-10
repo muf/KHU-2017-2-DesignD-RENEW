@@ -156,7 +156,7 @@ AUTO_INCREMENT=1
 CREATE TABLE `Payment` (
 	`paymentId` INT NOT NULL AUTO_INCREMENT,
 	`type` ENUM('DailyPayment','MonthlyPayment','WeeklyPayment') NOT NULL DEFAULT 'DailyPayment',
-	'pay' INT NOT NULL DEFAULT '0',
+	`pay` INT NOT NULL DEFAULT '0',
 	PRIMARY KEY (`paymentId`)
 )
 COLLATE='latin1_swedish_ci'

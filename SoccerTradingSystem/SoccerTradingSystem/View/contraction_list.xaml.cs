@@ -29,9 +29,11 @@ namespace SoccerTradingSystem.Views
     using JSON = List<Dictionary<string, object>>;
     public partial class contraction_list : Page
     {
-        public contraction_list()
+        bool isPublic;
+        public contraction_list(bool _isPublic)
         {
             InitializeComponent();
+            isPublic = _isPublic;
         }
 
         private void OnPageLoad(object sender, RoutedEventArgs e)
@@ -55,23 +57,32 @@ namespace SoccerTradingSystem.Views
             //List<Contract> list = sah.retrieveContractData(App.cookie.uid, context);
             RetrieveHandler rh = new RetrieveHandler();
 
-            // Current Logined uid
-            JSON filter = new JSON();
-            JSON uidfilter = new JSON();
-            uidfilter.Add(new Dictionary<string, object>());
-            uidfilter[0].Add("uid", App.cookie.user.uid);
 
-            if (App.cookie.type == "Player")
+            JSON filter = new JSON();
+            if (App.cookie == null || isPublic)
             {
-                List<Player> players = rh.retrievePlayer(uidfilter);
                 filter.Add(new Dictionary<string, object>());
-                filter[0].Add("playerId", players[0].playerId);
+                filter[0].Add("isPublic", true);
             }
-            if (App.cookie.type == "Club")
+            else
             {
-                List<Club> clubs = rh.retrieveClub(uidfilter);
-                filter.Add(new Dictionary<string, object>());
-                filter[0].Add("clubId", clubs[0].clubId);
+                // Current Logined uid
+                JSON uidfilter = new JSON();
+                uidfilter.Add(new Dictionary<string, object>());
+                uidfilter[0].Add("uid", App.cookie.user.uid);
+
+                if (App.cookie.type == "Player" && !isPublic)
+                {
+                    List<Player> players = rh.retrievePlayer(uidfilter);
+                    filter.Add(new Dictionary<string, object>());
+                    filter[0].Add("playerId", players[0].playerId);
+                }
+                if (App.cookie.type == "Club" && !isPublic)
+                {
+                    List<Club> clubs = rh.retrieveClub(uidfilter);
+                    filter.Add(new Dictionary<string, object>());
+                    filter[0].Add("clubId", clubs[0].clubId);
+                }
             }
             List<Contract> contracts = rh.retrieveContract(filter);
 

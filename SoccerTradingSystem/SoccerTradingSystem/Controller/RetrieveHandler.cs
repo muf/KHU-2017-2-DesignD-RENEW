@@ -321,6 +321,13 @@ namespace SoccerTradingSystem.Controller
                         }
 
                     }
+                    if (filter[0].ContainsKey("isPublic"))
+                    {
+                        if (contract.isPublic != Convert.ToBoolean(filter[0]["isPublic"]))
+                        {
+                            flag = false;
+                        }
+                    }
                 }
                 if (flag)
                 {

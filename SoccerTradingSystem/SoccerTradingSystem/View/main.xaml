@@ -20,15 +20,16 @@
                     <TextBlock Text="관리자 메뉴" HorizontalAlignment="Center"/>
                 </Border>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}"  Visibility="Visible" x:Name="userInfoBtn" Content="유저 조회" Click="userInfoBtn_Click"/>
-                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}"  Visibility="Visible" x:Name="gameaddBtn" Content="경기 추가" Click="gameaddBtn_Click" />
-                <Button Margin="0,0,0,20" Style="{StaticResource SuccessButton}"  Visibility="Visible" x:Name="gameInfoBtn" Content="경기 조회" Click="gameInfoBtn_Click"/>
+                <Button Margin="0,0,0,20" Style="{StaticResource SuccessButton}"  Visibility="Visible" x:Name="gameaddBtn" Content="경기 추가" Click="gameaddBtn_Click" />
                 <Border Margin="0,0,0,5"  Background="{StaticResource BgPrimary}" Name="userMenu"  TextBlock.Foreground="White">
                     <TextBlock Text="유저 메뉴" HorizontalAlignment="Center"/>
                 </Border>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="MyinfoBtn" Content="내 정보" Click="MyinfoBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="PlayerBtn" Content="선수 조회" Click="PlayerBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ClubBtn" Content="구단 조회" Click="ClubBtn_Click"/>
-                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ContractionBtn" Content="계약 조회" Click="ContractionBtn_Click"/>
+                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="gameInfoBtn" Content="경기 조회" Click="gameInfoBtn_Click"/>
+                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="publicOfferBtn" Content="공개계약조회" Click="publicOfferBtn_Click"/>
+                <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="ContractionBtn" Content="내 계약 조회" Click="ContractionBtn_Click"/>
                 <Button Margin="0,0,0,5" Style="{StaticResource SuccessButton}" Visibility="Visible" x:Name="BankBtn" Content="내 계좌 조회" Click="BankBtn_Click"/>
             </StackPanel>
         </Border>

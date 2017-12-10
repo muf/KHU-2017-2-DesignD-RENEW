@@ -187,6 +187,16 @@ namespace SoccerTradingSystem.Controller
                             flag = false;
                         }
                     }
+                    if (filter[0].ContainsKey("clubuid"))
+                    {
+                        if (player.clubs.Count != 0)
+                        {
+                            if (player.clubs[0].uid != Convert.ToInt32(filter[0]["clubuid"]))
+                            {
+                                flag = false;
+                            }
+                        }
+                    }
                 }
 
                 if (flag)

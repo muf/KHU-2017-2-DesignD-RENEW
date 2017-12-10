@@ -39,7 +39,8 @@ namespace SoccerTradingSystem.View
             RetrieveHandler rh = new RetrieveHandler();
             JSON filter = new JSON();
             filter.Add(new Dictionary<string, object>());
-            filter[0].Add("uid", uid);
+            filter[0].Add("full", true);
+            filter[0].Add("clubuid", uid);
             List<Player> players = rh.retrievePlayer(filter);
 
             //Goal DataTable 생성

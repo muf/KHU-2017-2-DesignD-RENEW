@@ -38,6 +38,15 @@ namespace SoccerTradingSystem.View
         public bankaccount_list()
         {
             InitializeComponent();
+            balancePredictBtn.Visibility = System.Windows.Visibility.Hidden;
+            if (App.cookie != null)
+            {
+                if (App.cookie.type == "Club")
+                {
+                    balancePredictBtn.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
+
         }
 
         private void OnPageLoad(object sender, RoutedEventArgs e)

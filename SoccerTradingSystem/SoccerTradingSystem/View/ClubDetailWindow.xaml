@@ -16,7 +16,7 @@
             <ColumnDefinition Width="150*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -24,15 +24,15 @@
             <RowDefinition Height="350"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Image Margin="10" Grid.Row="0" Grid.Column="2" Grid.RowSpan="5" Source="../Image/testclubimage.jpg"/>
+        <Image Margin="95,25,93,0" Grid.Row="0" Source="../Image/testclubimage.jpg" Grid.ColumnSpan="3"/>
 
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Text="구단명"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="0" Text="창단일"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="0" Text="연락처"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="72,0,68,10" Grid.Row="2" Grid.Column="0" Text="구단명" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="72,0,68,10" Grid.Row="3" Grid.Column="0" Text="창단일" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="72,0,68,10" Grid.Row="4" Grid.Column="0" Text="연락처" Grid.ColumnSpan="2"/>
 
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Name="nameBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1" Name="birthBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Name="contactNumberBlock"/>
-        <Button Style="{StaticResource SuccessButton}" Visibility="Hidden" Grid.Row="6" Grid.Column="1" Content="계약 요청하기" Name="ClubOfferBtn" Click="ClubOfferBtn_Click"></Button>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="2" Grid.Column="1" Name="nameBlock" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="3" Grid.Column="1" Name="birthBlock" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="4" Grid.Column="1" Name="contactNumberBlock" Grid.ColumnSpan="2"/>
+        <Button Style="{StaticResource SuccessButton}" Visibility="Visible" Grid.Row="6" Grid.Column="1" Content="계약 요청하기" Name="ClubOfferBtn" Click="ClubOfferBtn_Click"></Button>
     </Grid>
 </Window>

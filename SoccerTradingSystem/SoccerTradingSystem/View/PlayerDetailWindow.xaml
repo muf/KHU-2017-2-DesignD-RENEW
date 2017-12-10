@@ -17,7 +17,7 @@
             <ColumnDefinition Width="150*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -26,19 +26,21 @@
             <RowDefinition Height="320"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Image Margin="10" Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Source="../Image/testimage.jpg"/>
+        <Image Margin="77,27,83,20" Grid.Row="0" Source="../Image/testimage.jpg" Grid.ColumnSpan="3"/>
 
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Text="이름"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="0" Text="생일"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="0" Text="포지션"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="4" Grid.Column="0" Text="몸무게"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="5" Grid.Column="0" Text="신장"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,7,83,3" Grid.Row="1" Grid.Column="0" Text="이름" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="2" Grid.Column="0" Text="생일" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="3" Grid.Column="0" Text="포지션" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="4" Grid.Column="0" Text="몸무게" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="77,5,83,5" Grid.Row="5" Grid.Column="0" Text="신장" Height="20" Grid.ColumnSpan="2"/>
 
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" Name="nameBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1" Name="birthBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="3" Grid.Column="1" Name="positionBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="4" Grid.Column="1" Name="weightBlock"/>
-        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="5" Grid.Column="1" Name="heightBlock"/>
-        <Button Style="{StaticResource SuccessButton}" Visibility="Hidden" Grid.Row="7" Grid.Column="1" Content="계약 요청하기" Name="PlayerOfferBtn" Click="PlayerOfferBtn_Click"></Button>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,7,53,3" Grid.Row="1" Grid.Column="1" Name="nameBlock" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="2" Grid.Column="1" Name="birthBlock" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="3" Grid.Column="1" Name="positionBlock" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="4" Grid.Column="1" Name="weightBlock" Height="20" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="15" VerticalAlignment="Center" Margin="88,5,53,5" Grid.Row="5" Grid.Column="1" Name="heightBlock" Height="20" Grid.ColumnSpan="2"/>
+        <Border Grid.Row="6" Margin="15,10,10,280" Grid.Column="1">
+            <Button Style="{StaticResource SuccessButton}" Visibility="Visible" Content="계약 요청하기" Name="PlayerOfferBtn" Click="PlayerOfferBtn_Click"></Button>
+        </Border>
     </Grid>
 </Window>

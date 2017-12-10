@@ -29,6 +29,7 @@ namespace SoccerTradingSystem.Views
         public main()
         {
             InitializeComponent();
+            returnToHome();
             top_panel TP = new top_panel(this);
             top_frame.Navigate(TP);
             
@@ -77,8 +78,8 @@ namespace SoccerTradingSystem.Views
 
         private void gameInfoBtn_Click(object sender, RoutedEventArgs e)
         {
-            //game_list _game_list = new game_list();
-            //content_frame.Navigate(_game_list);
+            game_list _game_list = new game_list();
+            content_frame.Navigate(_game_list);
         }
 
         private void userInfoBtn_Click(object sender, RoutedEventArgs e)
@@ -101,13 +102,22 @@ namespace SoccerTradingSystem.Views
 
         private void ContractionBtn_Click(object sender, RoutedEventArgs e)
         {
-            //contraction_list _contraction_list = new contraction_list();
-            //content_frame.Navigate(_contraction_list);
+            contraction_list _contraction_list = new contraction_list();
+            content_frame.Navigate(_contraction_list);
         }
 
         private void MyinfoBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (App.cookie.type == "Player")
+            {
+                PlayerDetailWindow _PlayerDetailWindow = new PlayerDetailWindow(App.cookie.user.uid);
+                _PlayerDetailWindow.Show();
+            }
+            if (App.cookie.type == "Club")
+            {
+                ClubDetailWindow _ClubDetailWindow = new ClubDetailWindow(App.cookie.user.uid);
+                _ClubDetailWindow.Show();
+            }
         }
 
         private void BankAddBtn_Click(object sender, RoutedEventArgs e)

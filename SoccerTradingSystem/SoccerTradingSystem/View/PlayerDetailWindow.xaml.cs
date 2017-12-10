@@ -31,13 +31,10 @@ namespace SoccerTradingSystem.Views
         {
             InitializeComponent();
             curPlayerUid = uid;
-        }
 
-        private void OnWindowLoaded(object sender, RoutedEventArgs e)
-        {
             if (App.cookie != null)
             {
-                if (App.cookie.userType == Types.UserType.Club)
+                if (App.cookie.type == Types.UserType.Club)
                 {
                     PlayerOfferBtn.Visibility = System.Windows.Visibility.Visible;
                 }
@@ -45,8 +42,14 @@ namespace SoccerTradingSystem.Views
                 {
                     PlayerOfferBtn.Visibility = System.Windows.Visibility.Hidden;
                 }
+            }else
+            {
+                PlayerOfferBtn.Visibility = System.Windows.Visibility.Hidden;
             }
+        }
 
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
             SystemAccountHandler sah = new SystemAccountHandler();
             RetrieveHandler rh = new RetrieveHandler();
 

@@ -9,9 +9,9 @@ namespace SoccerTradingSystem.Model
     class Club : Client
     {
         public int clubId { get; } = -1; // unique club id
-        public String name { get; } = "";
-        public String contactNumber { get; } = "";
-        public int birth { get; } = -1;
+        public String name { get; set; } = "";
+        public String contactNumber { get; set; } = "";
+        public int birth { get; set; } = -1;
         public List<Player> players { get; }
         public List<Stadium> stadiums { get; }
 

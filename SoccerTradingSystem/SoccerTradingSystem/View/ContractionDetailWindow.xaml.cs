@@ -37,6 +37,7 @@ namespace SoccerTradingSystem.Views
         public ContractionDetailWindow(int _contractionId, bool _isPublic, contraction_list _CL)
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             contractionId = _contractionId;
             isPublic = _isPublic;
             CL = _CL;
@@ -52,14 +53,18 @@ namespace SoccerTradingSystem.Views
             cancleContractBtn.Visibility = System.Windows.Visibility.Collapsed;
             destructContractBtn.Visibility = System.Windows.Visibility.Collapsed;
 
-            if (isPublic)
-            {
-                cancleContractBtn.Visibility = System.Windows.Visibility.Hidden;
-            }else
+            if (!isPublic)
             {
                 if (App.cookie.type == "Club")
                 {
-
+                    if (ContractType == "OFFER")
+                    {
+                        cancleContractBtn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    if (ContractType == "UNDER")
+                    {
+                        destructContractBtn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
                 else
                 {
@@ -74,6 +79,13 @@ namespace SoccerTradingSystem.Views
                     }
                 }
             }
+        }
+
+        // Eecape
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -165,9 +177,8 @@ namespace SoccerTradingSystem.Views
             }
             else
             {
-                BankAccount newbanks = banks[0];
-                newbanks.balance -= penaltyFee;
-                if (newbanks.balance < 0)
+                int balance = banks[0].balance - penaltyFee;
+                if (balance < 0)
                 {
                     MessageBox.Show("계약 파기에 대한 수수료가 모자릅니다. 취소합니다.");
                     this.Close();
@@ -176,7 +187,7 @@ namespace SoccerTradingSystem.Views
 
                 if (ch.destructContract(curContract))
                 {
-                    bh.updateBankAccount(newbanks);
+                    bh.withdraw(banks[0], penaltyFee);
                     MessageBox.Show("계약의 파기가 성공적으로 완료되었습니다.");
                     this.Close();
                     return;

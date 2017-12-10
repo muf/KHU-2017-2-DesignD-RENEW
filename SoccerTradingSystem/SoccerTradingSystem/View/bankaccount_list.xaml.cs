@@ -131,5 +131,10 @@ namespace SoccerTradingSystem.View
                 MessageBox.Show("계좌 해지에 실패했습니다.");
             }
         }
+
+        private void balancePredictBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

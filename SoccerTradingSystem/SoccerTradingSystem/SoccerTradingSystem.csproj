@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\BalancePredictWindwo.xaml.cs">
+      <DependentUpon>BalancePredictWindwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\bankaccount_list.xaml.cs">
       <DependentUpon>bankaccount_list.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\BalancePredictWindwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\bankaccount_list.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

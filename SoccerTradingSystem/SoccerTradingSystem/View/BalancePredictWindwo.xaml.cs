@@ -11,31 +11,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Navigation;
-using System.ComponentModel;
 
-namespace SoccerTradingSystem
+namespace SoccerTradingSystem.View
 {
     /// <summary>
-    /// MainWindow.xaml에 대한 상호 작용 논리
+    /// BalancePredictWindwo.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class mainwindow : Window
+    public partial class BalancePredictWindwo : Window
     {
-        public mainwindow()
+        public BalancePredictWindwo()
         {
             InitializeComponent();
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
-
-        void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-            App.Current.Shutdown();
-        }
-
         private void HandleEsc(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
                 Close();
+        }
+
+        private void predictbalance_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

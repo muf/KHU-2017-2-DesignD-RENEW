@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MakeContractWindow" Height="650" Width="500"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -37,7 +38,7 @@
         <TextBlock Grid.Row="3" Grid.Column="1" x:Name="startDateBlock" HorizontalAlignment="Left" Text="계약 시작일" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="4" Grid.Column="1" x:Name="endDateBlock" HorizontalAlignment="Left" Text="계약 종료일" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="5" Grid.Column="1" x:Name="tranferFeeBlock" HorizontalAlignment="Left" Text="이적료" FontSize="20" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="6" Grid.Column="1" x:Name="yearlyPayBlock" HorizontalAlignment="Left" Text="연봉" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" x:Name="yearlyPayBlock" HorizontalAlignment="Left" Text="페이" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="7" Grid.Column="1" x:Name="penaltyBlock" HorizontalAlignment="Left" Text="벌칙금" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="8" Grid.Column="1" x:Name="paymentBlock" HorizontalAlignment="Left" Text="지급 방식" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="9" Grid.Column="1" x:Name="leaseBlock" HorizontalAlignment="Left" Text="리스 가능 여부" FontSize="20" VerticalAlignment="Center"/>

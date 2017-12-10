@@ -8,14 +8,14 @@
         Title="ContractionDetailWindow" Height="450" Width="300"
         Loaded="OnWindowLoaded"
         WindowStartupLocation="CenterScreen"
-        >
+        WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150*"/>
             <ColumnDefinition Width="150*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>

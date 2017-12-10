@@ -44,6 +44,14 @@ namespace SoccerTradingSystem.View
         public MakeGameWindow()
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
+        }
+
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
         }
 
         public struct goalinput
@@ -170,17 +178,17 @@ namespace SoccerTradingSystem.View
             for(int i = 0; i< _MakeGoalPage.goalDataGrid.Items.Count; i++)
             {
                 TextBlock _player = _MakeGoalPage.goalDataGrid.Columns[0].GetCellContent(_MakeGoalPage.goalDataGrid.Items[i]) as TextBlock;
-                TextBlock _goal = _MakeGoalPage.goalDataGrid.Columns[1].GetCellContent(_MakeGoalPage.goalDataGrid.Items[i]) as TextBlock;
+                TextBlock _asist = _MakeGoalPage.goalDataGrid.Columns[1].GetCellContent(_MakeGoalPage.goalDataGrid.Items[i]) as TextBlock;
                 TextBlock _time = _MakeGoalPage.goalDataGrid.Columns[2].GetCellContent(_MakeGoalPage.goalDataGrid.Items[i]) as TextBlock;
                 String player = Convert.ToString(_player.Text);
-                String goal = Convert.ToString(_goal.Text);
+                String asist = Convert.ToString(_asist.Text);
                 String time = Convert.ToString(_time.Text);
                 JSON playerfilter = new JSON();
                 playerfilter.Add(new Dictionary<string, object>());
                 playerfilter[0].Add("name", player);
                 JSON asistfilter = new JSON();
                 asistfilter.Add(new Dictionary<string, object>());
-                asistfilter[0].Add("name", player);
+                asistfilter[0].Add("name", asist);
                 List<Player> _AssistPlayer = new List<Player> { };
                 _AssistPlayer.Insert(0, rh.retrievePlayer(asistfilter)[0]);
                 Goal _Goal = new Goal(-1, -1, rh.retrievePlayer(playerfilter)[0], _AssistPlayer, time);

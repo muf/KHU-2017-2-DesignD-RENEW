@@ -33,7 +33,11 @@ namespace SoccerTradingSystem.Views
         public contraction_list(bool _isPublic)
         {
             InitializeComponent();
-            isPublic = _isPublic; 
+            isPublic = _isPublic;
+            if (isPublic)
+                Title.Text = "공개 계약 조회";
+            else
+                Title.Text = "내 계약 조회";
         }
 
         private void OnPageLoad(object sender, RoutedEventArgs e)

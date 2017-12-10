@@ -26,6 +26,7 @@ namespace SoccerTradingSystem.Views
         public PlayerRegistWindow()
         {
             InitializeComponent();
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             regPPage = new reg_player(this);
             regContent.Navigate(regPPage);
             Application.Current.Properties["regSelected"] = "player";

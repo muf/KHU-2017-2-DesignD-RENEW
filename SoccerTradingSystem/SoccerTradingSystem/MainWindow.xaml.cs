@@ -41,11 +41,22 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
-            //DateTime localDate = DateTime.Now;
-            계약등록();
-            계약등록();
-            계약등록();
-            계약읽기();
+
+            GameHandler gh = new GameHandler();
+            RetrieveHandler rh = new RetrieveHandler();
+            ContractHandler ch = new ContractHandler();
+
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("uid", 16);
+            List<Player> players = rh.retrievePlayer(filter);
+            Player player = players[0];
+
+            JSON clubF = new JSON();
+            clubF.Add(new Dictionary<string, object>());
+            clubF[0].Add("clubId", 3);
+            List<Club> clubs = rh.retrieveClub(clubF);
+            Club club = clubs[0];
 
 
         }

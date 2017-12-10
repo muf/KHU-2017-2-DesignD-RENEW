@@ -36,16 +36,16 @@ namespace SoccerTradingSystem.Controller
         }
         public bool destructContract(Contract contract)
         {
-            // 계산..
+            // 계산 ..
             // 가능 ..
             // 지불 ..
-            // 파기..
+            // 파기 ..
             contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.DESTRUCT, contract.tradeType, contract.isPublic);
             return cd.updateContractData(contract);
         }
         public bool acceptContract(Contract contract)
         {
-            //  수락..
+            // 수락 ..
             contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.UNDER, contract.tradeType, contract.isPublic);
             return cd.updateContractData(contract);
         }

@@ -41,7 +41,12 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
+            DateTime localDate = DateTime.Now;
 
+
+        }
+        void 계약읽기()
+        {
             GameHandler gh = new GameHandler();
             RetrieveHandler rh = new RetrieveHandler();
             ContractHandler ch = new ContractHandler();
@@ -50,7 +55,7 @@ namespace SoccerTradingSystem
             filter.Add(new Dictionary<string, object>());
             filter[0].Add("uid", 10);
 
-            List<Contract> contracts =  ch.retrieveContract(filter);
+            List<Contract> contracts = ch.retrieveContract(filter);
         }
         void 계약등록()
         {

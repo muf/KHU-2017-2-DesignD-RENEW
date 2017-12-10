@@ -73,12 +73,18 @@ namespace SoccerTradingSystem.Views
             string pPosition = curPlayer.position;
             string pWeight = curPlayer.weight.ToString();
             string pHeight = curPlayer.height.ToString();
+            string club;
+            if (curPlayer.clubs.Count != 0)
+                club = curPlayer.clubs[0].name.ToString();
+            else
+                club = "자유";
 
             nameBlock.Text = pName;
             birthBlock.Text = pBirth;
             positionBlock.Text = pPosition;
             weightBlock.Text = pWeight;
             heightBlock.Text = pHeight;
+            clubBlock.Text = club;
         }
 
         private bool playerCheck()

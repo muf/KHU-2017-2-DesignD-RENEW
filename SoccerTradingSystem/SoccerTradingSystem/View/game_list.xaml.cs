@@ -17,6 +17,7 @@ using System.Data;
 using Game = SoccerTradingSystem.Model.Game;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
+using GameDetailWindow = SoccerTradingSystem.View.GameDetailWindow;
 
 namespace SoccerTradingSystem.Views
 {
@@ -30,6 +31,16 @@ namespace SoccerTradingSystem.Views
         public game_list()
         {
             InitializeComponent();
+        }
+
+        private void Game_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataRowView row = (DataRowView)gameDataGrid.SelectedItems[0];
+            int gid = Convert.ToInt32((row[0]));
+
+            // 윈도우 호출
+            GameDetailWindow _GameDetailWindow = new GameDetailWindow(gid);
+            _GameDetailWindow.Show();
         }
 
         // 페이지가 로드 되었을 때 리뉴

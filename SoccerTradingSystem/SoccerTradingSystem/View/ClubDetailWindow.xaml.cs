@@ -17,6 +17,7 @@ using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler
 using Types = SoccerTradingSystem.Model.Types;
 using Player = SoccerTradingSystem.Model.Player;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
+using ViewClubPlayer = SoccerTradingSystem.View.ViewClubPlayer;
 
 namespace SoccerTradingSystem.Views
 {
@@ -76,6 +77,12 @@ namespace SoccerTradingSystem.Views
         {
             MakeContractWindow _MakeContractWindow = new MakeContractWindow(curClubUid);
             _MakeContractWindow.Show();
+        }
+
+        private void ViewPlayerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewClubPlayer _ViewClubPlayer = new ViewClubPlayer(curClubUid);
+            _ViewClubPlayer.Show();
         }
     }
 }

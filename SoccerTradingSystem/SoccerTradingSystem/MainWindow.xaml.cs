@@ -48,100 +48,100 @@ namespace SoccerTradingSystem
             List<Game>games = rh.retrieveGame(null);
 
         }
-        void 계약동시추가()
-        {
-            for (int i = 5; i < 8; i++)
-            {
-                GameHandler gh = new GameHandler();
-                RetrieveHandler rh = new RetrieveHandler();
-                ContractHandler ch = new ContractHandler();
-                SystemAccountHandler sah = new SystemAccountHandler();
-                JSON filter = new JSON();
-                filter.Add(new Dictionary<string, object>());
-                filter[0].Add("contractId", 2);
-                List<Contract> contracts = rh.retrieveContract(filter);
-                Contract contract = contracts[0];
-                contract.club.clubId = 2;
-                contract.player.playerId = i;
-                ch.registerContract(contract);
-            }
-        }
-        void 선수동시추가()
-        {
-            GameHandler gh = new GameHandler();
-            RetrieveHandler rh = new RetrieveHandler();
-            ContractHandler ch = new ContractHandler();
-            SystemAccountHandler sah = new SystemAccountHandler();
-            List<String> positionList = new List<String>() { "RWB", "RB", "RCB", "CB", "LCB", "LB", "LWB", "RDM", "CDM", "LDM", "CM", "RM", "RAM", "CAM", "LAM", "LM", "CF", "LW", "RS", "ST", "LS", "GK" };
-            List<String> firstNameList = new List<String>() { "Rolando", "Tammy", "lbrahim", "Benik", "Sergio", "Baniel", "Ahmed", "Nathan", "Chuba", "Marc" };
-            List<String> middleNameList = new List<String>() { "Toby", "Alexi", "Trent", "Garcia", "de", "Alexander", "al", "Albrighton", "Ake", "Akpom" };
-            List<String> lastNameList = new List<String>() { "Park", "Pereira", "Arlauskis", "Arfield", "Valencia", "Ayew", "Alonso", "Allsop", "Nynom", "Arnold" };
-            //List<String> playerList = new List<String>() { "Chelsea", "CrystalPalace", "Everton", "LiverPool" };
-            for (int idx = 0; idx < 3; idx++)
-            {
+        //void 계약동시추가()
+        //{
+        //    for (int i = 5; i < 8; i++)
+        //    {
+        //        GameHandler gh = new GameHandler();
+        //        RetrieveHandler rh = new RetrieveHandler();
+        //        ContractHandler ch = new ContractHandler();
+        //        SystemAccountHandler sah = new SystemAccountHandler();
+        //        JSON filter = new JSON();
+        //        filter.Add(new Dictionary<string, object>());
+        //        filter[0].Add("contractId", 2);
+        //        List<Contract> contracts = rh.retrieveContract(filter);
+        //        Contract contract = contracts[0];
+        //        contract.club.clubId = 2;
+        //        contract.player.playerId = i;
+        //        ch.registerContract(contract);
+        //    }
+        //}
+        //void 선수동시추가()
+        //{
+        //    GameHandler gh = new GameHandler();
+        //    RetrieveHandler rh = new RetrieveHandler();
+        //    ContractHandler ch = new ContractHandler();
+        //    SystemAccountHandler sah = new SystemAccountHandler();
+        //    List<String> positionList = new List<String>() { "RWB", "RB", "RCB", "CB", "LCB", "LB", "LWB", "RDM", "CDM", "LDM", "CM", "RM", "RAM", "CAM", "LAM", "LM", "CF", "LW", "RS", "ST", "LS", "GK" };
+        //    List<String> firstNameList = new List<String>() { "Rolando", "Tammy", "lbrahim", "Benik", "Sergio", "Baniel", "Ahmed", "Nathan", "Chuba", "Marc" };
+        //    List<String> middleNameList = new List<String>() { "Toby", "Alexi", "Trent", "Garcia", "de", "Alexander", "al", "Albrighton", "Ake", "Akpom" };
+        //    List<String> lastNameList = new List<String>() { "Park", "Pereira", "Arlauskis", "Arfield", "Valencia", "Ayew", "Alonso", "Allsop", "Nynom", "Arnold" };
+        //    //List<String> playerList = new List<String>() { "Chelsea", "CrystalPalace", "Everton", "LiverPool" };
+        //    for (int idx = 0; idx < 3; idx++)
+        //    {
 
-                JSON filter = new JSON();
-                filter.Add(new Dictionary<string, object>());
-                filter[0].Add("uid", 8);
-                List<Player> players = rh.retrievePlayer(filter);
-                Player player = players[0];
+        //        JSON filter = new JSON();
+        //        filter.Add(new Dictionary<string, object>());
+        //        filter[0].Add("uid", 8);
+        //        List<Player> players = rh.retrievePlayer(filter);
+        //        Player player = players[0];
 
 
-                Random rnd = new Random(DateTime.Now.Millisecond);
-                int num1 = rnd.Next(0, 9);
-                int num2 = rnd.Next(0, 9);
-                int num3 = rnd.Next(0, 9);
-                player.firstName = firstNameList[num1];
-                player.middleName = middleNameList[num2];
-                player.lastName = lastNameList[num3];
-                int num0 = rnd.Next(0, 100);
-                player.email = player.firstName + player.middleName + player.lastName + num0.ToString() + "@email.com";
+        //        Random rnd = new Random(DateTime.Now.Millisecond);
+        //        int num1 = rnd.Next(0, 9);
+        //        int num2 = rnd.Next(0, 9);
+        //        int num3 = rnd.Next(0, 9);
+        //        player.firstName = firstNameList[num1];
+        //        player.middleName = middleNameList[num2];
+        //        player.lastName = lastNameList[num3];
+        //        int num0 = rnd.Next(0, 100);
+        //        player.email = player.firstName + player.middleName + player.lastName + num0.ToString() + "@email.com";
 
-                int num4 = rnd.Next(1700, 2015);
-                int num5 = rnd.Next(1, 12);
-                int num6 = rnd.Next(1, 30);
-                int birth = num4 * 10000 + num5 * 100 + num6;
-                player.birth = birth;
-                player.weight = rnd.Next(70, 120);
-                player.height = rnd.Next(160, 220);
-                player.position = positionList[rnd.Next(0, 21)];
+        //        int num4 = rnd.Next(1700, 2015);
+        //        int num5 = rnd.Next(1, 12);
+        //        int num6 = rnd.Next(1, 30);
+        //        int birth = num4 * 10000 + num5 * 100 + num6;
+        //        player.birth = birth;
+        //        player.weight = rnd.Next(70, 120);
+        //        player.height = rnd.Next(160, 220);
+        //        player.position = positionList[rnd.Next(0, 21)];
 
-                sah.registerPlayerAccount(player);
-            }
-        }
-        void 클럽동시추가()
-        {
+        //        sah.registerPlayerAccount(player);
+        //    }
+        //}
+        //void 클럽동시추가()
+        //{
 
-            GameHandler gh = new GameHandler();
-            RetrieveHandler rh = new RetrieveHandler();
-            ContractHandler ch = new ContractHandler();
-            SystemAccountHandler sah = new SystemAccountHandler();
-            List<String> clubList = new List<String>() { "Chelsea", "CrystalPalace", "Everton", "LiverPool" };
-            for (int idx = 0; idx < clubList.Count; idx++)
-            {
-                JSON clubF = new JSON();
-                clubF.Add(new Dictionary<string, object>());
-                clubF[0].Add("uid", 3);
-                List<Club> clubs = rh.retrieveClub(clubF);
-                Club club = clubs[0];
-                club.email = clubList[idx] + "@email.com";
-                club.name = clubList[idx];
+        //    GameHandler gh = new GameHandler();
+        //    RetrieveHandler rh = new RetrieveHandler();
+        //    ContractHandler ch = new ContractHandler();
+        //    SystemAccountHandler sah = new SystemAccountHandler();
+        //    List<String> clubList = new List<String>() { "Chelsea", "CrystalPalace", "Everton", "LiverPool" };
+        //    for (int idx = 0; idx < clubList.Count; idx++)
+        //    {
+        //        JSON clubF = new JSON();
+        //        clubF.Add(new Dictionary<string, object>());
+        //        clubF[0].Add("uid", 3);
+        //        List<Club> clubs = rh.retrieveClub(clubF);
+        //        Club club = clubs[0];
+        //        club.email = clubList[idx] + "@email.com";
+        //        club.name = clubList[idx];
 
-                Random rnd = new Random(DateTime.Now.Millisecond);
-                int num1 = rnd.Next(10, 20);
-                int num2 = rnd.Next(0, 999);
-                int num3 = rnd.Next(0, 999);
-                String contractNumber = "+" + num1.ToString() + "-" + num2.ToString() + "-" + num3.ToString();
-                club.contactNumber = contractNumber;
+        //        Random rnd = new Random(DateTime.Now.Millisecond);
+        //        int num1 = rnd.Next(10, 20);
+        //        int num2 = rnd.Next(0, 999);
+        //        int num3 = rnd.Next(0, 999);
+        //        String contractNumber = "+" + num1.ToString() + "-" + num2.ToString() + "-" + num3.ToString();
+        //        club.contactNumber = contractNumber;
 
-                int num4 = rnd.Next(1700, 2015);
-                int num5 = rnd.Next(1, 12);
-                int num6 = rnd.Next(1, 30);
-                int birth = num4 * 10000 + num5 * 100 + num6;
-                club.birth = birth;
-                sah.registerClubAccount(club);
-            }
-        }
+        //        int num4 = rnd.Next(1700, 2015);
+        //        int num5 = rnd.Next(1, 12);
+        //        int num6 = rnd.Next(1, 30);
+        //        int birth = num4 * 10000 + num5 * 100 + num6;
+        //        club.birth = birth;
+        //        sah.registerClubAccount(club);
+        //    }
+        //}
         void 계약읽기()
         {
             GameHandler gh = new GameHandler();

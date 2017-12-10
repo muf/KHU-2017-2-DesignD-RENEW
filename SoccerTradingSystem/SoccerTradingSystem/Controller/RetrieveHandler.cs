@@ -222,7 +222,7 @@ namespace SoccerTradingSystem.Controller
                             JSON clubFilter = new JSON();
                             clubFilter.Add(new Dictionary<string, object>());
                             clubFilter[0].Add("meta", true);
-                            clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
+                            clubFilter[0].Add("playerId", contracts[cidx].player.playerId);
                             Player player = retrievePlayer(clubFilter)[0];
                             players.Add(player);
                         }

@@ -8,7 +8,7 @@ namespace SoccerTradingSystem.Model
 {
     class Player : Client
     {
-        public int playerId { get;} = -1; // unique player id
+        public int playerId { get; set; } = -1; // unique player id
         public String firstName { get; set; } = "";
         public String middleName { get; set; } = "";
         public String lastName { get; set; } = "";

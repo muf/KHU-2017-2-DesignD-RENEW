@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoccerTradingSystem.Views"
         mc:Ignorable="d"
-        Title="MakeContractWindow" Height="600" Width="500"
+        Title="MakeContractWindow" Height="650" Width="500"
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
@@ -46,13 +46,13 @@
         <TextBlock Grid.Row="12" Grid.Column="1" x:Name="isPublicBlock" HorizontalAlignment="Left" Text="계약 공개 여부" FontSize="20" VerticalAlignment="Center"/>
 
 
-        <TextBox Margin="5,4,5,4" Grid.Row="1" Grid.Column="2" x:Name="clubNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="2" Grid.Column="2" x:Name="playerNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="3" Grid.Column="2" x:Name="startDateBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="4" Grid.Column="2" x:Name="endDateBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="5" Grid.Column="2" x:Name="tranferFeeBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="6" Grid.Column="2" x:Name="yearlyPayBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
-        <TextBox Margin="5,4,5,4" Grid.Row="7" Grid.Column="2" x:Name="penaltyBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox FontSize="20" Margin="5,4,10,4" Grid.Row="1" Grid.Column="2" x:Name="clubNameBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <TextBox FontSize="20" Margin="5,4,10,4" Grid.Row="2" Grid.Column="2" x:Name="playerNameBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <TextBox FontSize="15" Margin="5,4,5,4" Grid.Row="3" Grid.Column="2" x:Name="startDateBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center"/>
+        <TextBox FontSize="15" Margin="5,4,5,4" Grid.Row="4" Grid.Column="2" x:Name="endDateBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center"/>
+        <TextBox FontSize="15" Margin="5,4,5,4" Grid.Row="5" Grid.Column="2" x:Name="tranferFeeBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center"/>
+        <TextBox FontSize="15" Margin="5,4,5,4" Grid.Row="6" Grid.Column="2" x:Name="yearlyPayBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center"/>
+        <TextBox FontSize="15" Margin="5,4,5,4" Grid.Row="7" Grid.Column="2" x:Name="penaltyBox" HorizontalAlignment="Stretch" Text=""  VerticalAlignment="Center"/>
         <ComboBox Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="paymentComboBox" Margin="17,10,61,8" Width="86">
             <ComboBoxItem IsSelected="True" Content="월급"></ComboBoxItem>
             <ComboBoxItem Content="주급"></ComboBoxItem>
@@ -67,22 +67,20 @@
             <ComboBoxItem Content="SAT"></ComboBoxItem>
             <ComboBoxItem Content="SUN"></ComboBoxItem>
         </ComboBox>
-        <TextBox VerticalAlignment="Center" Grid.Row="8" Grid.Column="2" Margin="154,8,40,4" Grid.ColumnSpan="2"/>
+        <TextBox Name="dayBox" VerticalAlignment="Center" Grid.Row="8" Grid.Column="2" Margin="154,8,40,4" Grid.ColumnSpan="2"/>
         <CheckBox Grid.Row="9" Grid.Column="2" x:Name="leaseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
         <TextBlock FontSize="8" Grid.Row="9" Grid.Column="2" x:Name="leaseCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 리스 가능" Margin="57,14,15,14" Width="92"/>
-        <ComboBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="contractionTypeComboBox" Margin="17,9,15,9" Width="132">
+        <ComboBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="contractionTypeComboBox" Width="132">
             <ComboBoxItem IsSelected="True" Content="제안"></ComboBoxItem>
-            <ComboBoxItem Content="만료"></ComboBoxItem>
-            <ComboBoxItem Content="파기"></ComboBoxItem>
-            <ComboBoxItem Content="거절"></ComboBoxItem>
-            <ComboBoxItem Content="보류 중"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="tradeTypeComboBox" Margin="17,9,15,9" Width="132">
+        <ComboBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="tradeTypeComboBox" Width="132">
             <ComboBoxItem IsSelected="True" Content="일반 계약"></ComboBoxItem>
             <ComboBoxItem Content="리스 계약"></ComboBoxItem>
         </ComboBox>
         <CheckBox Grid.Row="12" Grid.Column="2" x:Name="isPublicCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
         <TextBlock FontSize="8" Grid.Row="12" Grid.Column="2" x:Name="IsPublicCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 공개 등록" Margin="57,14,15,14" Width="92"/>
         <Button Style="{StaticResource SuccessButton}" Margin="30,20,30,2" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContractBtn" Content="계약서 전달" Click="ContractBtn_Click"/>
+        <TextBlock FontSize="7" x:Name="weekBlock" Grid.Column="2" HorizontalAlignment="Left" Margin="161,0,0,0" Grid.Row="8" TextWrapping="Wrap" Text="수령일/시간" VerticalAlignment="Top" RenderTransformOrigin="0.048,0.389" Grid.ColumnSpan="2"/>
+        <TextBlock FontSize="7" x:Name="dayBlock" Grid.Column="2" HorizontalAlignment="Left" Margin="113,1,0,0" Grid.Row="8" TextWrapping="Wrap" Text="수령요일" VerticalAlignment="Top"/>
     </Grid>
 </Window>

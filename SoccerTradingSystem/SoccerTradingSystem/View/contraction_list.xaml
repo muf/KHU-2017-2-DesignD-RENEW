@@ -46,8 +46,8 @@
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="계약 ID" Visibility="Collapsed" Binding="{Binding contractionid}"/>
-                    <DataGridTextColumn Header="구단 ID" Binding="{Binding cid}"/>
-                    <DataGridTextColumn Header="선수 ID" Binding="{Binding pid}"/>
+                    <DataGridTextColumn Header="구단" Binding="{Binding cid}"/>
+                    <DataGridTextColumn Header="선수" Binding="{Binding pid}"/>
                     <DataGridTextColumn Header="트레이드 종류" Binding="{Binding trade_type}"/>
                     <DataGridTextColumn Header="계약 종류" Binding="{Binding contract_type}"/>
                     <DataGridTextColumn Header="시작일" Binding="{Binding start_date}"/>
@@ -55,7 +55,7 @@
                     <DataGridTextColumn Header="리스 여부" Binding="{Binding lease}"/>
                     <DataGridTextColumn Header="벌금" Binding="{Binding penalty_fee}"/>
                     <DataGridTextColumn Header="이적비" Binding="{Binding transfer_fee}"/>
-                    <DataGridTextColumn Header="연봉" Binding="{Binding yearly_pay}"/>
+                    <DataGridTextColumn Header="페이" Binding="{Binding pay}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

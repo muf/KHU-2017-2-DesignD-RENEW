@@ -49,7 +49,7 @@ namespace SoccerTradingSystem.Controller
             // 가능 ..
             // 지불 ..
             // 파기 ..
-            if (contract.contractType == ContractType.OFFER)
+            if (contract.contractType == ContractType.UNDER)
             {
                 contract = new Contract(contract.contractId, contract.startDate, contract.endDate, contract.transferFee, contract.payment, contract.penaltyFee, contract.leasePossibility, contract.club, contract.player, ContractType.DESTRUCT, contract.tradeType, contract.isPublic);
                 return cd.updateContractData(contract);

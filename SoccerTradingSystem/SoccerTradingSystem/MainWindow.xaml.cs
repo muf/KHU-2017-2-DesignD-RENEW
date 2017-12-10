@@ -75,7 +75,7 @@ namespace SoccerTradingSystem
 
             Player player = rh.retrievePlayer(filter2)[0];
             Club club = rh.retrieveClub(filter)[0];
-            Contract contract = new Contract(0, "1", "1", 500, new Model.DailyPayment(0, "DailyPayment", 0, "33m"), 300, true, club, player, ContractType.OFFER, TradeType.BELONG, true);
+            Contract contract = new Contract(0, "1", "1", 500, new Model.DailyPayment(0, "DailyPayment",0, 0, "33m"), 300, true, club, player, ContractType.OFFER, TradeType.BELONG, true);
             ch.registerContract(contract);
         }
         void 게임테스트()

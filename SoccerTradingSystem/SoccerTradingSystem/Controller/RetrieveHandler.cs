@@ -15,6 +15,8 @@ namespace SoccerTradingSystem.Controller
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
     using Manager = SoccerTradingSystem.Model.Manager;
     using Payment = SoccerTradingSystem.Model.Payment;
+    using Goal = SoccerTradingSystem.Model.Goal;
+    using Rating = SoccerTradingSystem.Model.Rating;
     using DailyPayment = SoccerTradingSystem.Model.DailyPayment;
     using WeeklyPayment = SoccerTradingSystem.Model.WeeklyPayment;
     using MonthlyPayment = SoccerTradingSystem.Model.MonthlyPayment;
@@ -432,11 +434,68 @@ namespace SoccerTradingSystem.Controller
                 string playTime = data["playTime"].ToString();
                 int homeClubId = Convert.ToInt32(data["homeClubId"]);
                 int awayClubId = Convert.ToInt32(data["awayClubId"]);
-                int homeScore = Convert.ToInt32(data["homeScore"]);
-                int awayScore = Convert.ToInt32(data["awayScroe"]);
+                int homeScore = 0;
+                int awayScore = 0;
 
-                Game game = null;
-                //Game game = new Game(gameId, date, startTime, playTime, homeScore, awayScore, .....)
+                JSON homeClubFilter = new JSON();
+                homeClubFilter.Add(new Dictionary<string, object>());
+                homeClubFilter[0].Add("full", true);
+                homeClubFilter[0].Add("clubId", homeClubId);
+                Club homeClub = retrieveClub(homeClubFilter)[0];
+
+                JSON awayClubFilter = new JSON();
+                awayClubFilter.Add(new Dictionary<string, object>());
+                awayClubFilter[0].Add("full", true);
+                awayClubFilter[0].Add("clubId", awayClubId);
+                Club awayClub = retrieveClub(awayClubFilter)[0];
+
+
+                List<Goal> goals = new List<Goal>();
+                var t = new db().execute($"select* from goal where gameId ={gameId} ");
+                for (int idx = 0; idx < t.Count; idx++)
+                {
+                    int playerId = Convert.ToInt32(t[idx]["playerId"]);
+                    int goalId = Convert.ToInt32(t[idx]["goalId"]);
+                    String time = t[idx]["time"].ToString();
+                    JSON home_filter = new JSON();
+                    home_filter.Add(new Dictionary<string, object>());
+                    home_filter[0].Add("full", true);
+                    home_filter[0].Add("playerId", playerId);
+                    List<Player> players = retrievePlayer(home_filter);
+                    Player player = players[0];
+                    int clubId = player.clubs[0].clubId;
+                    if (clubId == homeClubId) homeScore++;
+                    if (clubId == awayClubId) awayScore++;
+
+                    List<Player> assisters = new List<Player>();
+                    var at = new db().execute($"select* from assist where goalId ={goalId} ");
+                    for(int adx = 0; adx < at.Count; adx++)
+                    {
+                        int assistPlayerId = Convert.ToInt32(at[adx]["playerId"]);
+                        JSON assistFilter = new JSON();
+                        assistFilter.Add(new Dictionary<string, object>());
+                        assistFilter[0].Add("full", true);
+                        assistFilter[0].Add("playerId", assistPlayerId);
+                        Player assistPlayer = retrievePlayer(assistFilter)[0];
+                        assisters.Add(assistPlayer);
+                    }
+                    Goal goal = new Goal(goalId, gameId, player, assisters, time);
+                    goals.Add(goal);
+                }
+                List<Rating> ratings = new List<Rating>();
+                var rt = new db().execute($"select* from rating where gameId ={gameId} ");
+                for (int idx = 0; idx < rt.Count; idx++)
+                {
+                    int ratingId = Convert.ToInt32(rt[idx]["ratingId"]);
+                    int playerId = Convert.ToInt32(rt[idx]["playerId"]);
+                    int ratingGrade = Convert.ToInt32(rt[idx]["ratingGrade"]);
+                    JSON home_filter = new JSON();
+                    home_filter.Add(new Dictionary<string, object>());
+                    home_filter[0].Add("playerId", playerId);
+                    Rating rating = new Rating(ratingId, gameId, retrievePlayer(home_filter)[0], ratingGrade);
+                    ratings.Add(rating);
+                }
+                Game game = new Game(gameId, date, startTime, playTime, homeScore, awayScore, homeClub, awayClub, goals, ratings);
                 var flag = true;
 
                 if (filter != null)

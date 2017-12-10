@@ -33,7 +33,7 @@ namespace SoccerTradingSystem.Views
         public contraction_list(bool _isPublic)
         {
             InitializeComponent();
-            isPublic = _isPublic;
+            isPublic = _isPublic; 
         }
 
         private void OnPageLoad(object sender, RoutedEventArgs e)
@@ -45,16 +45,13 @@ namespace SoccerTradingSystem.Views
         {
             DataRowView row = (DataRowView)contractionDataGrid.SelectedItems[0];
             int contractionId = Convert.ToInt32((row[0]));
-
-            ContractionDetailWindow _ContractionDetailWindow = new ContractionDetailWindow(contractionId);
+            ContractionDetailWindow _ContractionDetailWindow = new ContractionDetailWindow(contractionId, isPublic, this);
             _ContractionDetailWindow.Show();
         }
 
         // 계약 그리드 구성
         public void ContractionsDataGridSetting(string context)
         {
-            //SystemAccountHandler sah = new SystemAccountHandler();
-            //List<Contract> list = sah.retrieveContractData(App.cookie.uid, context);
             RetrieveHandler rh = new RetrieveHandler();
 
 
@@ -99,14 +96,14 @@ namespace SoccerTradingSystem.Views
             dataTable.Columns.Add("lease", typeof(string));
             dataTable.Columns.Add("penalty_fee", typeof(string));
             dataTable.Columns.Add("transfer_fee", typeof(string));
-            dataTable.Columns.Add("yearly_pay", typeof(string));
+            dataTable.Columns.Add("pay", typeof(string));
 
             //// 데이터 생성
             for (int i = 0; i < contracts.Count; i++)
             {
                 string contractid = Convert.ToString(contracts[i].contractId);
-                string cid = Convert.ToString(contracts[i].club.clubId);
-                string pid = Convert.ToString(contracts[i].player.playerId);
+                string cid = Convert.ToString(contracts[i].club.name);
+                string pid = Convert.ToString(contracts[i].player.lastName + " " + contracts[i].player.middleName + contracts[i].player.firstName);
                 string trade_type = contracts[i].tradeType;
                 string contract_type = contracts[i].contractType;
                 string start_date = contracts[i].startDate;
@@ -114,9 +111,9 @@ namespace SoccerTradingSystem.Views
                 string lease = (contracts[i].leasePossibility) ? "TRUE" : "FALSE";
                 string penalty_fee = Convert.ToString(contracts[i].penaltyFee);
                 string transfer_fee = Convert.ToString(contracts[i].transferFee);
-                string yearly_pay = "";
+                string pay = contracts[i].payment.pay.ToString();
 
-                dataTable.Rows.Add(new string[] { contractid, cid, pid, trade_type, contract_type, start_date, end_date, lease, penalty_fee, transfer_fee, yearly_pay });
+                dataTable.Rows.Add(new string[] { contractid, cid, pid, trade_type, contract_type, start_date, end_date, lease, penalty_fee, transfer_fee, pay });
             }
 
             //// DataTable의 Default View를 바인딩하기

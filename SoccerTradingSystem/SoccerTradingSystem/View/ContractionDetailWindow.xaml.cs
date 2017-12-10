@@ -27,10 +27,41 @@ namespace SoccerTradingSystem.Views
     public partial class ContractionDetailWindow : Window
     {
         private int contractionId;
-        public ContractionDetailWindow(int _contractionId)
+        bool isPublic;
+        contraction_list CL;
+        public ContractionDetailWindow(int _contractionId, bool _isPublic, contraction_list _CL)
         {
             InitializeComponent();
             contractionId = _contractionId;
+            isPublic = _isPublic;
+            CL = _CL;
+
+            RetrieveHandler rh = new RetrieveHandler();
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("contractId", contractionId);
+            List<Contract> contracts = rh.retrieveContract(filter);
+            String ContractType = contracts[0].contractType;
+
+            contractAcceptBtn.Visibility = System.Windows.Visibility.Collapsed;
+            cancleContractBtn.Visibility = System.Windows.Visibility.Collapsed;
+            destructContractBtn.Visibility = System.Windows.Visibility.Collapsed;
+
+            if (isPublic)
+            {
+                cancleContractBtn.Visibility = System.Windows.Visibility.Hidden;
+            }else
+            {
+                if(ContractType == "OFFER")
+                {
+                    contractAcceptBtn.Visibility = System.Windows.Visibility.Visible;
+                    cancleContractBtn.Visibility = System.Windows.Visibility.Visible;
+                }
+                if(ContractType == "UNDER")
+                {
+                    destructContractBtn.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -44,9 +75,8 @@ namespace SoccerTradingSystem.Views
             List<Contract> contracts = rh.retrieveContract(filter);
 
             Contract curContract = contracts[0];
-
-            clubBlock.Text = Convert.ToString(curContract.club.clubId);
-            playerBlock.Text = Convert.ToString(curContract.player.playerId);
+            clubBlock.Text = Convert.ToString(curContract.club.name);
+            playerBlock.Text = Convert.ToString(curContract.player.lastName + " " + curContract.player.middleName + curContract.player.firstName);
             tradeTypeBlock.Text = Convert.ToString(curContract.tradeType);
             contractTypeBlock.Text = Convert.ToString(curContract.contractType);
             startDateBlock.Text = Convert.ToString(curContract.startDate);
@@ -58,7 +88,38 @@ namespace SoccerTradingSystem.Views
 
         private void cancleContractBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("정말 파기하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show("정말 거절하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                ContractHandler ch = new ContractHandler();
+                RetrieveHandler rh = new RetrieveHandler();
+
+                JSON filter = new JSON();
+                filter.Add(new Dictionary<string, object>());
+                filter[0].Add("contractId", contractionId);
+                List<Contract> contracts = rh.retrieveContract(filter);
+
+                Contract curContract = contracts[0];
+                if (ch.declineContract(curContract))
+                {
+                    MessageBox.Show("계약이 성공적으로 거절 되었습니다.");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("계약의 거절에 실패했습니다.");
+                    this.Close();
+                }
+            }
+            CL.ContractionsDataGridSetting("");
+        }
+
+        private void destructContractBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("정말 파기하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 //do no stuff
             }
@@ -77,12 +138,45 @@ namespace SoccerTradingSystem.Views
                 {
                     MessageBox.Show("계약의 파기가 성공적으로 완료되었습니다.");
                     this.Close();
-                }else
+                }
+                else
                 {
                     MessageBox.Show("계약의 파기에 실패했습니다.");
                     this.Close();
                 }
             }
+            CL.ContractionsDataGridSetting("");
+        }
+
+        private void contractAcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("수락 하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                ContractHandler ch = new ContractHandler();
+                RetrieveHandler rh = new RetrieveHandler();
+
+                JSON filter = new JSON();
+                filter.Add(new Dictionary<string, object>());
+                filter[0].Add("contractId", contractionId);
+                List<Contract> contracts = rh.retrieveContract(filter);
+
+                Contract curContract = contracts[0];
+                if (ch.acceptContract(curContract))
+                {
+                    MessageBox.Show("계약이 성공적으로 완료되었습니다.");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("계약이 실패했습니다.");
+                    this.Close();
+                }
+            }
+            CL.ContractionsDataGridSetting("");
         }
     }
 }

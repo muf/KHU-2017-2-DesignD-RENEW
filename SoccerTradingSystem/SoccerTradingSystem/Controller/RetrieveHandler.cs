@@ -18,7 +18,7 @@ namespace SoccerTradingSystem.Controller
     using DailyPayment = SoccerTradingSystem.Model.DailyPayment;
     using WeeklyPayment = SoccerTradingSystem.Model.WeeklyPayment;
     using MonthlyPayment = SoccerTradingSystem.Model.MonthlyPayment;
-    using UserType = SoccerTradingSystem.Model.Types.UserType ;
+    using UserType = SoccerTradingSystem.Model.Types.UserType;
     using RetrieveDAC = SoccerTradingSystem.Controller.DAC.RetrieveDAC;
 
     using JSON = List<Dictionary<string, object>>;
@@ -26,7 +26,7 @@ namespace SoccerTradingSystem.Controller
     class RetrieveHandler
     {
         protected JSON queryResult;
-        protected RetrieveDAC rd = new RetrieveDAC(); 
+        protected RetrieveDAC rd = new RetrieveDAC();
 
         public List<User> retrieveUser(JSON filter)
         {
@@ -49,24 +49,24 @@ namespace SoccerTradingSystem.Controller
 
                     if (clientType == UserType.Club)
                     {
-                         user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth,-1,null, 0, "", "", 0, null, null);
+                        user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", 0, null, null);
                     }
                     else if (clientType == UserType.Player)
                     {
-                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1,null,0, "", "", "", 0, "", 0, 0, 0, "", null);
+                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", "", 0, "", 0, 0, 0, "", null);
                     }
                     else
                     {
                         continue;
                     }
                 }
-                else if(data["clientId"].ToString() == "")
+                else if (data["clientId"].ToString() == "")
                 {
-                     user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
+                    user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
                 }
                 else
                 {
-                     user = new User(_uid, data["email"].ToString(), data["password"].ToString(), auth);
+                    user = new User(_uid, data["email"].ToString(), data["password"].ToString(), auth);
                 }
 
                 var flag = true;
@@ -118,7 +118,7 @@ namespace SoccerTradingSystem.Controller
                 bankFilter.Add(new Dictionary<string, object>());
                 bankFilter[0].Add("clientId", clientId);
 
-                List< BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
+                List<BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
                 List<Club> clubs = new List<Club>();
                 if (filter != null)
                 {
@@ -141,11 +141,11 @@ namespace SoccerTradingSystem.Controller
                         }
                     }
                 }
-                Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, playerId,firstName, middleName, lastName, birth, position, 0,
+                Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, playerId, firstName, middleName, lastName, birth, position, 0,
                     weight, height, status, clubs);
 
                 var flag = true;
-                if(filter != null)
+                if (filter != null)
                 {
                     if (filter[0].ContainsKey("uid"))
                     {
@@ -186,7 +186,7 @@ namespace SoccerTradingSystem.Controller
                 String name = data["name"].ToString();
                 String contactNumber = data["contactNumber"].ToString();
 
-                
+
 
                 JSON bankFilter = new JSON();
                 bankFilter.Add(new Dictionary<string, object>());
@@ -209,14 +209,14 @@ namespace SoccerTradingSystem.Controller
                         {
                             JSON clubFilter = new JSON();
                             clubFilter.Add(new Dictionary<string, object>());
-                            clubFilter[0].Add("meta",true);
+                            clubFilter[0].Add("meta", true);
                             clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
                             Player player = retrievePlayer(clubFilter)[0];
                             players.Add(player);
                         }
                     }
                 }
-                Club club = new Club(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, clubId, name, contactNumber, birth,players, null);
+                Club club = new Club(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, clubId, name, contactNumber, birth, players, null);
 
                 var flag = true;
                 if (filter != null)
@@ -263,7 +263,7 @@ namespace SoccerTradingSystem.Controller
                 bool auth = data["authenticated"].ToString() == "True" ? true : false;
                 int uid = Convert.ToInt32(data["uid"]);
                 int managerId = Convert.ToInt32(data["managerId"]);
-                Manager manager = new Manager(uid, data["email"].ToString(), data["password"].ToString(),auth, managerId, data["name"].ToString(), data["telNumber"].ToString());
+                Manager manager = new Manager(uid, data["email"].ToString(), data["password"].ToString(), auth, managerId, data["name"].ToString(), data["telNumber"].ToString());
 
                 var flag = true;
                 if (filter != null)
@@ -319,17 +319,17 @@ namespace SoccerTradingSystem.Controller
                         payment = new DailyPayment(paymentId, "DailyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["dailyPaymentId"]), data["time"].ToString());
                         break;
                     case "WeeklyPayment":
-                        payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["weeklyPaymentId"]),data["dayOfWeek"].ToString());
+                        payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["weeklyPaymentId"]), data["dayOfWeek"].ToString());
                         break;
                     case "MonthlyPayment":
-                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["pay"]),Convert.ToInt32(data["monthlyPaymentId"]), Convert.ToInt32(data["day"]));
+                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["monthlyPaymentId"]), Convert.ToInt32(data["day"]));
                         break;
                     default:
                         return null;
                 }
                 JSON playerFilter = new JSON();
                 playerFilter.Add(new Dictionary<string, object>());
-                playerFilter[0].Add("meta",true);
+                playerFilter[0].Add("meta", true);
                 playerFilter[0].Add("playerId", playerId);
 
                 Contract contract = new Contract(contractId, startDate, endDate, transferFee, payment, penaltyFee, leasePossibility, retrieveClub(clubFilter)[0], retrievePlayer(playerFilter)[0], contractType, tradeType, isPublic);
@@ -395,7 +395,7 @@ namespace SoccerTradingSystem.Controller
             JSON result = rd.getGameData();
             String keyword = "";
 
-            for(int i = 0; i < result.Count; i++)
+            for (int i = 0; i < result.Count; i++)
             {
                 String globalString = "";
                 Dictionary<string, object> data = result[i];
@@ -447,7 +447,7 @@ namespace SoccerTradingSystem.Controller
                 String bankName = data["bankName"].ToString();
                 String country = data["country"].ToString();
                 int key = Convert.ToInt32(data["secretKey"]);
-                BankAccount bankAccount = new BankAccount(accountId,clientId, bankName, country,balance, new Model.BankAccountAuth(key));
+                BankAccount bankAccount = new BankAccount(accountId, clientId, bankName, country, balance, new Model.BankAccountAuth(key));
                 var flag = true;
 
                 if (filter != null)

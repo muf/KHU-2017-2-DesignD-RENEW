@@ -104,20 +104,21 @@ namespace SoccerTradingSystem.Views
             String startDate = startDateBox.Text;
             String endDate = endDateBox.Text;
             int transferFee = Convert.ToInt32(tranferFeeBox.Text);
-            int yearlyPay = Convert.ToInt32(yearlyPayBox.Text);
+            int pay = Convert.ToInt32(yearlyPayBox.Text);
             int penaltyFee = Convert.ToInt32(penaltyBox.Text);
-            int pay = 30;
+            int day = Convert.ToInt32(dayBox.Text);
+            String time = Convert.ToString(dayBox.Text);
             Payment payment = null;
             switch (paymentComboBox.SelectedValue.ToString())
             {
                 case "System.Windows.Controls.ComboBoxItem: 월급":
-                    payment = new MonthlyPayment(-1, "MonthlyPayment", pay , -1, 1);
+                    payment = new MonthlyPayment(-1, "MonthlyPayment", pay , -1, day);
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 주급":
                     payment = new WeeklyPayment(-1, "WeeklyPayment", pay, -1, DayofWeekComboBox.SelectedValue.ToString());
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 일급":
-                    payment = new DailyPayment(-1, "DailyPayment", pay, - 1, "0");
+                    payment = new DailyPayment(-1, "DailyPayment", pay, - 1, time);
                     break;
                 default:
                     break;

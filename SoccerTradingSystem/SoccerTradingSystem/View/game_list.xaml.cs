@@ -44,6 +44,7 @@ namespace SoccerTradingSystem.Views
             JSON filter = new JSON();
             filter.Add(new Dictionary<string, object>());
             List<Game> list = rh.retrieveGame(null);
+            //List<Game> list = null;
 
             if (list == null)
                 return;
@@ -67,8 +68,8 @@ namespace SoccerTradingSystem.Views
             for (int i = 0; i < list.Count; i++)
             {
                 string gid = Convert.ToString(list[i].gameId);
-                string homeId = Convert.ToString(list[i].homeTeam.clubId);
-                string awayId = Convert.ToString(list[i].awayTeam.clubId);
+                string homeId = Convert.ToString(list[i].homeTeam.name);
+                string awayId = Convert.ToString(list[i].awayTeam.name);
                 string homeScore = Convert.ToString(list[i].homeScore);
                 string awayScore = Convert.ToString(list[i].awayScore);
                 string winner;

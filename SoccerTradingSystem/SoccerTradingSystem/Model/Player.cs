@@ -8,15 +8,15 @@ namespace SoccerTradingSystem.Model
 {
     class Player : Client
     {
-        public int playerId { get; } = -1; // unique player id
-        public String firstName { get; } = "";
-        public String middleName { get; } = "";
-        public String lastName { get; } = "";
-        public int birth { get; } = -1;
-        public String position { get; } = "";
+        public int playerId { get;} = -1; // unique player id
+        public String firstName { get; set; } = "";
+        public String middleName { get; set; } = "";
+        public String lastName { get; set; } = "";
+        public int birth { get; set; } = -1;
+        public String position { get; set; } = "";
         public int recentRate { get; } = -1;
-        public int weight { get; } = -1;
-        public int height { get; } = -1;
+        public int weight { get; set; } = -1;
+        public int height { get; set; } = -1;
         public String status { get; } = "";
         public List<Club> clubs { get; }
 

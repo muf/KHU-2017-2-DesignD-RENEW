@@ -95,5 +95,9 @@ namespace SoccerTradingSystem.Controller
             sad.deleteManagerData(manager);
             return true;
         }
+        public int predictBalance(Club club, String date)
+        {
+           return  sad.predictBalance(club, date);
+        }
     }
 }

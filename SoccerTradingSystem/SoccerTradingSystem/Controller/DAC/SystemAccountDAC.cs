@@ -97,5 +97,43 @@ namespace SoccerTradingSystem.Controller.DAC
             queryResult = execute(query);
             return true;
         }
+
+        public int predictBalance(Club club, String date)
+        {
+            query = $"select startDate, endDate, payment.paymentId, payment.type, payment.pay, contract.clubId from contract INNER JOIN payment on payment.paymentId = contract.paymentId  where clubId ={club.clubId};";
+            queryResult = execute(query);
+
+            int cost = 0;
+            for (int i = 0; i < queryResult.Count; i++)
+            {
+                //int startDate = Convert.ToInt32(queryResult[i]["startDate"]);
+                //int endDate = Convert.ToInt32(queryResult[i]["endDate"]);
+                DateTime localDate = DateTime.Now;
+                int term = Convert.ToInt32(date) - (localDate.Year * 10000 + localDate.Month * 100 + localDate.Day);
+                if (term < 0) return 0;
+                switch (queryResult[i]["type"].ToString())
+                {
+                    case "DailyPayment":
+                        cost += Convert.ToInt32(queryResult[i]["pay"])*(term/1);
+                        break;
+                    case "WeeklyPayment":
+                        cost += Convert.ToInt32(queryResult[i]["pay"])*(term/7);
+                        break;
+                    case "MontlyPayment":
+                        cost += Convert.ToInt32(queryResult[i]["pay"])*(term/30);
+                        break;
+                }
+            }
+                
+            query = $"select bankAccount.*, client.userId, client.type from bankAccount INNER JOIN client where userId = {club.uid}";
+            queryResult = execute(query);
+            int total = 0;
+            for(int i = 0; i < queryResult.Count; i ++)
+            {
+                total += Convert.ToInt32(queryResult[i]["balance"]);
+            }
+
+            return total - cost;
+        }
     }
 }

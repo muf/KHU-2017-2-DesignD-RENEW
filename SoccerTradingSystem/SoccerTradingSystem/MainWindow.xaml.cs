@@ -42,10 +42,17 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
-
             RetrieveHandler rh = new RetrieveHandler();
+            JSON clubF = new JSON();
+            clubF.Add(new Dictionary<string, object>());
+            clubF[0].Add("uid", 3);
+            List<Club> clubs = rh.retrieveClub(clubF);
+            Club club = clubs[0];
+            SystemAccountHandler sah = new SystemAccountHandler();
 
-            List<Game>games = rh.retrieveGame(null);
+            int co = sah.predictBalance(club, "20171230");
+
+
 
         }
         //void 계약동시추가()

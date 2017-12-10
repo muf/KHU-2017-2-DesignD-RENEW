@@ -50,16 +50,16 @@ namespace SoccerTradingSystem.Controller
                     if (clientType == UserType.Club)
                     {
                         JSON filterC = new JSON();
-                        filter.Add(new Dictionary<string, object>());
-                        filter[0].Add("uid", _uid);
+                        filterC.Add(new Dictionary<string, object>());
+                        filterC[0].Add("uid", _uid);
                         user = retrieveClub(filterC)[0];
                         //user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", 0, null, null);
                     }
                     else if (clientType == UserType.Player)
                     {
                         JSON filterC = new JSON();
-                        filter.Add(new Dictionary<string, object>());
-                        filter[0].Add("uid", _uid);
+                        filterC.Add(new Dictionary<string, object>());
+                        filterC[0].Add("uid", _uid);
                         user = retrievePlayer(filterC)[0];
                         //user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", "", 0, "", 0, 0, 0, "", null);
                     }
@@ -71,8 +71,8 @@ namespace SoccerTradingSystem.Controller
                 else if (data["clientId"].ToString() == "")
                 {
                     JSON filterC = new JSON();
-                    filter.Add(new Dictionary<string, object>());
-                    filter[0].Add("uid", _uid);
+                    filterC.Add(new Dictionary<string, object>());
+                    filterC[0].Add("uid", _uid);
                     user = retrieveManager(filterC)[0];
                     //user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
                 }

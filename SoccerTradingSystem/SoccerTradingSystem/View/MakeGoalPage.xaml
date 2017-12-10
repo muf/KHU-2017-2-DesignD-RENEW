@@ -9,32 +9,36 @@
       Title="MakeGoalPage">
     <Grid Margin="0,0,-0,-0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="290*"/>
-            <ColumnDefinition Width="290*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="221"/>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="34"/>
+            <RowDefinition Height="34"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource BgSuccess}" Margin="10" Padding="10" TextBlock.Foreground="#333" Grid.RowSpan="2">
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource BgSuccess}" Margin="10" Padding="10" TextBlock.Foreground="#333" Grid.RowSpan="2">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Name="titlebox" FontSize="20" Text="득점 정보 입력"/>
         </Border>
 
-        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="goalDataGrid" VerticalAlignment="Top" Height="197" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="25,10,22,0">
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="3" GridLinesVisibility="None" IsReadOnly="True" AutoGenerateColumns="False" x:Name="goalDataGrid" VerticalAlignment="Top" Height="197" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="25,10,22,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="골을 넣은 선수" Binding="{Binding player}"/>
                 <DataGridTextColumn Header="어시스트" Binding="{Binding asist}"/>
                 <DataGridTextColumn Header="시간" Binding="{Binding time}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Grid.Row="3" x:Name="playertextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="선수" VerticalAlignment="Top" Width="35" RenderTransformOrigin="1.2,1.875" Margin="25,8,0,0" Height="16"/>
-        <TextBox Grid.Row="3" x:Name="playertextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="26,34,0,0" />
-        <TextBlock Grid.Row="3" x:Name="asisttextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="어시스트" VerticalAlignment="Top" Margin="182,8,0,0" Height="16" Width="48"/>
-        <TextBox Grid.Row="3" x:Name="asisttextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="180,34,0,0" Grid.ColumnSpan="2"/>
-        <TextBlock Grid.Row="3" x:Name="goaltimetextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="득점 시간" VerticalAlignment="Top" Grid.Column="1" Margin="98,8,0,0" Height="16" Width="52"/>
-        <TextBox Grid.Row="3" x:Name="goaltimetextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="98,34,0,0" Grid.Column="1"/>
-        <Button Style="{StaticResource SuccessButton}" Grid.Row="3" x:Name="addBtn" Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Click="addBtn_Click" Grid.Column="1" Margin="142,67,0,0" Height="30"/>
+        <TextBlock VerticalAlignment="Center" Grid.Row="3" x:Name="playertextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="선수" Grid.Column="0" Height="16" Width="24"/>
+        <TextBlock Grid.Row="3" x:Name="asisttextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="어시스트" VerticalAlignment="Center" Grid.Column="1" Height="16" Width="48"/>
+        <TextBlock Grid.Row="3" x:Name="goaltimetextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="득점 시간" VerticalAlignment="Center"  Grid.Column="2" Height="16" Width="63" Margin="0,5"/>
+        <ComboBox Grid.Row="4" Grid.Column="0" x:Name="playercombobox" Margin="0,0,10,10"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="asistcombobox" Margin="0,0,5,10"/>
+        <TextBox Grid.Row="4" Grid.Column="2" x:Name="goaltimetextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource SuccessButton}" x:Name="addBtn" Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Click="addBtn_Click"/>
     </Grid>
 </Page>

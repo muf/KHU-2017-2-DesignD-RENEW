@@ -36,7 +36,7 @@ namespace SoccerTradingSystem.View
     {
         public MakeGamePage _MakeGamePage = new MakeGamePage();
         public MakeRatingPage _MakeRatingPage = new MakeRatingPage();
-        public MakeGoalPage _MakeGoalPage = new MakeGoalPage();
+        public MakeGoalPage _MakeGoalPage = null;
         int curPage = 0;
 
         public MakeGameWindow()
@@ -78,6 +78,23 @@ namespace SoccerTradingSystem.View
             if(curPage == 0)
             {
                 // Validation Game Page
+                if (_MakeGoalPage == null)
+                {
+                    RetrieveHandler rh = new RetrieveHandler();
+
+                    JSON home_filter = new JSON();
+                    home_filter.Add(new Dictionary<string, object>());
+                    home_filter[0].Add("name", _MakeGamePage.homeTeamcomboBox.SelectedItem.ToString());
+
+                    JSON away_filter = new JSON();
+                    away_filter.Add(new Dictionary<string, object>());
+                    away_filter[0].Add("name", _MakeGamePage.awayTeamcomboBox.SelectedItem.ToString());
+
+                    List<Club> home_clubs = rh.retrieveClub(home_filter);
+                    List<Club> away_clubs = rh.retrieveClub(away_filter);
+                    //_MakeGoalPage = new MakeGoalPage();
+                    _MakeGoalPage = new MakeGoalPage(home_clubs[0].uid, away_clubs[0].uid);
+                }
 
                 createGoalBtn_Click();
                 PrevBtn.Visibility = System.Windows.Visibility.Visible;

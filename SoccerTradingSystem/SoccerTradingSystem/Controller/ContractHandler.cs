@@ -17,7 +17,7 @@ namespace SoccerTradingSystem.Controller
     using ContractType = SoccerTradingSystem.Model.Types.ContractType;
     using ContractDAC = SoccerTradingSystem.Controller.DAC.ContractDAC;
 
-    class ContractHandler
+    class ContractHandler: RetrieveHandler
     {
         private ContractDAC cd  = new ContractDAC();
 

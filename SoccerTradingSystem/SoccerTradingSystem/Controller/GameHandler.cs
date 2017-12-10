@@ -15,7 +15,7 @@ namespace SoccerTradingSystem.Controller
     using JSON = List<Dictionary<string, object>>;
     using GameDAC = SoccerTradingSystem.Controller.DAC.GameDAC;
 
-    class GameHandler
+    class GameHandler: RetrieveHandler
     {
         private GameDAC gd = new GameDAC();
         public bool registerGame(Game game)

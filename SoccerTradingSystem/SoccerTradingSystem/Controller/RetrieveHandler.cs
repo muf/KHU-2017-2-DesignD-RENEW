@@ -14,6 +14,10 @@ namespace SoccerTradingSystem.Controller
     using Contract = SoccerTradingSystem.Model.Contract;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
     using Manager = SoccerTradingSystem.Model.Manager;
+    using Payment = SoccerTradingSystem.Model.Payment;
+    using DailyPayment = SoccerTradingSystem.Model.DailyPayment;
+    using WeeklyPayment = SoccerTradingSystem.Model.WeeklyPayment;
+    using MonthlyPayment = SoccerTradingSystem.Model.MonthlyPayment;
     using UserType = SoccerTradingSystem.Model.Types.UserType ;
     using RetrieveDAC = SoccerTradingSystem.Controller.DAC.RetrieveDAC;
 
@@ -22,7 +26,7 @@ namespace SoccerTradingSystem.Controller
     class RetrieveHandler
     {
         protected JSON queryResult;
-        protected RetrieveDAC rd = new RetrieveDAC();
+        protected RetrieveDAC rd = new RetrieveDAC(); 
 
         public List<User> retrieveUser(JSON filter)
         {
@@ -81,10 +85,6 @@ namespace SoccerTradingSystem.Controller
                 {
                     users.Add(user);
                 }
-                //if (globalString.IndexOf(keyword) != -1)
-                //{
-                //    users.Add(user);
-                //}
             }
             return users;
         }
@@ -133,6 +133,13 @@ namespace SoccerTradingSystem.Controller
                             flag = false;
                         }
                     }
+                    if (filter[0].ContainsKey("playerId"))
+                    {
+                        if (player.playerId != Convert.ToInt32(filter[0]["playerId"]))
+                        {
+                            flag = false;
+                        }
+                    }
                 }
 
                 if (flag)
@@ -174,6 +181,13 @@ namespace SoccerTradingSystem.Controller
                     if (filter[0].ContainsKey("uid"))
                     {
                         if (club.uid != Convert.ToInt32(filter[0]["uid"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                    if (filter[0].ContainsKey("clubId"))
+                    {
+                        if (club.clubId != Convert.ToInt32(filter[0]["clubId"]))
                         {
                             flag = false;
                         }
@@ -229,8 +243,77 @@ namespace SoccerTradingSystem.Controller
         }
         public List<Contract> retrieveContract(JSON filter)
         {
+            List<Contract> contracts = new List<Contract>();
 
-            return null;
+            JSON result = rd.getContractData();
+            String keyword = "";
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                String globalString = "";
+                Dictionary<string, object> data = result[i];
+                int contractId = Convert.ToInt32(data["contractId"]);
+                int playerId = Convert.ToInt32(data["playerId"]);
+                int clubId = Convert.ToInt32(data["clubId"]);
+                String startDate = data["startDate"].ToString();
+                String endDate = data["endDate"].ToString();
+                int transferFee = Convert.ToInt32(data["transferFee"]);
+                int paymentId = Convert.ToInt32(data["paymentId"]);
+                int penaltyFee = Convert.ToInt32(data["penaltyFee"]);
+                bool leasePossibility = data["leasePossibility"].ToString() == "True" ? true : false;
+                String contractType = data["contractType"].ToString();
+                String tradeType = data["tradeType"].ToString();
+                bool isPublic = data["isPublic"].ToString() == "True" ? true : false;
+                String type = data["type"].ToString();
+                JSON clubFilter = new JSON();
+                clubFilter.Add(new Dictionary<string, object>());
+                clubFilter[0].Add("clubId", clubId);
+                Payment payment = null;
+                switch (type)
+                {
+                    case "DailyPayment":
+                        payment = new DailyPayment(paymentId, "DailyPayment", Convert.ToInt32(data["dailyPaymentId"]), data["time"].ToString());
+                        break;
+                    case "WeeklyPayment":
+                        payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["weeklyPaymentId"]),data["dayOfWeek"].ToString());
+                        break;
+                    case "MonthlyPayment":
+                        payment = new DailyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["monthlyPaymentId"]), data["day"].ToString());
+                        break;
+                    default:
+                        return null;
+                }
+                JSON playerFilter = new JSON();
+                playerFilter.Add(new Dictionary<string, object>());
+                playerFilter[0].Add("playerId", playerId);
+
+                Contract contract = new Contract(contractId, startDate, endDate, transferFee, payment, penaltyFee, leasePossibility, retrieveClub(clubFilter)[0], retrievePlayer(playerFilter)[0], contractType, tradeType, isPublic);
+                var flag = true;
+
+                if (filter != null)
+                {
+                    if (filter[0].ContainsKey("clientId"))
+                    {
+                        if (contract.club.clubId != Convert.ToInt32(filter[0]["clientId"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                    else if (filter[0].ContainsKey("playerId"))
+                    {
+                        if (contract.player.playerId != Convert.ToInt32(filter[0]["playerId"]))
+                        {
+                            flag = false;
+                        }
+
+                    }
+                }
+                if (flag)
+                {
+                    contracts.Add(contract);
+                }
+            }
+            return contracts;
         }
         public List<Game> retrieveGame(JSON filter)
         {

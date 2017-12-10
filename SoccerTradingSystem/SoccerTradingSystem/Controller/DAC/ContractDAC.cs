@@ -22,10 +22,10 @@ namespace SoccerTradingSystem.Controller.DAC
                 case "DailyPayment":
                     query += $"INSERT INTO {DailyPaymentTable} VALUES ( '0', (SELECT MAX(paymentId) FROM Payment), '{((DailyPayment)(contract.payment)).time}');";
                     break;
-                case "Weeklypayment":
+                case "WeeklyPayment":
                     query += $"INSERT INTO {WeeklypaymentTable} VALUES ( '0', (SELECT MAX(paymentId) FROM Payment), '{((WeeklyPayment)(contract.payment)).dayOfWeek}');";
                     break;
-                case "Monthlypayment":
+                case "MonthlyPayment":
                     query += $"INSERT INTO {MonthlypaymentTable} VALUES ( '0', (SELECT MAX(paymentId) FROM Payment), '{((MonthlyPayment)(contract.payment)).day}');";
                     break;
                 default:

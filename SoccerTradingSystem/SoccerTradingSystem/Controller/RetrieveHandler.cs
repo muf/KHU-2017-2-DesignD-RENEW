@@ -292,6 +292,20 @@ namespace SoccerTradingSystem.Controller
 
                 if (filter != null)
                 {
+                    if (filter[0].ContainsKey("contractId"))
+                    {
+                        if (contract.contractId != Convert.ToInt32(filter[0]["contractId"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                    if (filter[0].ContainsKey("clubId"))
+                    {
+                        if (contract.club.clubId != Convert.ToInt32(filter[0]["clubId"]))
+                        {
+                            flag = false;
+                        }
+                    }
                     if (filter[0].ContainsKey("clientId"))
                     {
                         if (contract.club.clubId != Convert.ToInt32(filter[0]["clientId"]))

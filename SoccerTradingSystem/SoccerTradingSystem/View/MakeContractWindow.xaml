@@ -22,6 +22,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
@@ -38,10 +39,12 @@
         <TextBlock Grid.Row="5" Grid.Column="1" x:Name="tranferFeeBlock" HorizontalAlignment="Left" Text="이적료" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="6" Grid.Column="1" x:Name="yearlyPayBlock" HorizontalAlignment="Left" Text="연봉" FontSize="20" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="7" Grid.Column="1" x:Name="penaltyBlock" HorizontalAlignment="Left" Text="벌칙금" FontSize="20" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="8" Grid.Column="1" x:Name="leaseBlock" HorizontalAlignment="Left" Text="리스 가능 여부" FontSize="20" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="9" Grid.Column="1" x:Name="contractTypeBlock" HorizontalAlignment="Left" Text="계약 타입" FontSize="20" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="10" Grid.Column="1" x:Name="tradeTypeBlock" HorizontalAlignment="Left" Text="트레이드 타입" FontSize="20" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="11" Grid.Column="1" x:Name="isPublicBlock" HorizontalAlignment="Left" Text="계약 공개 여부" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" x:Name="paymentBlock" HorizontalAlignment="Left" Text="지급 방식" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" x:Name="leaseBlock" HorizontalAlignment="Left" Text="리스 가능 여부" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="10" Grid.Column="1" x:Name="contractTypeBlock" HorizontalAlignment="Left" Text="계약 타입" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="11" Grid.Column="1" x:Name="tradeTypeBlock" HorizontalAlignment="Left" Text="트레이드 타입" FontSize="20" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="12" Grid.Column="1" x:Name="isPublicBlock" HorizontalAlignment="Left" Text="계약 공개 여부" FontSize="20" VerticalAlignment="Center"/>
+
 
         <TextBox Margin="5,4,5,4" Grid.Row="1" Grid.Column="2" x:Name="clubNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
         <TextBox Margin="5,4,5,4" Grid.Row="2" Grid.Column="2" x:Name="playerNameBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center" IsReadOnly="True"/>
@@ -50,22 +53,35 @@
         <TextBox Margin="5,4,5,4" Grid.Row="5" Grid.Column="2" x:Name="tranferFeeBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
         <TextBox Margin="5,4,5,4" Grid.Row="6" Grid.Column="2" x:Name="yearlyPayBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
         <TextBox Margin="5,4,5,4" Grid.Row="7" Grid.Column="2" x:Name="penaltyBox" HorizontalAlignment="Stretch" Text="" FontSize="20" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="8" Grid.Column="2" x:Name="leaseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
-        <TextBlock FontSize="8" Grid.Row="8" Grid.Column="2" x:Name="leaseCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 리스 가능" Margin="57,14,15,14" Width="92"/>
-        <ComboBox Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="contractionTypeComboBox" Margin="17,9,15,9" Width="132">
+        <ComboBox Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="paymentComboBox" Margin="17,10,61,8" Width="86">
+            <ComboBoxItem IsSelected="True" Content="월급"></ComboBoxItem>
+            <ComboBoxItem Content="주급"></ComboBoxItem>
+            <ComboBoxItem Content="일급"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox VerticalContentAlignment="Center" FontSize="7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="DayofWeekComboBox" Margin="104,10,15,8" Width="45" Height="22">
+            <ComboBoxItem IsSelected="True" Content="MON"></ComboBoxItem>
+            <ComboBoxItem Content="TUE"></ComboBoxItem>
+            <ComboBoxItem Content="WED"></ComboBoxItem>
+            <ComboBoxItem Content="THU"></ComboBoxItem>
+            <ComboBoxItem Content="FRI"></ComboBoxItem>
+            <ComboBoxItem Content="SAT"></ComboBoxItem>
+            <ComboBoxItem Content="SUN"></ComboBoxItem>
+        </ComboBox>
+        <CheckBox Grid.Row="9" Grid.Column="2" x:Name="leaseCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
+        <TextBlock FontSize="8" Grid.Row="9" Grid.Column="2" x:Name="leaseCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 리스 가능" Margin="57,14,15,14" Width="92"/>
+        <ComboBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="contractionTypeComboBox" Margin="17,9,15,9" Width="132">
             <ComboBoxItem IsSelected="True" Content="제안"></ComboBoxItem>
             <ComboBoxItem Content="만료"></ComboBoxItem>
             <ComboBoxItem Content="파기"></ComboBoxItem>
             <ComboBoxItem Content="거절"></ComboBoxItem>
             <ComboBoxItem Content="보류 중"></ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="tradeTypeComboBox" Margin="17,9,15,9" Width="132">
-            <ComboBoxItem IsSelected="True" Content="월급"></ComboBoxItem>
-            <ComboBoxItem Content="주급"></ComboBoxItem>
-            <ComboBoxItem Content="일급"></ComboBoxItem>
+        <ComboBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="tradeTypeComboBox" Margin="17,9,15,9" Width="132">
+            <ComboBoxItem IsSelected="True" Content="일반 계약"></ComboBoxItem>
+            <ComboBoxItem Content="리스 계약"></ComboBoxItem>
         </ComboBox>
-        <CheckBox Grid.Row="11" Grid.Column="2" x:Name="isPublicCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
-        <TextBlock FontSize="8" Grid.Row="11" Grid.Column="2" x:Name="IsPublicCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 공개 등록" Margin="57,14,15,14" Width="92"/>
-        <Button Style="{StaticResource SuccessButton}" Margin="30,20,30,2" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContractBtn" Content="계약서 전달" Click="ContractBtn_Click"/>
+        <CheckBox Grid.Row="12" Grid.Column="2" x:Name="isPublicCheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,112,12"/>
+        <TextBlock FontSize="8" Grid.Row="12" Grid.Column="2" x:Name="IsPublicCheckTextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Text="체크 시 공개 등록" Margin="57,14,15,14" Width="92"/>
+        <Button Style="{StaticResource SuccessButton}" Margin="30,20,30,2" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ContractBtn" Content="계약서 전달" Click="ContractBtn_Click"/>
     </Grid>
 </Window>

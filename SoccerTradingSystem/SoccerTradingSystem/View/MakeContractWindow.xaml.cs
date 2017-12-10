@@ -18,6 +18,12 @@ using Manager = SoccerTradingSystem.Model.Manager;
 using User = SoccerTradingSystem.Model.User;
 using Contract = SoccerTradingSystem.Model.Contract;
 using Payment = SoccerTradingSystem.Model.Payment;
+using MonthlyPayment = SoccerTradingSystem.Model.MonthlyPayment;
+using WeeklyPayment = SoccerTradingSystem.Model.WeeklyPayment;
+using DailyPayment = SoccerTradingSystem.Model.DailyPayment;
+using ContractType = SoccerTradingSystem.Model.Types.ContractType;
+using TradeType = SoccerTradingSystem.Model.Types.TradeType;
+using DayOfWeek = SoccerTradingSystem.Model.Types.DayOfWeek;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using ContractHandler = SoccerTradingSystem.Controller.ContractHandler;
@@ -100,10 +106,67 @@ namespace SoccerTradingSystem.Views
             int transferFee = Convert.ToInt32(tranferFeeBox.Text);
             int yearlyPay = Convert.ToInt32(yearlyPayBox.Text);
             int penaltyFee = Convert.ToInt32(penaltyBox.Text);
-            Payment payment = new Payment(-1, "Yearly");
+            Payment payment;
+            switch (paymentComboBox.SelectedValue.ToString())
+            {
+                case "System.Windows.Controls.ComboBoxItem: 월급":
+                    payment = new MonthlyPayment(-1, "MonthlyPayment", 1, DayofWeekComboBox.SelectedValue.ToString());
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 주급":
+                    payment = new WeeklyPayment(-1, "WeeklyPayment", -1, DayofWeekComboBox.SelectedValue.ToString());
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 일급":
+                    payment = new DailyPayment(-1, "DailyPayment", -1, "0");
+                    break;
+                default:
+                    break;
+            }
+            if (paymentComboBox.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: 월급")
+            {
+                payment = new MonthlyPayment(-1, "MonthlyPayment", 30, DayOfWeek.MON);
+            }
+            else if (paymentComboBox.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: 주급")
+            {
+                payment = new Payment(-1, "WeeklyPayment");
+            }
+            else
+            {
+                payment = new Payment(-1, "DailyPayment");
+            }
             bool leasePossibility = leaseCheckBox.IsChecked.Value;
-            String contractType = contractionTypeComboBox.SelectedItem.ToString();
-            String tradeType = tradeTypeComboBox.SelectedItem.ToString();
+            String contractType = "";
+            switch (contractionTypeComboBox.SelectedItem.ToString())
+            {
+                case "System.Windows.Controls.ComboBoxItem: 제안":
+                    contractType = ContractType.OFFER;
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 만료":
+                    contractType = ContractType.EXPIRE;
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 파기":
+                    contractType = ContractType.DESTRUCT;
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 거절":
+                    contractType = ContractType.DECLINE;
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 보류 중":
+                    contractType = ContractType.UNDER;
+                    break;
+                default:
+                    break;
+            }
+            String tradeType = "";
+            switch (tradeTypeComboBox.SelectedItem.ToString())
+            {
+                case "System.Windows.Controls.ComboBoxItem: 일반 계약":
+                    tradeType = TradeType.BELONG;
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: 리스 계약":
+                    tradeType = TradeType.LEASE;
+                    break;
+                default:
+                    break;
+            }
             bool isPublic = isPublicCheckBox.IsChecked.Value;
 
             JSON clubfilter = new JSON();

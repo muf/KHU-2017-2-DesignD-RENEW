@@ -90,15 +90,37 @@ namespace SoccerTradingSystem.Views
 
         private bool validationCheck()
         {
-            if (IsDigitsOnly(startDateBox.Text))
+            if (startDateBox.Text == "")
                 return false;
-            if (IsDigitsOnly(endDateBox.Text))
+            if (endDateBox.Text == "")
                 return false;
-            if (IsDigitsOnly(tranferFeeBox.Text))
+            if (tranferFeeBox.Text == "")
                 return false;
-            if (IsDigitsOnly(yearlyPayBox.Text))
+            if (yearlyPayBox.Text == "")
                 return false;
-            if (IsDigitsOnly(penaltyBox.Text))
+            if (penaltyBox.Text == "")
+                return false;
+
+            if (paymentComboBox.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: 주급")
+            {
+                dayBox.Text = "0";
+            }else
+            {
+                if(dayBox.Text == "")
+                {
+                    return false;
+                }
+            }
+
+            if (!IsDigitsOnly(startDateBox.Text))
+                return false;
+            if (!IsDigitsOnly(endDateBox.Text))
+                return false;
+            if (!IsDigitsOnly(tranferFeeBox.Text))
+                return false;
+            if (!IsDigitsOnly(yearlyPayBox.Text))
+                return false;
+            if (!IsDigitsOnly(penaltyBox.Text))
                 return false;
 
             return true;
@@ -144,13 +166,13 @@ namespace SoccerTradingSystem.Views
             switch (paymentComboBox.SelectedValue.ToString())
             {
                 case "System.Windows.Controls.ComboBoxItem: 월급":
-                    payment = new MonthlyPayment(-1, "MonthlyPayment", pay , -1, day);
+                    payment = new MonthlyPayment(-1, "MonthlyPayment", pay, -1, day);
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 주급":
                     payment = new WeeklyPayment(-1, "WeeklyPayment", pay, -1, DayofWeekComboBox.SelectedValue.ToString());
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 일급":
-                    payment = new DailyPayment(-1, "DailyPayment", pay, - 1, time);
+                    payment = new DailyPayment(-1, "DailyPayment", pay, -1, time);
                     break;
                 default:
                     break;

@@ -94,7 +94,7 @@ namespace SoccerTradingSystem.Views
 
         private void PlayerOfferBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (playerCheck())
+            if (!playerCheck())
             {
                 MessageBox.Show("플레이어 정보 오류입니다.");
                 return;

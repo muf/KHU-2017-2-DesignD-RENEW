@@ -106,32 +106,21 @@ namespace SoccerTradingSystem.Views
             int transferFee = Convert.ToInt32(tranferFeeBox.Text);
             int yearlyPay = Convert.ToInt32(yearlyPayBox.Text);
             int penaltyFee = Convert.ToInt32(penaltyBox.Text);
-            Payment payment;
+            int pay = 30;
+            Payment payment = null;
             switch (paymentComboBox.SelectedValue.ToString())
             {
                 case "System.Windows.Controls.ComboBoxItem: 월급":
-                    payment = new MonthlyPayment(-1, "MonthlyPayment", 1, DayofWeekComboBox.SelectedValue.ToString());
+                    payment = new MonthlyPayment(-1, "MonthlyPayment", pay , -1, 1);
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 주급":
-                    payment = new WeeklyPayment(-1, "WeeklyPayment", -1, DayofWeekComboBox.SelectedValue.ToString());
+                    payment = new WeeklyPayment(-1, "WeeklyPayment", pay, -1, DayofWeekComboBox.SelectedValue.ToString());
                     break;
                 case "System.Windows.Controls.ComboBoxItem: 일급":
-                    payment = new DailyPayment(-1, "DailyPayment", -1, "0");
+                    payment = new DailyPayment(-1, "DailyPayment", pay, - 1, "0");
                     break;
                 default:
                     break;
-            }
-            if (paymentComboBox.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: 월급")
-            {
-                payment = new MonthlyPayment(-1, "MonthlyPayment", 30, DayOfWeek.MON);
-            }
-            else if (paymentComboBox.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: 주급")
-            {
-                payment = new Payment(-1, "WeeklyPayment");
-            }
-            else
-            {
-                payment = new Payment(-1, "DailyPayment");
             }
             bool leasePossibility = leaseCheckBox.IsChecked.Value;
             String contractType = "";

@@ -278,7 +278,7 @@ namespace SoccerTradingSystem.Controller
                         payment = new WeeklyPayment(paymentId, "WeeklyPayment", Convert.ToInt32(data["pay"]), Convert.ToInt32(data["weeklyPaymentId"]),data["dayOfWeek"].ToString());
                         break;
                     case "MonthlyPayment":
-                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["pay"]),Convert.ToInt32(data["monthlyPaymentId"]), data["day"].ToString());
+                        payment = new MonthlyPayment(paymentId, "MonthlyPayment", Convert.ToInt32(data["pay"]),Convert.ToInt32(data["monthlyPaymentId"]), Convert.ToInt32(data["day"]));
                         break;
                     default:
                         return null;

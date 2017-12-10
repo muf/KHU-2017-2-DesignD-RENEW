@@ -35,7 +35,7 @@
         </DataGrid>
         <TextBlock VerticalAlignment="Center" Grid.Row="3" x:Name="playertextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="선수" Grid.Column="0" Height="16" Width="24"/>
         <TextBlock Grid.Row="3" x:Name="asisttextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="어시스트" VerticalAlignment="Center" Grid.Column="1" Height="16" Width="48"/>
-        <TextBlock Grid.Row="3" x:Name="goaltimetextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="득점 시간" VerticalAlignment="Center"  Grid.Column="2" Height="16" Width="63" Margin="0,5"/>
+        <TextBlock Grid.Row="3" x:Name="goaltimetextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="득점 시각" VerticalAlignment="Center"  Grid.Column="2" Height="16" Width="63" Margin="0,5"/>
         <ComboBox Grid.Row="4" Grid.Column="0" x:Name="playercombobox" Margin="0,0,10,10"/>
         <ComboBox Grid.Row="4" Grid.Column="1" x:Name="asistcombobox" Margin="0,0,5,10"/>
         <TextBox Grid.Row="4" Grid.Column="2" x:Name="goaltimetextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="24"/>

@@ -35,9 +35,11 @@ namespace SoccerTradingSystem.View
     public partial class MakeGameWindow : Window
     {
         public MakeGamePage _MakeGamePage = new MakeGamePage();
-        public MakeRatingPage _MakeRatingPage = new MakeRatingPage();
+        public MakeRatingPage _MakeRatingPage = null;
         public MakeGoalPage _MakeGoalPage = null;
         int curPage = 0;
+        int curHome = 0;
+        int curAway = 0;
 
         public MakeGameWindow()
         {
@@ -93,6 +95,8 @@ namespace SoccerTradingSystem.View
                     List<Club> home_clubs = rh.retrieveClub(home_filter);
                     List<Club> away_clubs = rh.retrieveClub(away_filter);
                     //_MakeGoalPage = new MakeGoalPage();
+                    curHome = home_clubs[0].uid;
+                    curAway = away_clubs[0].uid;
                     _MakeGoalPage = new MakeGoalPage(home_clubs[0].uid, away_clubs[0].uid);
                 }
 
@@ -102,6 +106,11 @@ namespace SoccerTradingSystem.View
             if(curPage == 1)
             {
                 // Validation Goal Page
+
+                if(_MakeRatingPage == null)
+                {
+                    _MakeRatingPage = new MakeRatingPage(curHome, curAway);
+                }
 
                 createRatingBtn_Click();
                 NextBtn.Visibility = System.Windows.Visibility.Collapsed;

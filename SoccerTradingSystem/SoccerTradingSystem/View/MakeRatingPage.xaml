@@ -17,6 +17,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="221"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource BgSuccess}" Margin="10" Padding="10" TextBlock.Foreground="#333" Grid.RowSpan="2">
@@ -29,10 +32,10 @@
                 <DataGridTextColumn Header="평점" Binding="{Binding rating}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Grid.Row="3" x:Name="playertextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="선수" VerticalAlignment="Top" Width="35" RenderTransformOrigin="1.2,1.875" Margin="25,8,0,0" Height="16"/>
-        <TextBox Grid.Row="3" x:Name="playertextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="26,34,0,0" />
-        <TextBlock Grid.Row="3" x:Name="ratingtextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="평점" VerticalAlignment="Top" Margin="12,8,0,0" Height="16" Width="48" Grid.Column="1"/>
-        <TextBox Grid.Row="3" x:Name="ratingtextbox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="10,34,0,0" Grid.Column="1"/>
-        <Button Style="{StaticResource SuccessButton}" Grid.Row="3" x:Name="addBtn" Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Grid.Column="1" Margin="142,67,0,0" Height="30" Click="addBtn_Click"/>
+        <TextBlock Grid.Row="3" x:Name="playertextblock" Text="선수" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" x:Name="ratingtextblock" Text="평점" VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="1"/>
+        <ComboBox Grid.Row="4" Grid.Column="0" x:Name="playercombobox" Margin="25,0,19,10"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="ratingtextbox" Margin="23,0,22,0"/>
+        <Button Style="{StaticResource SuccessButton}" Grid.Row="5" Grid.Column="1" x:Name="addBtn" Content="추가" Click="addBtn_Click" Margin="132,0,22,0"/>
     </Grid>
 </Page>

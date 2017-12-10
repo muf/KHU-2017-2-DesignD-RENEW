@@ -42,7 +42,9 @@ namespace SoccerTradingSystem
         {
             InitializeComponent();
             //DateTime localDate = DateTime.Now;
-
+            계약등록();
+            계약등록();
+            계약등록();
             계약읽기();
 
 
@@ -58,7 +60,7 @@ namespace SoccerTradingSystem
             filter[0].Add("uid", 10);
 
             List<Contract> contracts = ch.retrieveContract(filter);
-            ch.declineContract(contracts[0]);
+            ch.declineContract(contracts[1]);
         }
         void 계약등록()
         {
@@ -77,7 +79,7 @@ namespace SoccerTradingSystem
 
             Player player = rh.retrievePlayer(filter2)[0];
             Club club = rh.retrieveClub(filter)[0];
-            Contract contract = new Contract(0, "1", "1", 500, new Model.DailyPayment(0, "DailyPayment",0, 0, "33m"), 300, true, club, player, ContractType.OFFER, TradeType.BELONG, true);
+            Contract contract = new Contract(0, "1", "1", 500, new Model.DailyPayment(0, "DailyPayment",500, 0, "33m"), 300, true, club, player, ContractType.OFFER, TradeType.BELONG, true);
             ch.registerContract(contract);
         }
         void 게임테스트()

@@ -16,7 +16,7 @@ namespace SoccerTradingSystem.Controller.DAC
     {
         public bool addContractData(Contract contract)
         {
-            query = $"INSERT INTO {PaymentTable} VALUES ( '0', '{contract.payment.paymentType}');";
+            query = $"INSERT INTO {PaymentTable} VALUES ( '0', '{contract.payment.paymentType}', {contract.payment.pay});";
             switch (contract.payment.paymentType)
             {
                 case "DailyPayment":
@@ -47,10 +47,10 @@ namespace SoccerTradingSystem.Controller.DAC
         public bool deleteContractData(Contract contract)
         {
                 query = $"DELETE FROM {DailyPaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
-                query = $"DELETE FROM {WeeklypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
-                query = $"DELETE FROM {MonthlypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
-                query = $"DELETE FROM {PaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
-                query += $"DELETE FROM {contractTable}WHERE contractId = {contract.contractId}; ";
+                query += $"DELETE FROM {WeeklypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
+                query += $"DELETE FROM {MonthlypaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
+                query += $"DELETE FROM {PaymentTable} WHERE paymentId = {contract.payment.paymentId}; ";
+                query += $"DELETE FROM {contractTable} WHERE contractId = {contract.contractId}; ";
                 queryResult = execute(query);
             return true;
         }

@@ -21,7 +21,7 @@ namespace SoccerTradingSystem.Model
         public List<Club> clubs { get; }
 
         public Player(int uid, String email, String password, bool authenticated, int clientId, List<BankAccount> bankAccounts, int playerId, String firstName, String middleName, String lastName,
-            int birth, String position, int recentRate, int weight, int height, String status, List<Club> club) : base(uid, email, password, authenticated, clientId, bankAccounts)
+            int birth, String position, int recentRate, int weight, int height, String status, List<Club> clubs) : base(uid, email, password, authenticated, clientId, bankAccounts)
         {
             this.playerId = playerId;
             this.firstName = firstName;

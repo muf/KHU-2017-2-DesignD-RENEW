@@ -119,9 +119,30 @@ namespace SoccerTradingSystem.Controller
                 bankFilter[0].Add("clientId", clientId);
 
                 List< BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
+                List<Club> clubs = new List<Club>();
+                if (filter != null)
+                {
+                    if (!filter[0].ContainsKey("meta"))
+                    {
+                        JSON payerFilter = new JSON();
+                        payerFilter.Add(new Dictionary<string, object>());
+                        payerFilter[0].Add("playerId", playerId);
+                        payerFilter[0].Add("contractType", "UNDER");
 
+                        List<Contract> contracts = retrieveContract(payerFilter);
+                        for (int cidx = 0; cidx < contracts.Count; cidx++)
+                        {
+                            JSON clubFilter = new JSON();
+                            clubFilter.Add(new Dictionary<string, object>());
+                            clubFilter[0].Add("meta", true);
+                            clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
+                            Club club = retrieveClub(clubFilter)[0];
+                            clubs.Add(club);
+                        }
+                    }
+                }
                 Player player = new Player(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, playerId,firstName, middleName, lastName, birth, position, 0,
-                    weight, height, status,null);
+                    weight, height, status, clubs);
 
                 var flag = true;
                 if(filter != null)
@@ -173,7 +194,29 @@ namespace SoccerTradingSystem.Controller
 
                 List<BankAccount> bankAccounts = retrieveBankAccount(bankFilter);
 
-                Club club = new Club(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, clubId, name, contactNumber, birth, null, null);
+                List<Player> players = new List<Player>();
+                if (filter != null)
+                {
+                    if (!filter[0].ContainsKey("meta"))
+                    {
+                        JSON payerFilter = new JSON();
+                        payerFilter.Add(new Dictionary<string, object>());
+                        payerFilter[0].Add("clubId", clubId);
+                        payerFilter[0].Add("contractType", "UNDER");
+
+                        List<Contract> contracts = retrieveContract(payerFilter);
+                        for (int cidx = 0; cidx < contracts.Count; cidx++)
+                        {
+                            JSON clubFilter = new JSON();
+                            clubFilter.Add(new Dictionary<string, object>());
+                            clubFilter[0].Add("meta",true);
+                            clubFilter[0].Add("clubId", contracts[cidx].club.clubId);
+                            Player player = retrievePlayer(clubFilter)[0];
+                            players.Add(player);
+                        }
+                    }
+                }
+                Club club = new Club(uid, data["email"].ToString(), data["password"].ToString(), auth, clientId, bankAccounts, clubId, name, contactNumber, birth,players, null);
 
                 var flag = true;
                 if (filter != null)
@@ -267,6 +310,7 @@ namespace SoccerTradingSystem.Controller
                 String type = data["type"].ToString();
                 JSON clubFilter = new JSON();
                 clubFilter.Add(new Dictionary<string, object>());
+                clubFilter[0].Add("meta", true);
                 clubFilter[0].Add("clubId", clubId);
                 Payment payment = null;
                 switch (type)
@@ -285,6 +329,7 @@ namespace SoccerTradingSystem.Controller
                 }
                 JSON playerFilter = new JSON();
                 playerFilter.Add(new Dictionary<string, object>());
+                playerFilter[0].Add("meta",true);
                 playerFilter[0].Add("playerId", playerId);
 
                 Contract contract = new Contract(contractId, startDate, endDate, transferFee, payment, penaltyFee, leasePossibility, retrieveClub(clubFilter)[0], retrievePlayer(playerFilter)[0], contractType, tradeType, isPublic);
@@ -308,7 +353,7 @@ namespace SoccerTradingSystem.Controller
                     }
                     if (filter[0].ContainsKey("clientId"))
                     {
-                        if (contract.club.clubId != Convert.ToInt32(filter[0]["clientId"]))
+                        if (contract.club.clientId != Convert.ToInt32(filter[0]["clientId"]))
                         {
                             flag = false;
                         }
@@ -324,6 +369,13 @@ namespace SoccerTradingSystem.Controller
                     if (filter[0].ContainsKey("isPublic"))
                     {
                         if (contract.isPublic != Convert.ToBoolean(filter[0]["isPublic"]))
+                        {
+                            flag = false;
+                        }
+                    }
+                    if (filter[0].ContainsKey("contractType"))
+                    {
+                        if (contract.contractType != filter[0]["contractType"].ToString())
                         {
                             flag = false;
                         }

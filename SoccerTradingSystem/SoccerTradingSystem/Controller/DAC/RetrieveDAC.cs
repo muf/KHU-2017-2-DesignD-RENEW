@@ -73,14 +73,14 @@ namespace SoccerTradingSystem.Controller.DAC
         }
         public JSON getContractData()
         {
-            query = "select CT3.*, MonthlyPayment.monthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.weeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId";
+            query = "select CT3.*, MonthlyPayment.monthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.weeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type, payment.pay from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId;";
             queryResult = execute(query);
             return queryResult;
 
         }
         public JSON getContractData(int uid)
         {
-            query = "select CT3.*, MonthlyPayment.monthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.weeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId";
+            query = "select CT3.*, MonthlyPayment.monthlyPaymentId, MonthlyPayment.day from (select CT2.*, WeeklyPayment.weeklyPaymentId, WeeklyPayment.dayOfWeek from (select CT.*, dailyPayment.dailyPaymentId, dailyPayment.time from (SELECT Contract.*, Payment.type, payment.pay from contract  INNER JOIN Payment ON contract.paymentId = payment.paymentId) as CT LEFT OUTER JOIN DailyPayment ON DailyPayment.paymentId = CT.paymentId) as CT2 LEFT OUTER JOIN weeklyPayment ON weeklyPayment.paymentId = CT2.paymentId) as CT3 LEFT OUTER JOIN monthlyPayment ON monthlyPayment.paymentId = CT3.paymentId;";
             queryResult = execute(query);
             return queryResult;
         }

@@ -42,7 +42,32 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
-            선수동시추가();
+
+            RetrieveHandler rh = new RetrieveHandler();
+
+            JSON clubF = new JSON();
+            clubF.Add(new Dictionary<string, object>());
+            clubF[0].Add("uid", 3);
+            List<Club> clubs = rh.retrieveClub(clubF);
+
+        }
+        void 계약동시추가()
+        {
+            for (int i = 5; i < 8; i++)
+            {
+                GameHandler gh = new GameHandler();
+                RetrieveHandler rh = new RetrieveHandler();
+                ContractHandler ch = new ContractHandler();
+                SystemAccountHandler sah = new SystemAccountHandler();
+                JSON filter = new JSON();
+                filter.Add(new Dictionary<string, object>());
+                filter[0].Add("contractId", 2);
+                List<Contract> contracts = rh.retrieveContract(filter);
+                Contract contract = contracts[0];
+                contract.club.clubId = 2;
+                contract.player.playerId = i;
+                ch.registerContract(contract);
+            }
         }
         void 선수동시추가()
         {

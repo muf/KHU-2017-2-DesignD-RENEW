@@ -14,9 +14,13 @@ using System.Windows.Shapes;
 
 using RetrieveHandler = SoccerTradingSystem.Controller.RetrieveHandler;
 using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
+using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
 using ContractHandler = SoccerTradingSystem.Controller.ContractHandler;
-using Club = SoccerTradingSystem.Model.Club;
 using Contract = SoccerTradingSystem.Model.Contract;
+using Types = SoccerTradingSystem.Model.Types;
+using Player = SoccerTradingSystem.Model.Player;
+using Club = SoccerTradingSystem.Model.Club;
+using BankAccount = SoccerTradingSystem.Model.BankAccount;
 
 namespace SoccerTradingSystem.Views
 {
@@ -128,30 +132,60 @@ namespace SoccerTradingSystem.Views
 
         private void destructContractBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("정말 파기하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            BankAccountHandler bh = new BankAccountHandler();
+            ContractHandler ch = new ContractHandler();
+            RetrieveHandler rh = new RetrieveHandler();
+
+            // BANK
+            JSON bankfilter = new JSON();
+            int clientid = 0;
+            if (App.cookie.type == Types.UserType.Player)
+            {
+                clientid = ((Player)App.cookie.user).clientId;
+            }
+            if (App.cookie.type == Types.UserType.Club)
+            {
+                clientid = ((Club)App.cookie.user).clientId;
+            }
+            bankfilter.Add(new Dictionary<string, object>());
+            bankfilter[0].Add("clientId", clientid);
+            List<BankAccount> banks = rh.retrieveBankAccount(bankfilter);
+
+            // CONTRACT
+            JSON filter = new JSON();
+            filter.Add(new Dictionary<string, object>());
+            filter[0].Add("contractId", contractionId);
+            List<Contract> contracts = rh.retrieveContract(filter);
+            Contract curContract = contracts[0];
+            int penaltyFee = curContract.penaltyFee;
+
+            if (MessageBox.Show("수수료는 " + penaltyFee.ToString() + "입니다.\n" + "정말 파기하시겠습니까?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 //do no stuff
             }
             else
             {
-                ContractHandler ch = new ContractHandler();
-                RetrieveHandler rh = new RetrieveHandler();
+                BankAccount newbanks = banks[0];
+                newbanks.balance -= penaltyFee;
+                if (newbanks.balance < 0)
+                {
+                    MessageBox.Show("계약 파기에 대한 수수료가 모자릅니다. 취소합니다.");
+                    this.Close();
+                    return;
+                }
 
-                JSON filter = new JSON();
-                filter.Add(new Dictionary<string, object>());
-                filter[0].Add("contractId", contractionId);
-                List<Contract> contracts = rh.retrieveContract(filter);
-
-                Contract curContract = contracts[0];
                 if (ch.destructContract(curContract))
                 {
+                    bh.updateBankAccount(newbanks);
                     MessageBox.Show("계약의 파기가 성공적으로 완료되었습니다.");
                     this.Close();
+                    return;
                 }
                 else
                 {
                     MessageBox.Show("계약의 파기에 실패했습니다.");
                     this.Close();
+                    return;
                 }
             }
             CL.ContractionsDataGridSetting("");

@@ -39,7 +39,6 @@ namespace SoccerTradingSystem.Views
                 {
                     managerMenu.Visibility = System.Windows.Visibility.Visible;
                     userInfoBtn.Visibility = System.Windows.Visibility.Visible;
-                    gameInfoBtn.Visibility = System.Windows.Visibility.Visible;
                     gameaddBtn.Visibility = System.Windows.Visibility.Visible;
                     ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                     MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
@@ -49,7 +48,6 @@ namespace SoccerTradingSystem.Views
                 {
                     managerMenu.Visibility = System.Windows.Visibility.Collapsed;
                     userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
-                    gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                     gameaddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 }
                 if (App.cookie.userType == Types.UserType.Club || App.cookie.userType == Types.UserType.Player)
@@ -63,7 +61,6 @@ namespace SoccerTradingSystem.Views
             {
                 managerMenu.Visibility = System.Windows.Visibility.Collapsed;
                 userInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
-                gameInfoBtn.Visibility = System.Windows.Visibility.Collapsed;
                 gameaddBtn.Visibility = System.Windows.Visibility.Collapsed;
                 ContractionBtn.Visibility = System.Windows.Visibility.Collapsed;
                 MyinfoBtn.Visibility = System.Windows.Visibility.Collapsed;
@@ -102,7 +99,7 @@ namespace SoccerTradingSystem.Views
 
         private void ContractionBtn_Click(object sender, RoutedEventArgs e)
         {
-            contraction_list _contraction_list = new contraction_list();
+            contraction_list _contraction_list = new contraction_list(false);
             content_frame.Navigate(_contraction_list);
         }
 
@@ -136,6 +133,12 @@ namespace SoccerTradingSystem.Views
         {
             MakeGameWindow _MakeGameWindow = new MakeGameWindow();
             _MakeGameWindow.Show();
+        }
+
+        private void publicOfferBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contraction_list _contraction_list = new contraction_list(true);
+            content_frame.Navigate(_contraction_list);
         }
     }
 }

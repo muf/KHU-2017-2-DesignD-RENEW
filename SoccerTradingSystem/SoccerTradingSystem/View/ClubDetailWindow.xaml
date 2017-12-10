@@ -33,6 +33,6 @@
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="2" Grid.Column="1" Name="nameBlock" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="3" Grid.Column="1" Name="birthBlock" Grid.ColumnSpan="2"/>
         <TextBlock FontSize="15" VerticalAlignment="Center" Margin="67,0,74,10" Grid.Row="4" Grid.Column="1" Name="contactNumberBlock" Grid.ColumnSpan="2"/>
-        <Button Style="{StaticResource SuccessButton}" Visibility="Visible" Grid.Row="6" Grid.Column="1" Content="계약 요청하기" Name="ClubOfferBtn" Click="ClubOfferBtn_Click"></Button>
+        <Button Style="{StaticResource SuccessButton}" Visibility="Visible" Grid.Row="5" Grid.Column="1" Content="계약 요청하기" Name="ClubOfferBtn" Click="ClubOfferBtn_Click" Margin="0,27,0,293"></Button>
     </Grid>
 </Window>

@@ -46,7 +46,7 @@
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="uid" Visibility="Collapsed" Binding="{Binding Path=uid}"/>
+                    <DataGridTextColumn Header="gid" Visibility="Collapsed" Binding="{Binding Path=gid}"/>
                     <DataGridTextColumn Header="홈 팀" Binding="{Binding Path=homeId}"/>
                     <DataGridTextColumn Header="어웨이 팀" Binding="{Binding Path=awayId}"/>
                     <DataGridTextColumn Header="홈 팀 점수" Binding="{Binding Path=homeScore}"/>

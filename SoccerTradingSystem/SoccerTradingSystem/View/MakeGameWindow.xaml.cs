@@ -177,7 +177,15 @@ namespace SoccerTradingSystem.View
             }
 
             Game _Game = new Game(gameId, date, startTime, playTime, homeScore, awayScore, homeTeam, awayTeam, goals, ratings);
-            gh.registerGame(_Game);
+            if (gh.registerGame(_Game))
+            {
+                MessageBox.Show("경기 정보를 성공적으로 추가 했습니다.");
+                this.Close();
+            }else
+            {
+                MessageBox.Show("경기 정보를 추가하는데 실패 했습니다.");
+                this.Close();
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ namespace SoccerTradingSystem
 
             RetrieveHandler rh = new RetrieveHandler();
 
-            rh.retrieveGame(null);
+            List<Game>games = rh.retrieveGame(null);
 
         }
         void 계약동시추가()

@@ -57,8 +57,6 @@ namespace SoccerTradingSystem
             clubF[0].Add("clubId", 3);
             List<Club> clubs = rh.retrieveClub(clubF);
             Club club = clubs[0];
-
-
         }
         void 계약읽기()
         {

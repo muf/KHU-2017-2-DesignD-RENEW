@@ -86,7 +86,8 @@ namespace SoccerTradingSystem.Controller.DAC
         }
         public JSON getGameData()
         {
-            query = "select * from (select CT2.*, Rating.ratingId, Rating.playerId as RatingPlayerId, Rating.ratingGrade from (select CT.*, Assist.assistId, Assist.playerId as assistPlayerId from  (select game.*, goal.goalId, goal.playerId, goal.time from game INNER JOIN goal ON game.gameId = goal.gameId) as CT INNER JOIN assist ON assist.goalId = CT.goalId) as CT2 INNER JOIN Rating ON Rating.gameId = CT2.gameId) as CT3 ";
+            //query = "select * from (select CT2.*, Rating.ratingId, Rating.playerId as RatingPlayerId, Rating.ratingGrade from (select CT.*, Assist.assistId, Assist.playerId as assistPlayerId from  (select game.*, goal.goalId, goal.playerId, goal.time from game INNER JOIN goal ON game.gameId = goal.gameId) as CT INNER JOIN assist ON assist.goalId = CT.goalId) as CT2 INNER JOIN Rating ON Rating.gameId = CT2.gameId) as CT3 ";
+            query = "select * from game";
             queryResult = execute(query);
             return queryResult;
 

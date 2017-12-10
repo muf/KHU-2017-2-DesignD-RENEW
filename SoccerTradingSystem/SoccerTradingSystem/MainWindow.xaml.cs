@@ -45,10 +45,7 @@ namespace SoccerTradingSystem
 
             RetrieveHandler rh = new RetrieveHandler();
 
-            JSON clubF = new JSON();
-            clubF.Add(new Dictionary<string, object>());
-            clubF[0].Add("uid", 3);
-            List<Club> clubs = rh.retrieveClub(clubF);
+            rh.retrieveGame(null);
 
         }
         void 계약동시추가()

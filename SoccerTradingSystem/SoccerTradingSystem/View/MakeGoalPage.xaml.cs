@@ -46,12 +46,13 @@ namespace SoccerTradingSystem.View
 
             JSON home_filter = new JSON();
             home_filter.Add(new Dictionary<string, object>());
-            home_filter[0].Add("uid", homeUid);
+            home_filter[0].Add("full", true);
             List<Club> homeClubs = rh.retrieveClub(home_filter);
 
             JSON away_filter = new JSON();
             away_filter.Add(new Dictionary<string, object>());
             away_filter[0].Add("uid", awayUid);
+            away_filter[0].Add("full", true);
             List<Club> awayClubs = rh.retrieveClub(away_filter);
             
 

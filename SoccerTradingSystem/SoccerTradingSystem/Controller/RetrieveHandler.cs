@@ -49,11 +49,19 @@ namespace SoccerTradingSystem.Controller
 
                     if (clientType == UserType.Club)
                     {
-                        user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", 0, null, null);
+                        JSON filterC = new JSON();
+                        filter.Add(new Dictionary<string, object>());
+                        filter[0].Add("uid", _uid);
+                        user = retrieveClub(filterC)[0];
+                        //user = new Club(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", 0, null, null);
                     }
                     else if (clientType == UserType.Player)
                     {
-                        user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", "", 0, "", 0, 0, 0, "", null);
+                        JSON filterC = new JSON();
+                        filter.Add(new Dictionary<string, object>());
+                        filter[0].Add("uid", _uid);
+                        user = retrievePlayer(filterC)[0];
+                        //user = new Player(_uid, data["email"].ToString(), data["password"].ToString(), auth, -1, null, 0, "", "", "", 0, "", 0, 0, 0, "", null);
                     }
                     else
                     {
@@ -62,7 +70,11 @@ namespace SoccerTradingSystem.Controller
                 }
                 else if (data["clientId"].ToString() == "")
                 {
-                    user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
+                    JSON filterC = new JSON();
+                    filter.Add(new Dictionary<string, object>());
+                    filter[0].Add("uid", _uid);
+                    user = retrieveManager(filterC)[0];
+                    //user = new Manager(_uid, data["email"].ToString(), data["password"].ToString(), auth, Convert.ToInt32(data["managerId"]), data["name"].ToString(), data["telNumber"].ToString());
                 }
                 else
                 {

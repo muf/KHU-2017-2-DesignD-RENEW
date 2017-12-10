@@ -24,6 +24,7 @@ namespace SoccerTradingSystem
     using Manager = SoccerTradingSystem.Model.Manager;
     using Game = SoccerTradingSystem.Model.Game;
     using BankAccount = SoccerTradingSystem.Model.BankAccount;
+    using LocalData = SoccerTradingSystem.Model.LocalData;
     using Contract = SoccerTradingSystem.Model.Contract;
     using SystemAccountHandler = SoccerTradingSystem.Controller.SystemAccountHandler;
     using BankAccountHandler = SoccerTradingSystem.Controller.BankAccountHandler;
@@ -41,22 +42,22 @@ namespace SoccerTradingSystem
         public MainWindow()
         {
             InitializeComponent();
+            로그인();
+            //GameHandler gh = new GameHandler();
+            //RetrieveHandler rh = new RetrieveHandler();
+            //ContractHandler ch = new ContractHandler();
 
-            GameHandler gh = new GameHandler();
-            RetrieveHandler rh = new RetrieveHandler();
-            ContractHandler ch = new ContractHandler();
+            //JSON filter = new JSON();
+            //filter.Add(new Dictionary<string, object>());
+            //filter[0].Add("uid", 16);
+            //List<Player> players = rh.retrievePlayer(filter);
+            //Player player = players[0];
 
-            JSON filter = new JSON();
-            filter.Add(new Dictionary<string, object>());
-            filter[0].Add("uid", 16);
-            List<Player> players = rh.retrievePlayer(filter);
-            Player player = players[0];
-
-            JSON clubF = new JSON();
-            clubF.Add(new Dictionary<string, object>());
-            clubF[0].Add("clubId", 3);
-            List<Club> clubs = rh.retrieveClub(clubF);
-            Club club = clubs[0];
+            //JSON clubF = new JSON();
+            //clubF.Add(new Dictionary<string, object>());
+            //clubF[0].Add("clubId", 3);
+            //List<Club> clubs = rh.retrieveClub(clubF);
+            //Club club = clubs[0];
         }
         void 계약읽기()
         {
@@ -121,7 +122,7 @@ namespace SoccerTradingSystem
         bool 로그인()
         {
             SystemAccountHandler sah = new SystemAccountHandler();
-            sah.login("huryip@naver.com", "tmxhs8282");
+            LocalData cookie = sah.login("player1@naver.com", "123");
             return true;
         }
         bool 계좌추가()

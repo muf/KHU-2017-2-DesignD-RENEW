@@ -122,8 +122,7 @@ CREATE TABLE `Goal` (
 	`time`  VARCHAR(50) NOT NULL,
 	PRIMARY KEY (`goalId`),
 	INDEX `gameId` (`gameId`),
-	INDEX `playerId` (`playerId`),
-	INDEX `assistId` (`assistId`)
+	INDEX `playerId` (`playerId`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
@@ -157,7 +156,7 @@ AUTO_INCREMENT=1
 CREATE TABLE `Payment` (
 	`paymentId` INT NOT NULL AUTO_INCREMENT,
 	`type` ENUM('DailyPayment','MonthlyPayment','WeeklyPayment') NOT NULL DEFAULT 'DailyPayment',
-	'pay' INT NOT NULL,
+	'pay' INT NOT NULL DEFAULT '0',
 	PRIMARY KEY (`paymentId`)
 )
 COLLATE='latin1_swedish_ci'

@@ -63,6 +63,7 @@ namespace SoccerTradingSystem.Views
             JSON filter = new JSON();
             filter.Add(new Dictionary<string, object>());
             filter[0].Add("uid", curPlayerUid);
+            filter[0].Add("full", true);
             List<Player> players = rh.retrievePlayer(filter);
             rh.retrievePlayer(null);
 
@@ -73,7 +74,7 @@ namespace SoccerTradingSystem.Views
             string pPosition = curPlayer.position;
             string pWeight = curPlayer.weight.ToString();
             string pHeight = curPlayer.height.ToString();
-            string club;
+            string club = "자유";
             if (curPlayer.clubs.Count != 0)
                 club = curPlayer.clubs[0].name.ToString();
             else

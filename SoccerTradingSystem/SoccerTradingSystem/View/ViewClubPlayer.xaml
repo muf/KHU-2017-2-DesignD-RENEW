@@ -24,7 +24,7 @@
                 <DataGridTextColumn Header="포지션" Binding="{Binding position}"/>
                 <DataGridTextColumn Header="몸무게" Binding="{Binding weight}"/>
                 <DataGridTextColumn Header="키" Binding="{Binding height}"/>
-                <DataGridTextColumn Header="현재 상태" Binding="{Binding status}"/>
+                <DataGridTextColumn Header="소속" Binding="{Binding status}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

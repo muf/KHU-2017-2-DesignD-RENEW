@@ -66,7 +66,7 @@ namespace SoccerTradingSystem.View
                 string postion = Convert.ToString(players[i].position);
                 string weight = Convert.ToString(players[i].weight);
                 string height = Convert.ToString(players[i].height);
-                string status = players[i].status;
+                string status = players[i].clubs[0].name;
                 dataTable.Rows.Add(new object[] { uid, pid, email, name, birth, postion, weight, height, status });
             }
             playerDataGrid.ItemsSource = dataTable.DefaultView;

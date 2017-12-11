@@ -125,7 +125,7 @@ namespace SoccerTradingSystem.Controller.DAC
                 }
             }
                 
-            query = $"select bankAccount.*, client.userId, client.type from bankAccount INNER JOIN client where userId = {club.uid}";
+            query = $"select bankAccount.*, client.userId, client.type from bankAccount INNER JOIN client on client.clientId = bankAccount.clientId where userId = {club.uid}";
             queryResult = execute(query);
             int total = 0;
             for(int i = 0; i < queryResult.Count; i ++)
